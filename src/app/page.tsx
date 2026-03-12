@@ -37,11 +37,20 @@ export default function Home() {
         setJobs(jobsData.length > 0 ? jobsData : [{ id: 'j1', title: '선샤인 코스트 카페 올라운더 구합니다', price: '법정시급', contact: 'test@example.com' }]);
         setBusinessSell(sellData.length > 0 ? sellData : [{ id: 's1', title: '브리즈번 북부 스시 테이크아웃 매매', price: '협의', contact: '0433 xxx xxx' }]);
         
-        // 업소록 데이터
+        // 업소록 데이터 (수집된 실제 데이터로 업데이트)
         setBusinesses(bizData.length > 0 ? bizData : [
-          { id: 'b1', name: '노스레이크 한인마트', category: '식품/마트', location: 'North Lakes', phone: '04xx xxx xxx' },
-          { id: 'b2', name: '선샤인 클리닝 서비스', category: '청소/서비스', location: 'Sunshine Coast', phone: '04xx xxx xxx' },
-          { id: 'b3', name: '골드 코스트 법률 사무소', category: '법률/비즈니스', location: 'Brisbane', phone: '04xx xxx xxx' },
+          { id: 'b1', name: 'bapboi Korean BBQ', category: '식당', location: 'North Lakes', phone: '0468 926 807' },
+          { id: 'b2', name: 'BULGOGI', category: '식당', location: 'North Lakes', phone: '0493 987 110' },
+          { id: 'b3', name: 'CUPBOP', category: '식당', location: 'Kallangur', phone: '0432 021 688' },
+          { id: 'b4', name: 'Hanaromart North Lakes', category: '비즈니스', location: 'North Lakes', phone: '07 3491 8064' },
+          { id: 'b5', name: 'Chicken in Seoul', category: '식당', location: 'North Lakes', phone: '0413 543 516' },
+          { id: 'b6', name: 'South Seoul', category: '식당', location: 'Murrumba Downs', phone: '0411 114 964' },
+          { id: 'b7', name: '노스레이크 순복음 교회', category: '교회', location: 'North Lakes', phone: '0433 246 191' },
+          { id: 'b8', name: 'Haru Korean Kitchen', category: '식당', location: 'Noosa Heads', phone: '(07) 5447 2249' },
+          { id: 'b9', name: 'JANGO Korean BBQ', category: '식당', location: 'Buddina', phone: '0481 862 780' },
+          { id: 'b10', name: 'Momo Chicken', category: '식당', location: 'Maroochydore', phone: '(07) 5443 4133' },
+          { id: 'b11', name: 'Meekak Bar & BBQ', category: '식당', location: 'Maroochydore', phone: '0491 714 170' },
+          { id: 'b12', name: '선샤인코스트 성결교회', category: '교회', location: 'Bokarina', phone: '0410 228 572' },
         ]);
 
       } catch (error) {
