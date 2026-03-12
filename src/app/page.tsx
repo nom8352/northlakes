@@ -38,8 +38,8 @@ export default function Home() {
         setJobs(jobsData.length > 0 ? jobsData : [{ id: 'j1', title: '선샤인 코스트 카페 올라운더 구합니다', price: '법정시급', contact: 'test@example.com' }]);
         setBusinessSell(sellData.length > 0 ? sellData : [{ id: 's1', title: '브리즈번 북부 스시 테이크아웃 매매', price: '협의', contact: '0433 xxx xxx' }]);
         
-        // 업소록 데이터 (수집된 실제 데이터로 업데이트)
-        setBusinesses(bizData.length > 0 ? bizData : [
+        // 업소록 데이터 (기존 수집 데이터 + 신규 농장 20곳 추가)
+        const combinedBusinesses = [
           { id: 'b1', name: 'bapboi Korean BBQ', category: '식당', location: 'North Lakes', phone: '0468 926 807' },
           { id: 'b2', name: 'BULGOGI', category: '식당', location: 'North Lakes', phone: '0493 987 110' },
           { id: 'b3', name: 'CUPBOP', category: '식당', location: 'Kallangur', phone: '0432 021 688' },
@@ -52,7 +52,30 @@ export default function Home() {
           { id: 'b10', name: 'Momo Chicken', category: '식당', location: 'Maroochydore', phone: '(07) 5443 4133' },
           { id: 'b11', name: 'Meekak Bar & BBQ', category: '식당', location: 'Maroochydore', phone: '0491 714 170' },
           { id: 'b12', name: '선샤인코스트 성결교회', category: '교회', location: 'Bokarina', phone: '0410 228 572' },
-        ]);
+          // 신규 농장 리스트 추가
+          { id: 'f1', name: 'Oasis Berries', category: 'Farm', location: 'Caboolture', phone: '0421 166 324' },
+          { id: 'f2', name: 'Queensland Berries', category: 'Farm', location: 'Caboolture', phone: '0488 217 804' },
+          { id: 'f3', name: 'Rolin Farms', category: 'Farm', location: 'Elimbah', phone: '0422 536 292' },
+          { id: 'f4', name: 'Stothart Family Farms', category: 'Farm', location: 'Bellmere', phone: '0438 593 607' },
+          { id: 'f5', name: 'Schiffke Pty Ltd', category: 'Farm', location: 'Bellmere', phone: '(07) 5495 8274' },
+          { id: 'f6', name: 'Pinata Farms', category: 'Farm', location: 'Wamuran', phone: '(07) 5497 4295' },
+          { id: 'f7', name: 'Sunray Strawberries', category: 'Farm', location: 'Wamuran', phone: '(07) 5496 7364' },
+          { id: 'f8', name: 'LuvaBerry Farm', category: 'Farm', location: 'Wamuran', phone: '0417 741 692' },
+          { id: 'f9', name: 'Hermes Strawberries', category: 'Farm', location: 'Wamuran', phone: '0422 333 071' },
+          { id: 'f10', name: 'Diamond Berries', category: 'Farm', location: 'Caboolture', phone: '0434 499 805' },
+          { id: 'f11', name: 'Perfection Berries', category: 'Farm', location: 'Caboolture', phone: '(07) 5495 1888' },
+          { id: 'f12', name: 'TSL Family Farms', category: 'Farm', location: 'Beerwah', phone: '0407 151 768' },
+          { id: 'f13', name: 'Hammond Farm', category: 'Farm', location: 'Elimbah', phone: '(07) 5496 7183' },
+          { id: 'f14', name: 'Inchcolm Farms', category: 'Farm', location: 'Wamuran', phone: '(07) 5496 6444' },
+          { id: 'f15', name: 'Berrylicious Strawberries', category: 'Farm', location: 'Nambour', phone: '0412 155 058' },
+          { id: 'f16', name: 'McMartin\'s Farm', category: 'Farm', location: 'Bli Bli', phone: '(07) 5448 4912' },
+          { id: 'f17', name: 'Cooloola Berries', category: 'Farm', location: 'Wolvi', phone: '(07) 5486 7512' },
+          { id: 'f18', name: 'Strawberry Fields', category: 'Farm', location: 'Glass House Mountains', phone: '(07) 5496 9255' },
+          { id: 'f19', name: 'Gowinta Farms', category: 'Farm', location: 'Beerburrum', phone: '(07) 5496 0055' },
+          { id: 'f20', name: 'Best Berries', category: 'Farm', location: 'Bellmere', phone: '0401 222 333' }
+        ];
+
+        setBusinesses(bizData.length > 0 ? bizData : combinedBusinesses);
 
       } catch (error) {
         console.error("Data fetching error:", error);
