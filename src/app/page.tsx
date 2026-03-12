@@ -1,0 +1,213 @@
+"use client";
+
+import { Newspaper, Building2, Users, Briefcase, Home as HomeIcon, ShoppingBag, Loader2, ArrowRight } from "lucide-react";
+import { newsService, listingService } from "@/lib/services";
+import { useEffect, useState } from "react";
+
+export default function Home() {
+  const [news, setNews] = useState<any[]>([]);
+  const [accommodation, setAccommodation] = useState<any[]>([]);
+  const [jobs, setJobs] = useState<any[]>([]);
+  const [businessSell, setBusinessSell] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [newsData, accData, jobsData, sellData] = await Promise.all([
+          newsService.getTop10(),
+          listingService.getByCategory('accommodation'),
+          listingService.getByCategory('jobs'),
+          listingService.getByCategory('business_sell')
+        ]);
+        
+        // 뉴스 데이터 설정 (없으면 모크 사용)
+        setNews(newsData.length > 0 ? newsData : [
+          { id: 'm1', title: "호주 금리 동결 유지, 부동산 시장 영향은?", summary: "보수적인 금융 정책 기조가 이어지며 향후 부동산 전망에 대한 전문가 분석..." },
+          { id: 'm2', title: "퀸즐랜드 북부 지역 새로운 개발 계획 발표", summary: "선샤인 코스트와 노스레이크를 잇는 교통 인프라 확충 및 상업 지구 조성..." },
+          { id: 'm3', title: "2024년 변경되는 호주 비자 규정 정리", summary: "학생 비자 및 취업 비자 신청 조건 강화에 따른 교민 및 유학생 주의사항..." },
+          { id: 'm4', title: "브리즈번 공항 터미널 확장 공사 착수", summary: "관광객 증가에 대비한 대규모 현대화 프로젝트..." },
+          { id: 'm5', title: "퀸즐랜드 물가 지수 발표, 식료품 가격 하락세", summary: "최근 인플레이션 완화 조짐에 따른 장바구니 물가 동향..." },
+        ]);
+
+        // 게시판 데이터 설정
+        setAccommodation(accData.length > 0 ? accData : [{ id: 'a1', title: '노스레이크 깨끗한 독방 쉐어', price: '$250/주', contact: '0412 xxx xxx' }]);
+        setJobs(jobsData.length > 0 ? jobsData : [{ id: 'j1', title: '선샤인 코스트 카페 올라운더 구합니다', price: '법정시급', contact: 'test@example.com' }]);
+        setBusinessSell(sellData.length > 0 ? sellData : [{ id: 's1', title: '브리즈번 북부 스시 테이크아웃 매매', price: '협의', contact: '0433 xxx xxx' }]);
+
+      } catch (error) {
+        console.error("Data fetching error:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
+      {/* Hero Section */}
+      <header className="premium-gradient py-16 px-6 text-white text-center shadow-2xl overflow-hidden relative">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+          <div className="absolute top-10 left-10 w-64 h-64 bg-accent-gold rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
+        </div>
+        <div className="relative z-10">
+          <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            QLD <span className="text-accent-gold">NORTH</span> KOREAN
+          </h1>
+          <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto font-medium">
+            노스레이크 & 선샤인 코스트 교민을 위한 스마트 정보 플랫폼
+          </p>
+        </div>
+      </header>
+
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+        
+        {/* News TOP 10 Section */}
+        <section>
+          <div className="flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
+            <div className="flex items-center gap-3">
+              <div className="bg-brand-primary p-2 rounded-lg text-white">
+                <Newspaper size={24} />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-black text-slate-800">
+                Today's <span className="text-brand-primary underline decoration-accent-gold underline-offset-4 font-black">NEWS TOP 10</span>
+              </h2>
+            </div>
+          </div>
+          
+          {isLoading ? (
+            <div className="flex justify-center py-20">
+              <Loader2 className="animate-spin text-brand-primary w-12 h-12" />
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+              {news.map((item, idx) => (
+                <div key={item.id} className="group relative bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-brand-primary/20 transition-all duration-300 cursor-pointer overflow-hidden">
+                  <div className="flex gap-5 items-start">
+                    <span className="text-5xl font-black text-slate-100 group-hover:text-brand-primary/10 transition-colors leading-none">
+                      {String(idx + 1).padStart(2, '0')}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-lg font-bold mb-2 group-hover:text-brand-primary transition-colors line-clamp-1">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-slate-500 line-clamp-2 leading-relaxed">
+                        {item.summary || item.content}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ArrowRight className="text-brand-primary" size={20} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+
+        {/* Community Grid Section */}
+        <section className="space-y-10">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="bg-emerald-600 p-2 rounded-lg text-white">
+              <Users size={24} />
+            </div>
+            <h2 className="text-2xl md:text-3xl font-black text-slate-800 italic">Community Boards</h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Accommodation (방 쉐어) */}
+            <div className="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden">
+              <div className="bg-blue-600 px-6 py-4 text-white flex justify-between items-center">
+                <h3 className="font-black flex items-center gap-2">
+                  <HomeIcon size={18} /> 방 쉐어
+                </h3>
+                <span className="text-xs font-bold opacity-80 uppercase tracking-widest">Accommodation</span>
+              </div>
+              <div className="divide-y divide-slate-50">
+                {accommodation.slice(0, 5).map(post => (
+                  <div key={post.id} className="p-5 hover:bg-slate-50 transition-colors cursor-pointer group">
+                    <h4 className="font-bold text-slate-800 line-clamp-1 mb-1 group-hover:text-blue-600">{post.title}</h4>
+                    <div className="flex justify-between items-center text-xs">
+                      <span className="text-blue-600 font-bold">{post.price}</span>
+                      <span className="text-slate-400">{new Date().toLocaleDateString()}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button className="w-full py-4 text-sm font-bold text-slate-500 hover:text-blue-600 transition-colors bg-slate-50/50">
+                방 쉐어 전체보기
+              </button>
+            </div>
+
+            {/* Jobs (구인구직) */}
+            <div className="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden">
+              <div className="bg-emerald-600 px-6 py-4 text-white flex justify-between items-center">
+                <h3 className="font-black flex items-center gap-2">
+                  <Briefcase size={18} /> 구인구직
+                </h3>
+                <span className="text-xs font-bold opacity-80 uppercase tracking-widest">Jobs</span>
+              </div>
+              <div className="divide-y divide-slate-50">
+                {jobs.slice(0, 5).map(post => (
+                  <div key={post.id} className="p-5 hover:bg-slate-50 transition-colors cursor-pointer group">
+                    <h4 className="font-bold text-slate-800 line-clamp-1 mb-1 group-hover:text-emerald-600">{post.title}</h4>
+                    <div className="flex justify-between items-center text-xs">
+                      <span className="text-emerald-600 font-bold">{post.price}</span>
+                      <span className="text-slate-400">{new Date().toLocaleDateString()}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button className="w-full py-4 text-sm font-bold text-slate-500 hover:text-emerald-600 transition-colors bg-slate-50/50">
+                구인구직 전체보기
+              </button>
+            </div>
+
+            {/* Business Sell (비즈니스 매매) */}
+            <div className="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden">
+              <div className="bg-purple-600 px-6 py-4 text-white flex justify-between items-center">
+                <h3 className="font-black flex items-center gap-2">
+                  <ShoppingBag size={18} /> 비즈니스 매매
+                </h3>
+                <span className="text-xs font-bold opacity-80 uppercase tracking-widest">Business</span>
+              </div>
+              <div className="divide-y divide-slate-50">
+                {businessSell.slice(0, 5).map(post => (
+                  <div key={post.id} className="p-5 hover:bg-slate-50 transition-colors cursor-pointer group">
+                    <h4 className="font-bold text-slate-800 line-clamp-1 mb-1 group-hover:text-purple-600">{post.title}</h4>
+                    <div className="flex justify-between items-center text-xs">
+                      <span className="text-purple-600 font-bold">{post.price}</span>
+                      <span className="text-slate-400">{new Date().toLocaleDateString()}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button className="w-full py-4 text-sm font-bold text-slate-500 hover:text-purple-600 transition-colors bg-slate-50/50">
+                비즈니스 매매 전체보기
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <footer className="bg-slate-900 text-white py-16 px-6 mt-24">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div>
+            <h2 className="text-2xl font-black mb-6">QLD NORTH KOREAN</h2>
+            <p className="opacity-50 text-sm max-w-sm leading-relaxed">
+              퀸즐랜드 북부 지역 교민들의 소통과 정보 공유를 위한 플랫폼입니다. 
+              오늘의 실시간 뉴스와 다양한 커뮤니티 소식을 만나보세요.
+            </p>
+          </div>
+          <div className="flex flex-col md:items-end justify-center text-sm opacity-50 space-y-2">
+            <p>© 2026 Queensland North Korean Community.</p>
+            <p>Designed for Sunshine Coast & Northlakes.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
