@@ -82,6 +82,28 @@ export default function Home() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
         
+        {/* Farm Season Widget */}
+        <section className="bg-gradient-to-r from-red-500 to-emerald-600 p-1 rounded-[2.5rem] shadow-2xl transform hover:scale-[1.01] transition-all duration-500">
+          <div className="bg-white rounded-[2.4rem] p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex items-center gap-6">
+              <div className="bg-red-100 p-5 rounded-3xl text-red-600 animate-bounce-subtle">
+                <span className="text-4xl">🍓</span>
+              </div>
+              <div>
+                <h3 className="text-2xl md:text-3xl font-black text-slate-800 mb-2">
+                  지금은 <span className="text-red-600">3월</span>, <span className="text-emerald-600 underline decoration-emerald-200 underline-offset-8">모종 심기</span> 시즌!
+                </h3>
+                <p className="text-slate-500 font-bold flex items-center gap-2">
+                  <Sprout size={18} className="text-emerald-500" /> 카불쳐 딸기 농장이 바빠지는 준비 기간입니다.
+                </p>
+              </div>
+            </div>
+            <Link href="/calendar" className="w-full md:w-auto px-8 py-4 bg-red-600 text-white rounded-2xl font-black hover:bg-emerald-700 transition-all shadow-xl shadow-red-200 flex items-center justify-center gap-2 group">
+              전체 시즌 캘린더 보기 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </section>
+        
         {/* News TOP 10 Section */}
         <section>
           <div className="flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
@@ -210,7 +232,7 @@ export default function Home() {
         </section>
 
         {/* Business Directory Section */}
-        <section className="space-y-8">
+        <section id="business-directory" className="space-y-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="bg-brand-900 p-2 rounded-lg text-white">
