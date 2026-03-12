@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = 'force-dynamic';
+
 import { useState } from "react";
 import { newsService, listingService } from "@/lib/services";
 import { Newspaper, PlusCircle, ListTodo, CheckCircle2, AlertCircle, Users } from "lucide-react";

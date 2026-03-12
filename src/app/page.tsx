@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = 'force-dynamic';
+
 import { Newspaper, Building2, Users, Briefcase, Home as HomeIcon, ShoppingBag, Loader2, ArrowRight } from "lucide-react";
 import { newsService, listingService } from "@/lib/services";
 import { useEffect, useState } from "react";
