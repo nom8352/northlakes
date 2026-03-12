@@ -2,9 +2,10 @@
 
 export const dynamic = 'force-dynamic';
 
-import { Newspaper, Building2, Users, Briefcase, Home as HomeIcon, ShoppingBag, Loader2, ArrowRight } from "lucide-react";
+import { Newspaper, Building2, Users, Briefcase, Home as HomeIcon, ShoppingBag, Loader2, ArrowRight, Sprout } from "lucide-react";
 import { newsService, listingService, businessService } from "@/lib/services";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
   const [news, setNews] = useState<any[]>([]);
