@@ -3,7 +3,7 @@
 export const dynamic = 'force-dynamic';
 
 import { Newspaper, Building2, Users, Briefcase, Home as HomeIcon, ShoppingBag, Loader2, ArrowRight } from "lucide-react";
-import { newsService, listingService } from "@/lib/services";
+import { newsService, listingService, businessService } from "@/lib/services";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -11,16 +11,18 @@ export default function Home() {
   const [accommodation, setAccommodation] = useState<any[]>([]);
   const [jobs, setJobs] = useState<any[]>([]);
   const [businessSell, setBusinessSell] = useState<any[]>([]);
+  const [businesses, setBusinesses] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const [newsData, accData, jobsData, sellData] = await Promise.all([
+        const [newsData, accData, jobsData, sellData, bizData] = await Promise.all([
           newsService.getTop10(),
           listingService.getByCategory('accommodation'),
           listingService.getByCategory('jobs'),
-          listingService.getByCategory('business_sell')
+          listingService.getByCategory('business_sell'),
+          businessService.getAll()
         ]);
         
         // 뉴스 데이터 설정 (없으면 모크 사용)
@@ -28,14 +30,19 @@ export default function Home() {
           { id: 'm1', title: "호주 금리 동결 유지, 부동산 시장 영향은?", summary: "보수적인 금융 정책 기조가 이어지며 향후 부동산 전망에 대한 전문가 분석..." },
           { id: 'm2', title: "퀸즐랜드 북부 지역 새로운 개발 계획 발표", summary: "선샤인 코스트와 노스레이크를 잇는 교통 인프라 확충 및 상업 지구 조성..." },
           { id: 'm3', title: "2024년 변경되는 호주 비자 규정 정리", summary: "학생 비자 및 취업 비자 신청 조건 강화에 따른 교민 및 유학생 주의사항..." },
-          { id: 'm4', title: "브리즈번 공항 터미널 확장 공사 착수", summary: "관광객 증가에 대비한 대규모 현대화 프로젝트..." },
-          { id: 'm5', title: "퀸즐랜드 물가 지수 발표, 식료품 가격 하락세", summary: "최근 인플레이션 완화 조짐에 따른 장바구니 물가 동향..." },
         ]);
 
         // 게시판 데이터 설정
         setAccommodation(accData.length > 0 ? accData : [{ id: 'a1', title: '노스레이크 깨끗한 독방 쉐어', price: '$250/주', contact: '0412 xxx xxx' }]);
         setJobs(jobsData.length > 0 ? jobsData : [{ id: 'j1', title: '선샤인 코스트 카페 올라운더 구합니다', price: '법정시급', contact: 'test@example.com' }]);
         setBusinessSell(sellData.length > 0 ? sellData : [{ id: 's1', title: '브리즈번 북부 스시 테이크아웃 매매', price: '협의', contact: '0433 xxx xxx' }]);
+        
+        // 업소록 데이터
+        setBusinesses(bizData.length > 0 ? bizData : [
+          { id: 'b1', name: '노스레이크 한인마트', category: '식품/마트', location: 'North Lakes', phone: '04xx xxx xxx' },
+          { id: 'b2', name: '선샤인 클리닝 서비스', category: '청소/서비스', location: 'Sunshine Coast', phone: '04xx xxx xxx' },
+          { id: 'b3', name: '골드 코스트 법률 사무소', category: '법률/비즈니스', location: 'Brisbane', phone: '04xx xxx xxx' },
+        ]);
 
       } catch (error) {
         console.error("Data fetching error:", error);
@@ -193,6 +200,35 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Business Directory Section */}
+        <section className="space-y-8">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="bg-brand-900 p-2 rounded-lg text-white">
+                <Building2 size={24} />
+              </div>
+              <h2 className="text-2xl md:text-3xl font-black text-slate-800">
+                Business <span className="text-brand-900 border-b-4 border-accent-gold pb-1">DIRECTORY</span>
+              </h2>
+            </div>
+            <button className="text-sm font-bold text-slate-500 flex items-center gap-1 hover:text-brand-900 transition-colors">
+              업소록 전체보기 <ArrowRight size={16} />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {businesses.slice(0, 8).map(biz => (
+              <div key={biz.id} className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <div className="text-xs font-black text-brand-primary mb-2 uppercase tracking-tight">{biz.category}</div>
+                <h4 className="text-lg font-black text-slate-900 mb-3">{biz.name}</h4>
+                <div className="space-y-2 text-sm text-slate-500 font-medium">
+                  <p className="flex items-center gap-2">📍 {biz.location}</p>
+                  <p className="flex items-center gap-2">📞 {biz.phone}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
 
       <footer className="bg-slate-900 text-white py-16 px-6 mt-24">
