@@ -93,8 +93,8 @@ export default function CalendarPage() {
 
         {/* Bottom Link */}
         <section className="text-center pt-8">
-          <Link href="/#business-directory" className="inline-flex items-center gap-3 bg-slate-900 text-white px-10 py-5 rounded-full font-black hover:bg-emerald-700 transition-all shadow-2xl">
-            <Building2 size={24} /> 농장 및 관련 업체 리스트 보기 <ChevronRight size={20} />
+          <Link href="/#farm-list" className="inline-flex items-center gap-3 bg-slate-900 text-white px-10 py-5 rounded-full font-black hover:bg-emerald-700 transition-all shadow-2xl">
+            <Sprout size={24} /> 카불쳐 딸기 농장 전체 리스트 보기 <ChevronRight size={20} />
           </Link>
         </section>
       </main>

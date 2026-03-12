@@ -13,6 +13,7 @@ export default function Home() {
   const [jobs, setJobs] = useState<any[]>([]);
   const [businessSell, setBusinessSell] = useState<any[]>([]);
   const [businesses, setBusinesses] = useState<any[]>([]);
+  const [farms, setFarms] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -38,44 +39,49 @@ export default function Home() {
         setJobs(jobsData.length > 0 ? jobsData : [{ id: 'j1', title: '선샤인 코스트 카페 올라운더 구합니다', price: '법정시급', contact: 'test@example.com' }]);
         setBusinessSell(sellData.length > 0 ? sellData : [{ id: 's1', title: '브리즈번 북부 스시 테이크아웃 매매', price: '협의', contact: '0433 xxx xxx' }]);
         
-        // 업소록 데이터 (기존 수집 데이터 + 신규 농장 20곳 추가)
-        const combinedBusinesses = [
-          { id: 'b1', name: 'bapboi Korean BBQ', category: '식당', location: 'North Lakes', phone: '0468 926 807' },
-          { id: 'b2', name: 'BULGOGI', category: '식당', location: 'North Lakes', phone: '0493 987 110' },
-          { id: 'b3', name: 'CUPBOP', category: '식당', location: 'Kallangur', phone: '0432 021 688' },
-          { id: 'b4', name: 'Hanaromart North Lakes', category: '비즈니스', location: 'North Lakes', phone: '07 3491 8064' },
-          { id: 'b5', name: 'Chicken in Seoul', category: '식당', location: 'North Lakes', phone: '0413 543 516' },
-          { id: 'b6', name: 'South Seoul', category: '식당', location: 'Murrumba Downs', phone: '0411 114 964' },
-          { id: 'b7', name: '노스레이크 순복음 교회', category: '교회', location: 'North Lakes', phone: '0433 246 191' },
-          { id: 'b8', name: 'Haru Korean Kitchen', category: '식당', location: 'Noosa Heads', phone: '(07) 5447 2249' },
-          { id: 'b9', name: 'JANGO Korean BBQ', category: '식당', location: 'Buddina', phone: '0481 862 780' },
-          { id: 'b10', name: 'Momo Chicken', category: '식당', location: 'Maroochydore', phone: '(07) 5443 4133' },
-          { id: 'b11', name: 'Meekak Bar & BBQ', category: '식당', location: 'Maroochydore', phone: '0491 714 170' },
-          { id: 'b12', name: '선샤인코스트 성결교회', category: '교회', location: 'Bokarina', phone: '0410 228 572' },
-          // 신규 농장 리스트 추가
-          { id: 'f1', name: 'Oasis Berries', category: 'Farm', location: 'Caboolture', phone: '0421 166 324' },
-          { id: 'f2', name: 'Queensland Berries', category: 'Farm', location: 'Caboolture', phone: '0488 217 804' },
-          { id: 'f3', name: 'Rolin Farms', category: 'Farm', location: 'Elimbah', phone: '0422 536 292' },
-          { id: 'f4', name: 'Stothart Family Farms', category: 'Farm', location: 'Bellmere', phone: '0438 593 607' },
-          { id: 'f5', name: 'Schiffke Pty Ltd', category: 'Farm', location: 'Bellmere', phone: '(07) 5495 8274' },
-          { id: 'f6', name: 'Pinata Farms', category: 'Farm', location: 'Wamuran', phone: '(07) 5497 4295' },
-          { id: 'f7', name: 'Sunray Strawberries', category: 'Farm', location: 'Wamuran', phone: '(07) 5496 7364' },
-          { id: 'f8', name: 'LuvaBerry Farm', category: 'Farm', location: 'Wamuran', phone: '0417 741 692' },
-          { id: 'f9', name: 'Hermes Strawberries', category: 'Farm', location: 'Wamuran', phone: '0422 333 071' },
-          { id: 'f10', name: 'Diamond Berries', category: 'Farm', location: 'Caboolture', phone: '0434 499 805' },
-          { id: 'f11', name: 'Perfection Berries', category: 'Farm', location: 'Caboolture', phone: '(07) 5495 1888' },
-          { id: 'f12', name: 'TSL Family Farms', category: 'Farm', location: 'Beerwah', phone: '0407 151 768' },
-          { id: 'f13', name: 'Hammond Farm', category: 'Farm', location: 'Elimbah', phone: '(07) 5496 7183' },
-          { id: 'f14', name: 'Inchcolm Farms', category: 'Farm', location: 'Wamuran', phone: '(07) 5496 6444' },
-          { id: 'f15', name: 'Berrylicious Strawberries', category: 'Farm', location: 'Nambour', phone: '0412 155 058' },
-          { id: 'f16', name: 'McMartin\'s Farm', category: 'Farm', location: 'Bli Bli', phone: '(07) 5448 4912' },
-          { id: 'f17', name: 'Cooloola Berries', category: 'Farm', location: 'Wolvi', phone: '(07) 5486 7512' },
-          { id: 'f18', name: 'Strawberry Fields', category: 'Farm', location: 'Glass House Mountains', phone: '(07) 5496 9255' },
-          { id: 'f19', name: 'Gowinta Farms', category: 'Farm', location: 'Beerburrum', phone: '(07) 5496 0055' },
-          { id: 'f20', name: 'Best Berries', category: 'Farm', location: 'Bellmere', phone: '0401 222 333' }
-        ];
-
-        setBusinesses(bizData.length > 0 ? bizData : combinedBusinesses);
+        // 데이터 분리 로직 (Farm vs 일반 업소)
+        if (bizData.length > 0) {
+          setFarms(bizData.filter((b: any) => b.category === 'Farm'));
+          setBusinesses(bizData.filter((b: any) => b.category !== 'Farm'));
+        } else {
+          // Fallback 데이터
+          setBusinesses([
+            { id: 'b1', name: 'bapboi Korean BBQ', category: '식당', location: 'North Lakes', phone: '0468 926 807' },
+            { id: 'b2', name: 'BULGOGI', category: '식당', location: 'North Lakes', phone: '0493 987 110' },
+            { id: 'b3', name: 'CUPBOP', category: '식당', location: 'Kallangur', phone: '0432 021 688' },
+            { id: 'b4', name: 'Hanaromart North Lakes', category: '비즈니스', location: 'North Lakes', phone: '07 3491 8064' },
+            { id: 'b5', name: 'Chicken in Seoul', category: '식당', location: 'North Lakes', phone: '0413 543 516' },
+            { id: 'b6', name: 'South Seoul', category: '식당', location: 'Murrumba Downs', phone: '0411 114 964' },
+            { id: 'b7', name: '노스레이크 순복음 교회', category: '교회', location: 'North Lakes', phone: '0433 246 191' },
+            { id: 'b8', name: 'Haru Korean Kitchen', category: '식당', location: 'Noosa Heads', phone: '(07) 5447 2249' },
+            { id: 'b9', name: 'JANGO Korean BBQ', category: '식당', location: 'Buddina', phone: '0481 862 780' },
+            { id: 'b10', name: 'Momo Chicken', category: '식당', location: 'Maroochydore', phone: '(07) 5443 4133' },
+            { id: 'b11', name: 'Meekak Bar & BBQ', category: '식당', location: 'Maroochydore', phone: '0491 714 170' },
+            { id: 'b12', name: '선샤인코스트 성결교회', category: '교회', location: 'Bokarina', phone: '0410 228 572' },
+          ]);
+          setFarms([
+            { id: 'f1', name: 'Oasis Berries', category: 'Farm', location: 'Caboolture', phone: '0421 166 324' },
+            { id: 'f2', name: 'Queensland Berries', category: 'Farm', location: 'Caboolture', phone: '0488 217 804' },
+            { id: 'f3', name: 'Rolin Farms', category: 'Farm', location: 'Elimbah', phone: '0422 536 292' },
+            { id: 'f4', name: 'Stothart Family Farms', category: 'Farm', location: 'Bellmere', phone: '0438 593 607' },
+            { id: 'f5', name: 'Schiffke Pty Ltd', category: 'Farm', location: 'Bellmere', phone: '(07) 5495 8274' },
+            { id: 'f6', name: 'Pinata Farms', category: 'Farm', location: 'Wamuran', phone: '(07) 5497 4295' },
+            { id: 'f7', name: 'Sunray Strawberries', category: 'Farm', location: 'Wamuran', phone: '(07) 5496 7364' },
+            { id: 'f8', name: 'LuvaBerry Farm', category: 'Farm', location: 'Wamuran', phone: '0417 741 692' },
+            { id: 'f9', name: 'Hermes Strawberries', category: 'Farm', location: 'Wamuran', phone: '0422 333 071' },
+            { id: 'f10', name: 'Diamond Berries', category: 'Farm', location: 'Caboolture', phone: '0434 499 805' },
+            { id: 'f11', name: 'Perfection Berries', category: 'Farm', location: 'Caboolture', phone: '(07) 5495 1888' },
+            { id: 'f12', name: 'TSL Family Farms', category: 'Farm', location: 'Beerwah', phone: '0407 151 768' },
+            { id: 'f13', name: 'Hammond Farm', category: 'Farm', location: 'Elimbah', phone: '(07) 5496 7183' },
+            { id: 'f14', name: 'Inchcolm Farms', category: 'Farm', location: 'Wamuran', phone: '(07) 5496 6444' },
+            { id: 'f15', name: 'Berrylicious Strawberries', category: 'Farm', location: 'Nambour', phone: '0412 155 058' },
+            { id: 'f16', name: 'McMartin\'s Farm', category: 'Farm', location: 'Bli Bli', phone: '(07) 5448 4912' },
+            { id: 'f17', name: 'Cooloola Berries', category: 'Farm', location: 'Wolvi', phone: '(07) 5486 7512' },
+            { id: 'f18', name: 'Strawberry Fields', category: 'Farm', location: 'Glass House Mountains', phone: '(07) 5496 9255' },
+            { id: 'f19', name: 'Gowinta Farms', category: 'Farm', location: 'Beerburrum', phone: '(07) 5496 0055' },
+            { id: 'f20', name: 'Best Berries', category: 'Farm', location: 'Bellmere', phone: '0401 222 333' }
+          ]);
+        }
 
       } catch (error) {
         console.error("Data fetching error:", error);
@@ -252,6 +258,34 @@ export default function Home() {
                 비즈니스 매매 전체보기
               </button>
             </div>
+          </div>
+        </section>
+
+        {/* Farm List Section */}
+        <section id="farm-list" className="space-y-8">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="bg-red-600 p-2 rounded-lg text-white">
+                <span className="text-xl">🍓</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-black text-slate-800">
+                Caboolture <span className="text-red-600 border-b-4 border-red-200 pb-1">STRAWBERRY FARMS</span>
+              </h2>
+            </div>
+            <span className="text-sm font-bold text-slate-400">총 {farms.length}개 농장</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {farms.map(farm => (
+              <div key={farm.id} className="bg-white p-6 rounded-3xl shadow-sm border border-red-50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <div className="text-xs font-black text-emerald-600 mb-2 uppercase tracking-tight">Strawberry Farm</div>
+                <h4 className="text-lg font-black text-slate-900 mb-3">{farm.name}</h4>
+                <div className="space-y-2 text-sm text-slate-500 font-medium">
+                  <p className="flex items-center gap-2">📍 {farm.location}</p>
+                  <p className="flex items-center gap-2">📞 {farm.phone}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
