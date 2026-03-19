@@ -1,31 +1,29 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-brand-900: #0f172a; /* Deep Blue Outer Space */
-  --color-brand-800: #1e293b;
-  --color-brand-primary: #1e3a8a; /* Royal Blue */
-  --color-accent-gold: #fbbf24; /* Amber/Gold */
-  --color-accent-gold-soft: #fef3c7;
-  
-  --color-surface-dark: #020617;
-  --color-surface-card: #0f172a;
-  
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --color-brand-950: #0f172a;
+  --color-brand-900: #162033;
+  --color-brand-700: #2f5fb7;
+  --color-brand-600: #3d78db;
+  --color-brand-500: #5ea0ff;
+  --color-brand-100: #e7f0ff;
+  --color-brand-50: #f5f9ff;
+  --font-sans: var(--font-sans-kr), system-ui, sans-serif;
 }
 
 :root {
-  --background: #fffaf3;
-  --foreground: #0f172a;
+  --background: #f7fbff;
+  --foreground: #162033;
   --card: #ffffff;
-  --border: #e5e7eb;
+  --border: #dbe7f7;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #fffaf3;
-    --foreground: #0f172a;
+    --background: #f7fbff;
+    --foreground: #162033;
     --card: #ffffff;
-    --border: #e5e7eb;
+    --border: #dbe7f7;
   }
 }
 
@@ -43,4 +41,9 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #d7e8ff;
+  color: #162033;
 }

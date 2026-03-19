@@ -20,22 +20,22 @@ export default function ActivitiesPage() {
             <Link
               key={category.slug}
               href={category.href}
-              className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(15,23,42,0.10)]"
+              className="group overflow-hidden rounded-[2rem] border border-sky-100 bg-white shadow-[0_16px_46px_rgba(22,32,51,0.06)] transition hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(47,95,183,0.10)]"
             >
               <div className="h-56 bg-cover bg-center" style={{ backgroundImage: `url(${category.image})` }} />
               <div className="p-6">
-                <p className="text-xs font-bold uppercase tracking-[0.24em] text-orange-700">{category.kicker}</p>
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-sky-700">{category.kicker}</p>
                 <h2 className="mt-3 text-2xl font-black text-slate-950">{category.title}</h2>
                 <p className="mt-2 text-sm font-semibold text-slate-500">{category.parentLabel}</p>
                 <p className="mt-3 text-sm leading-6 text-slate-600">{category.description}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {category.highlights.map((item) => (
-                    <span key={item} className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700">
+                    <span key={item} className="rounded-full bg-sky-50 px-3 py-1.5 text-xs font-semibold text-slate-700 ring-1 ring-sky-100">
                       {item}
                     </span>
                   ))}
                 </div>
-                <div className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-slate-900 group-hover:text-orange-700">
+                <div className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-slate-900 group-hover:text-sky-700">
                   카테고리 열기 <ArrowRight size={16} />
                 </div>
               </div>
@@ -43,19 +43,19 @@ export default function ActivitiesPage() {
           ))}
         </section>
 
-        <section className="rounded-[2.25rem] border border-sky-200 bg-sky-50 p-8 shadow-sm">
+        <section className="rounded-[2.25rem] border border-sky-100 bg-[linear-gradient(145deg,#f4f8ff_0%,#ffffff_100%)] p-8 shadow-[0_16px_46px_rgba(22,32,51,0.06)]">
           <p className="text-sm font-bold uppercase tracking-[0.3em] text-sky-700">How To Use</p>
           <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">이제는 소개 페이지가 아니라 비교 페이지입니다</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <div className="rounded-[1.75rem] bg-white p-5 shadow-sm">
+            <div className="rounded-[1.75rem] bg-white p-5 shadow-sm ring-1 ring-sky-100">
               <h3 className="text-lg font-black text-slate-950">1. 아이 성향부터 고르기</h3>
               <p className="mt-2 text-sm leading-6 text-slate-600">물놀이, 몸으로 뛰는 활동, 표현 활동, 집중형 레슨, 가족 취미 중에서 먼저 고릅니다.</p>
             </div>
-            <div className="rounded-[1.75rem] bg-white p-5 shadow-sm">
+            <div className="rounded-[1.75rem] bg-white p-5 shadow-sm ring-1 ring-sky-100">
               <h3 className="text-lg font-black text-slate-950">2. 바로 비교하기</h3>
               <p className="mt-2 text-sm leading-6 text-slate-600">주소, 전화번호, 운영시간, 가격 공개 여부를 보고 실제 이동 동선에 맞는지 비교합니다.</p>
             </div>
-            <div className="rounded-[1.75rem] bg-white p-5 shadow-sm">
+            <div className="rounded-[1.75rem] bg-white p-5 shadow-sm ring-1 ring-sky-100">
               <h3 className="text-lg font-black text-slate-950">3. 공식 사이트 확인</h3>
               <p className="mt-2 text-sm leading-6 text-slate-600">수업표나 등록 가능 여부는 마지막으로 공식 사이트에서 바로 체크할 수 있게 연결했습니다.</p>
             </div>
@@ -64,7 +64,7 @@ export default function ActivitiesPage() {
 
         <section className="space-y-6">
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.3em] text-emerald-700">Verified Sources</p>
+            <p className="text-sm font-bold uppercase tracking-[0.3em] text-sky-700">Verified Sources</p>
             <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">현재 반영된 업체와 출처</h2>
           </div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -75,12 +75,12 @@ export default function ActivitiesPage() {
                   key={`${provider.name}-${provider.category}-${provider.website}`}
                   href={provider.website}
                   target="_blank"
-                  className="rounded-[1.6rem] border border-slate-200 bg-white p-5 text-sm shadow-sm transition hover:-translate-y-0.5"
+                  className="rounded-[1.6rem] border border-sky-100 bg-white p-5 text-sm shadow-[0_16px_46px_rgba(22,32,51,0.06)] transition hover:-translate-y-0.5"
                 >
                   <p className="font-black text-slate-950">{provider.name}</p>
                   <p className="mt-1 text-slate-500">{provider.suburb} · {provider.category}</p>
                   <p className="mt-3 text-slate-600">{provider.lastVerified} 확인</p>
-                  <span className="mt-3 inline-flex items-center gap-2 font-bold text-orange-700">
+                  <span className="mt-3 inline-flex items-center gap-2 font-bold text-sky-700">
                     공식 사이트 열기 <ExternalLink size={15} />
                   </span>
                 </Link>

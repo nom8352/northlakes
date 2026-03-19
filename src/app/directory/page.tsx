@@ -17,9 +17,9 @@ export default function DirectoryPage() {
 
         <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {businessDirectory.map((entry) => (
-            <article key={entry.name} className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+            <article key={entry.name} className="rounded-[2rem] border border-sky-100 bg-white p-6 shadow-[0_16px_46px_rgba(22,32,51,0.06)]">
               <div className="flex items-center gap-3">
-                <div className="rounded-2xl bg-sky-100 p-3 text-sky-700">
+                <div className="rounded-2xl bg-sky-50 p-3 text-sky-700 ring-1 ring-sky-100">
                   <Building2 size={22} />
                 </div>
                 <div>
@@ -27,7 +27,7 @@ export default function DirectoryPage() {
                   <h2 className="mt-1 text-2xl font-black text-slate-950">{entry.name}</h2>
                 </div>
               </div>
-              <div className="mt-5 space-y-3 rounded-[1.5rem] bg-slate-50 p-4 text-sm text-slate-600">
+              <div className="mt-5 space-y-3 rounded-[1.5rem] bg-sky-50/70 p-4 text-sm text-slate-600 ring-1 ring-sky-100">
                 <p className="flex items-start gap-2">
                   <MapPinned size={16} className="mt-0.5 text-sky-700" />
                   <span>{entry.address}</span>
