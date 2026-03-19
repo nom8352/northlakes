@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Noto_Sans_KR } from "next/font/google";
+import { Geist_Mono, IBM_Plex_Sans_KR } from "next/font/google";
 import "./globals.css";
 
-const notoSansKr = Noto_Sans_KR({
+const ibmPlexSansKr = IBM_Plex_Sans_KR({
   variable: "--font-sans-kr",
   subsets: ["latin"],
-  weight: ["400", "500", "700", "900"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={`${notoSansKr.variable} ${geistMono.variable} antialiased`}
+        className={`${ibmPlexSansKr.variable} ${geistMono.variable} antialiased`}
       >
         {children}
       </body>
