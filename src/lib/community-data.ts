@@ -1,8 +1,29 @@
+export type ActivitySlug = "swimming" | "sports" | "dance" | "music" | "golf";
+
+export type NavItem = {
+  href: string;
+  label: string;
+};
+
 export type ActivityCategory = {
+  slug: ActivitySlug;
   title: string;
-  audience: string;
+  kicker: string;
   description: string;
+  image: string;
+  href: string;
   highlights: string[];
+};
+
+export type ActivityProvider = {
+  name: string;
+  suburb: string;
+  ageRange: string;
+  summary: string;
+  highlights: string[];
+  website: string;
+  sourceUrl: string;
+  image: string;
 };
 
 export type DirectoryEntry = {
@@ -29,6 +50,7 @@ export type WeekendIdea = {
   title: string;
   area: string;
   description: string;
+  image: string;
 };
 
 export type AnnualEvent = {
@@ -37,64 +59,302 @@ export type AnnualEvent = {
   detail: string;
 };
 
+export const publicNav: NavItem[] = [
+  { href: "/", label: "홈" },
+  { href: "/activities", label: "자녀 레슨" },
+  { href: "/directory", label: "업소록" },
+  { href: "/caboolture", label: "카불쳐 시즌" },
+  { href: "/weekend", label: "주말 뭐할지" },
+  { href: "/calendar", label: "연간 캘린더" },
+];
+
 export const quickGuides = [
   {
-    title: "자녀 레슨 찾기",
-    text: "스포츠, 수영, 골프, 댄스, 피아노처럼 자주 찾는 활동을 먼저 한눈에 비교할 수 있게 정리했습니다.",
+    title: "카테고리별로 들어가기",
+    text: "홈에서는 큰 그림만 보고, 실제 정보는 수영, 스포츠, 댄스, 음악, 골프 페이지로 들어가 비교할 수 있게 구성합니다.",
   },
   {
-    title: "교민 생활 연결",
-    text: "마트, 식당, 교회, 생활 서비스 등 자주 찾는 업소를 지역 중심으로 빠르게 볼 수 있습니다.",
+    title: "공식 사이트 기준으로 수집",
+    text: "자녀 레슨 코너는 공식 홈페이지가 확인되는 곳을 우선 반영해 업데이트 신뢰도를 높입니다.",
   },
   {
-    title: "워홀 시즌 체크",
-    text: "카불쳐 딸기 시즌 흐름과 준비 시점을 월별로 정리해 처음 오는 분들도 감을 잡기 쉽습니다.",
+    title: "운영은 데이터 파일부터",
+    text: "처음에는 구조화된 데이터로 빠르게 운영하고, 이후에는 관리자 입력 화면으로 확장하기 쉬운 형태로 잡아둡니다.",
   },
 ];
 
 export const activityCategories: ActivityCategory[] = [
   {
-    title: "스포츠 레슨 & 클럽",
-    audience: "초중고 학생",
-    description:
-      "축구, 테니스, 태권도, 농구 같은 정규 수업형 활동을 찾는 가족을 위한 시작점입니다.",
-    highlights: ["방과 후 클래스", "주니어 클럽", "학기별 등록"],
+    slug: "swimming",
+    title: "수영",
+    kicker: "물 적응부터 스쿼드까지",
+    description: "노스레이크에서 가장 먼저 찾게 되는 필수 레슨 카테고리입니다.",
+    image:
+      "https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&w=1200&q=80",
+    href: "/activities/swimming",
+    highlights: ["Learn to Swim", "Squad", "가족 수영"],
   },
   {
-    title: "수영 & 아쿠아",
-    audience: "유아부터 청소년",
-    description:
-      "호주 생활에서 빠지기 어려운 수영 레슨과 실내외 수영장 정보를 따로 묶어두면 활용도가 높습니다.",
-    highlights: ["레벨별 수업", "방학 집중반", "가족 자유수영"],
+    slug: "sports",
+    title: "스포츠 & 무술",
+    kicker: "축구, AFL, 태권도, 체육",
+    description: "정규 클럽과 신체활동 레슨을 함께 묶어 아이 성향에 맞게 고르기 좋게 정리합니다.",
+    image:
+      "https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1200&q=80",
+    href: "/activities/sports",
+    highlights: ["주니어 클럽", "팀 스포츠", "태권도"],
   },
   {
-    title: "골프 & 드라이빙 레인지",
-    audience: "가족 취미",
-    description:
-      "주니어 골프, 주말 연습장, 가족이 함께 가기 좋은 코스 중심으로 큐레이션할 수 있는 영역입니다.",
-    highlights: ["주니어 코칭", "입문 레슨", "주말 연습"],
+    slug: "dance",
+    title: "댄스",
+    kicker: "발레부터 힙합까지",
+    description: "공연과 표현 활동을 좋아하는 아이들을 위한 대표 예체능 카테고리입니다.",
+    image:
+      "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1200&q=80",
+    href: "/activities/dance",
+    highlights: ["Ballet", "Hip Hop", "Performance"],
   },
   {
-    title: "댄스 & 퍼포먼스",
-    audience: "초등 고학년~청소년",
-    description:
-      "K-pop 댄스, 발레, 재즈, 공연 수업처럼 아이들이 흥미를 가지기 쉬운 예체능 정보를 담기 좋습니다.",
-    highlights: ["K-pop 클래스", "발표회 일정", "학기제 수업"],
-  },
-  {
+    slug: "music",
     title: "피아노 & 음악",
-    audience: "개인 레슨",
-    description:
-      "피아노, 보컬, 바이올린, 드럼처럼 한국 학부모 수요가 높은 개인 또는 소그룹 레슨 영역입니다.",
-    highlights: ["개인 레슨", "소규모 클래스", "콩쿠르 준비"],
+    kicker: "악기, 보컬, 앙상블",
+    description: "개인 레슨과 그룹 클래스 모두 담을 수 있는 카테고리입니다.",
+    image:
+      "https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=1200&q=80",
+    href: "/activities/music",
+    highlights: ["Piano", "Vocals", "Ensembles"],
   },
   {
-    title: "미술 & 창의활동",
-    audience: "주말 활동",
-    description:
-      "드로잉, 공예, 방학 캠프, 메이커 활동까지 넓게 포함할 수 있어 주말 가이드와 연결하기 좋습니다.",
-    highlights: ["아트 클래스", "스쿨 홀리데이", "창의 워크숍"],
+    slug: "golf",
+    title: "골프",
+    kicker: "주니어 골프와 가족 라운드",
+    description: "주니어 입문부터 가족형 실내 골프까지, 북부권에서 접근 가능한 선택지를 담습니다.",
+    image:
+      "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=1200&q=80",
+    href: "/activities/golf",
+    highlights: ["Junior", "Indoor", "Family"],
   },
+];
+
+export const activityPageContent: Record<
+  ActivitySlug,
+  {
+    title: string;
+    kicker: string;
+    description: string;
+    image: string;
+    tips: string[];
+  }
+> = {
+  swimming: {
+    title: "노스레이크 수영 레슨",
+    kicker: "Swimming",
+    description:
+      "호주 정착 초기에 가장 우선순위가 높은 레슨 중 하나라, 기초 적응부터 스쿼드까지 단계별로 보기 좋게 모았습니다.",
+    image:
+      "https://images.unsplash.com/photo-1438029071396-1e831a7fa6d8?auto=format&fit=crop&w=1400&q=80",
+    tips: ["레벨 테스트 유무", "실내/야외 수업 환경", "방학 집중반 여부"],
+  },
+  sports: {
+    title: "스포츠와 무술",
+    kicker: "Sports",
+    description:
+      "축구, AFL, 태권도, 짐 프로그램처럼 아이들 체력을 키우고 친구를 사귀기 좋은 선택지를 모았습니다.",
+    image:
+      "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1400&q=80",
+    tips: ["주니어 리그 시즌", "훈련 요일", "경쟁형/즐기는형 분위기"],
+  },
+  dance: {
+    title: "댄스 스튜디오",
+    kicker: "Dance",
+    description:
+      "발레, 재즈, 힙합, 퍼포먼스 수업 등 아이들의 표현력과 자신감을 키우는 댄스 옵션을 모았습니다.",
+    image:
+      "https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=1400&q=80",
+    tips: ["공연/발표회 빈도", "유아반부터 있는지", "장르 다양성"],
+  },
+  music: {
+    title: "피아노와 음악 클래스",
+    kicker: "Music",
+    description:
+      "개인 악기 레슨부터 음악적 자신감을 키우는 그룹 프로그램까지 북부권에서 접근 가능한 옵션을 정리했습니다.",
+    image:
+      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1400&q=80",
+    tips: ["개인/그룹 여부", "입문 연령", "공연/앙상블 기회"],
+  },
+  golf: {
+    title: "주니어 골프와 가족 골프",
+    kicker: "Golf",
+    description:
+      "정규 주니어 프로그램과 실내 골프처럼 입문 장벽이 낮은 옵션을 함께 보면 가족 취미로 연결하기 좋습니다.",
+    image:
+      "https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&w=1400&q=80",
+    tips: ["주니어 프로그램 존재 여부", "연습형/레슨형", "가족 동반 편의성"],
+  },
+};
+
+export const activityProviders: Record<ActivitySlug, ActivityProvider[]> = {
+  swimming: [
+    {
+      name: "North Lakes Aquatic Centre",
+      suburb: "North Lakes",
+      ageRange: "영유아부터 성인",
+      summary:
+        "실내외 풀과 랙클리 수영 프로그램을 함께 운영하는 지역 대표 수영장으로, Learn to Swim과 스쿼드 트랙을 같이 보기에 좋습니다.",
+      highlights: ["Rackley Learn to Swim", "Squad", "실내외 수영장"],
+      website: "https://northlakesaquaticcentre.com.au/",
+      sourceUrl: "https://northlakesaquaticcentre.com.au/",
+      image:
+        "https://images.unsplash.com/photo-1576013551627-0b744bca024d?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      name: "TLC Learn to Swim",
+      suburb: "North Lakes",
+      ageRange: "유아부터 청소년",
+      summary:
+        "The Lakes College Aquatic Precinct 기반의 수영 프로그램으로 Learn to Swim, Swim Squad, Swim Club 경로가 명확하게 나뉘어 있습니다.",
+      highlights: ["Assessment booking", "Learn to Swim", "Swim Club"],
+      website: "https://www.tlcswimming.com.au/",
+      sourceUrl: "https://www.tlcswimming.com.au/",
+      image:
+        "https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?auto=format&fit=crop&w=1200&q=80",
+    },
+  ],
+  sports: [
+    {
+      name: "North Lakes United FC",
+      suburb: "North Lakes",
+      ageRange: "주니어 축구",
+      summary:
+        "MiniRoos와 주니어 팀 체계로 접근하기 좋은 지역 축구 클럽으로, 팀 스포츠를 시작하는 가정에 잘 맞습니다.",
+      highlights: ["Football Queensland", "MiniRoos", "Junior teams"],
+      website: "https://www.northlakesunited.com.au/",
+      sourceUrl: "https://www.northlakesunited.com.au/",
+      image:
+        "https://images.unsplash.com/photo-1518604666860-9ed391f76460?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      name: "North Lakes Eels JAFC",
+      suburb: "Mango Hill",
+      ageRange: "유소년 AFL",
+      summary:
+        "북부권에서 AFL을 시작하고 싶은 가정이 보기 좋은 주니어 클럽으로, St Benedict's College Mango Hill을 홈 베이스로 안내합니다.",
+      highlights: ["Junior AFL", "Community club", "North Lakes base"],
+      website: "https://www.northlakeseels.com.au/",
+      sourceUrl: "https://www.northlakeseels.com.au/contact-us",
+      image:
+        "https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      name: "PK Taekwondo",
+      suburb: "North Lakes",
+      ageRange: "어린이부터 청소년",
+      summary:
+        "노스레이크 커뮤니티 센터를 기반으로 운영되는 태권도 프로그램으로, 규칙성과 자신감을 함께 키우려는 가정에 잘 맞습니다.",
+      highlights: ["Martial arts", "Community centre", "After-school times"],
+      website: "https://pktkdaus.com/",
+      sourceUrl: "https://australia.worldplaces.me/review/87896699-pk-taekwondo.html",
+      image:
+        "https://images.unsplash.com/photo-1517438984742-1262db08379e?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      name: "Delta Gymnastics North Lakes",
+      suburb: "North Lakes",
+      ageRange: "18개월부터",
+      summary:
+        "어린 아이부터 시작할 수 있는 체조 프로그램으로, 신체감각과 자신감을 키우는 입문형 활동으로 많이 찾는 편입니다.",
+      highlights: ["Groovers", "7 days classes", "Gymnastics pathway"],
+      website: "https://deltagym.com.au/",
+      sourceUrl: "https://deltagym.com.au/groovers-program/",
+      image:
+        "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80",
+    },
+  ],
+  dance: [
+    {
+      name: "Five Star Dance Academy",
+      suburb: "North Lakes",
+      ageRange: "유아부터 청소년",
+      summary:
+        "North Lakes Business Park에 위치한 대형 스튜디오로, 발레, 재즈, 탭, 힙합, 아크로 등 장르 선택폭이 넓습니다.",
+      highlights: ["Ballet", "Hip Hop", "Acrobatics"],
+      website: "https://fivestardance.com.au/",
+      sourceUrl: "https://fivestardance.com.au/our-studio/",
+      image:
+        "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      name: "Red Music + Dance",
+      suburb: "Clontarf / Moreton Bay Region",
+      ageRange: "어린이부터 청소년",
+      summary:
+        "Moreton Bay 지역 전반을 커버하는 공연예술 센터로, 북부권 가족이 접근 가능한 발레, 재즈, 힙합, 탭 프로그램이 있습니다.",
+      highlights: ["Ballet", "Jazz", "Tap"],
+      website: "https://redmusicanddance.com.au/",
+      sourceUrl: "https://redmusicanddance.com.au/classes-available-at-red-music-and-dance-centre-brisbane-redcliffe-northlakes/",
+      image:
+        "https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?auto=format&fit=crop&w=1200&q=80",
+    },
+  ],
+  music: [
+    {
+      name: "Red Music + Dance",
+      suburb: "Clontarf / Moreton Bay Region",
+      ageRange: "유아부터 청소년",
+      summary:
+        "댄스뿐 아니라 음악 수업까지 함께 운영하는 공연예술 센터라, 형제자매가 다른 장르를 함께 다니기 좋은 장점이 있습니다.",
+      highlights: ["Music programs", "Performance focus", "Moreton Bay access"],
+      website: "https://redmusicanddance.com.au/",
+      sourceUrl: "https://redmusicanddance.com.au/",
+      image:
+        "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      name: "Moreton Youth Music",
+      suburb: "North Brisbane / Moreton Bay",
+      ageRange: "학생 연주자",
+      summary:
+        "오케스트라와 앙상블 형태의 청소년 음악 프로그램으로, 개인레슨 이후 합주 경험을 원하는 학생에게 잘 맞습니다.",
+      highlights: ["Youth orchestra", "Ensemble", "Performance opportunities"],
+      website: "https://www.moretonyouthmusic.com/",
+      sourceUrl: "https://www.moretonyouthmusic.com/",
+      image:
+        "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=1200&q=80",
+    },
+  ],
+  golf: [
+    {
+      name: "X-Golf North Lakes",
+      suburb: "North Lakes",
+      ageRange: "초보 입문부터 가족형",
+      summary:
+        "실내 시뮬레이터와 미니골프가 함께 있어 아이가 골프를 가볍게 시작해보기 좋은 형태의 공간입니다.",
+      highlights: ["Lessons", "Indoor golf", "Mini golf"],
+      website: "https://www.xgolf.com.au/locations/north-lakes-qld/",
+      sourceUrl: "https://www.xgolf.com.au/locations/north-lakes-qld/",
+      image:
+        "https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      name: "Redcliffe Golf Club",
+      suburb: "Clontarf",
+      ageRange: "주니어 골프",
+      summary:
+        "노스레이크에서 차로 이동 가능한 정규 골프장으로, 주니어 멤버십과 라운드 경험을 원하는 가족에게 검토 가치가 있습니다.",
+      highlights: ["Junior membership", "18-hole course", "Visitor friendly"],
+      website: "https://www.redcliffegolf.com/",
+      sourceUrl: "https://www.redcliffegolf.com/cms/membership/membership-fees/",
+      image:
+        "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=1200&q=80",
+    },
+  ],
+};
+
+export const featuredProviders = [
+  activityProviders.swimming[0],
+  activityProviders.sports[0],
+  activityProviders.dance[0],
+  activityProviders.music[0],
 ];
 
 export const businessDirectory: DirectoryEntry[] = [
@@ -102,66 +362,54 @@ export const businessDirectory: DirectoryEntry[] = [
     name: "Hanaromart North Lakes",
     category: "한인마트",
     area: "North Lakes",
-    note: "장보기와 기본 반찬, 라면, 냉동식품을 해결하기 좋은 생활 거점",
+    note: "장보기와 기본 반찬, 냉동식품, 간단한 생활재료를 해결하기 좋은 지역 거점",
   },
   {
     name: "bapboi Korean BBQ",
     category: "식당",
     area: "North Lakes",
-    note: "가족 외식이나 교민 모임 때 자주 찾기 좋은 한식당",
+    note: "가족 외식이나 지인 모임 때 자주 찾기 좋은 한식당",
   },
   {
     name: "Chicken in Seoul",
     category: "식당",
     area: "North Lakes",
-    note: "아이들과 함께 가기 쉬운 치킨 메뉴 중심",
+    note: "아이들과 함께 가기 쉬운 메뉴 구성이 강점인 치킨 중심 옵션",
   },
   {
     name: "South Seoul",
     category: "식당",
     area: "Murrumba Downs",
-    note: "브리즈번 북부권에서 접근 가능한 한식 옵션",
+    note: "브리즈번 북부권에서 접근 가능한 한식 옵션으로 식사 동선에 넣기 좋음",
   },
   {
     name: "노스레이크 순복음 교회",
     category: "교회",
     area: "North Lakes",
-    note: "정착 초기 네트워크를 만드는 데 도움이 되는 커뮤니티 접점",
+    note: "정착 초기 교민 네트워크를 만들고 지역 정보를 얻기 좋은 커뮤니티 접점",
   },
   {
-    name: "선샤인코스트 성결교회",
-    category: "교회",
-    area: "Bokarina",
-    note: "선샤인코스트 쪽 교민 연결에 유용한 커뮤니티 채널",
-  },
-  {
-    name: "교민 생활 서비스",
-    category: "생활정보",
-    area: "North Lakes - Brisbane North",
-    note: "미용, 차량, 통신, 번역, 세무 같은 생활형 업종을 추후 계속 확장하기 좋은 영역",
-  },
-  {
-    name: "학원/개인레슨",
+    name: "학원 / 개인레슨",
     category: "교육",
     area: "North Lakes - Mango Hill",
-    note: "영어, 수학, 피아노, 미술 등 학부모 수요가 높은 카테고리",
+    note: "영어, 수학, 피아노, 미술 등 학부모 수요가 높은 분야를 확장하기 좋은 묶음",
   },
 ];
 
 export const cabooltureFarms: FarmEntry[] = [
-  { name: "Oasis Berries", area: "Caboolture", note: "카불쳐 시즌 정보 탐색 시 자주 언급되는 대표 농장군" },
-  { name: "Queensland Berries", area: "Caboolture", note: "초기 정착자들이 위치 파악하기 좋은 기준점" },
-  { name: "Rolin Farms", area: "Elimbah", note: "엘림바 쪽 이동 동선을 함께 보기 좋음" },
+  { name: "Oasis Berries", area: "Caboolture", note: "카불쳐 시즌 정보 탐색 시 자주 체크하는 대표 농장군" },
+  { name: "Queensland Berries", area: "Caboolture", note: "초기 정착자들이 위치 감을 잡기 좋은 기준점" },
+  { name: "Rolin Farms", area: "Elimbah", note: "엘림바 쪽 이동 동선과 함께 보기 좋은 농장" },
   { name: "Stothart Family Farms", area: "Bellmere", note: "벨미어 라인 시즌 체크용" },
-  { name: "Pinata Farms", area: "Wamuran", note: "와무란 지역 농장 흐름 파악용" },
-  { name: "Gowinta Farms", area: "Beerburrum", note: "인근 확장 지역까지 함께 보려는 분께 유용" },
+  { name: "Pinata Farms", area: "Wamuran", note: "와무란 지역 흐름까지 넓혀 볼 때 유용" },
+  { name: "Gowinta Farms", area: "Beerburrum", note: "인근 확장 지역까지 함께 확인하려는 분께 유용" },
 ];
 
 export const seasonStages: SeasonStage[] = [
   {
     period: "3-4월",
     title: "시즌 준비",
-    detail: "모종 심기와 초기 준비가 진행되는 시기라 바로 큰 수확을 기대하기보다 자리 잡는 기간으로 보는 편이 좋습니다.",
+    detail: "모종 심기와 초기 준비가 진행되는 시기라, 바로 큰 수확을 기대하기보다 자리 잡는 기간으로 보는 편이 좋습니다.",
     tone: "emerald",
   },
   {
@@ -186,24 +434,32 @@ export const seasonStages: SeasonStage[] = [
 
 export const weekendIdeas: WeekendIdea[] = [
   {
-    title: "수영장 + 공원 하루 코스",
+    title: "수영장 + 공원 코스",
     area: "North Lakes",
     description: "아이들 에너지를 풀기 좋은 물놀이와 잔디공원 조합으로, 더운 시즌 주말 루틴으로 만들기 좋습니다.",
+    image:
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "골프 연습장 또는 미니골프",
     area: "Brisbane North",
     description: "부모와 아이가 함께 즐기기 쉬운 활동이라 가족 취미 탐색용으로 잘 맞습니다.",
+    image:
+      "https://images.unsplash.com/photo-1513553404607-988d4c6ca8b7?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "딸기농장 방문 & 체험",
     area: "Caboolture",
     description: "7월부터 10월 사이에는 계절감을 가장 잘 느낄 수 있는 대표적인 주말 나들이 코스가 됩니다.",
+    image:
+      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "지역 마켓 & 시즌 축제",
     area: "Moreton Bay / Brisbane",
     description: "주말마다 열리는 로컬 마켓과 축제는 영어 환경 적응과 가족 외출을 동시에 잡기 좋습니다.",
+    image:
+      "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 
