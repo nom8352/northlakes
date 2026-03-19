@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Sprout } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, Clock3, ExternalLink, MapPinned, Phone, Sprout } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { PublicLayout } from "@/components/public-layout";
 import { cabooltureFarms, seasonStages } from "@/lib/community-data";
@@ -42,16 +42,79 @@ export default function CaboolturePage() {
         </section>
 
         <section className="space-y-6">
-          <div className="flex items-center gap-3">
-            <Sprout className="text-emerald-600" size={24} />
-            <h2 className="text-3xl font-black tracking-tight text-slate-950">주요 농장</h2>
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div className="flex items-center gap-3">
+              <Sprout className="text-emerald-600" size={24} />
+              <div>
+                <h2 className="text-3xl font-black tracking-tight text-slate-950">주요 농장 리스트</h2>
+                <p className="mt-2 text-sm leading-7 text-slate-600">
+                  공개된 공식 사이트, 채용 블로그, 지역 관광 페이지, 공개 디렉토리를 기준으로 주소와 연락처를 정리했습니다.
+                </p>
+              </div>
+            </div>
+            <div className="rounded-3xl border border-sky-200 bg-sky-50 px-5 py-4 text-sm leading-6 text-sky-900">
+              연락 전에는 공식 링크에서 최근 공고 여부를 다시 확인하는 것을 권장합니다.
+            </div>
           </div>
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {cabooltureFarms.map((farm) => (
-              <article key={farm.name} className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
-                <p className="text-xs font-bold uppercase tracking-[0.24em] text-emerald-700">{farm.area}</p>
+              <article
+                key={farm.name}
+                className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-emerald-200 hover:shadow-md"
+              >
+                <div className="flex flex-wrap items-center gap-2">
+                  <p className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-emerald-700">
+                    {farm.area}
+                  </p>
+                  <p className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">{farm.verification}</p>
+                </div>
                 <h3 className="mt-3 text-2xl font-black text-slate-950">{farm.name}</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{farm.note}</p>
+
+                <div className="mt-5 space-y-3 rounded-[1.5rem] bg-slate-50 p-4 text-sm text-slate-700">
+                  <div className="flex items-start gap-3">
+                    <MapPinned className="mt-0.5 text-emerald-600" size={16} />
+                    <span>{farm.address}</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Phone className="mt-0.5 text-emerald-600" size={16} />
+                    <span>{farm.phone}</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Clock3 className="mt-0.5 text-emerald-600" size={16} />
+                    <span>{farm.hours}</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <BriefcaseBusiness className="mt-0.5 text-emerald-600" size={16} />
+                    <span>{farm.workWindow}</span>
+                  </div>
+                </div>
+
+                <div className="mt-4 rounded-[1.5rem] border border-amber-200 bg-amber-50 p-4">
+                  <p className="text-sm font-bold text-amber-900">워홀 체크포인트</p>
+                  <p className="mt-2 text-sm leading-7 text-amber-950">{farm.workNote}</p>
+                </div>
+
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <Link
+                    href={farm.sourceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-4 py-2 text-sm font-bold text-white transition hover:bg-emerald-700"
+                  >
+                    공개 정보 보기 <ExternalLink size={15} />
+                  </Link>
+                  {farm.website ? (
+                    <Link
+                      href={farm.website}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-bold text-slate-700 transition hover:border-emerald-200 hover:text-emerald-700"
+                    >
+                      공식 링크 <ArrowRight size={15} />
+                    </Link>
+                  ) : null}
+                </div>
               </article>
             ))}
           </div>

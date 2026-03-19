@@ -51,6 +51,14 @@ export type DirectoryEntry = {
 export type FarmEntry = {
   name: string;
   area: string;
+  address: string;
+  phone: string;
+  hours: string;
+  workWindow: string;
+  workNote: string;
+  verification: string;
+  website?: string;
+  sourceUrl: string;
   note: string;
 };
 
@@ -627,12 +635,147 @@ export const businessDirectory: DirectoryEntry[] = [
 ];
 
 export const cabooltureFarms: FarmEntry[] = [
-  { name: "Oasis Berries", area: "Caboolture", note: "카불쳐 시즌 정보 탐색 시 자주 체크하는 대표 농장군" },
-  { name: "Queensland Berries", area: "Caboolture", note: "초기 정착자들이 위치 감을 잡기 좋은 기준점" },
-  { name: "Rolin Farms", area: "Elimbah", note: "엘림바 쪽 이동 동선과 함께 보기 좋은 농장" },
-  { name: "Stothart Family Farms", area: "Bellmere", note: "벨미어 라인 시즌 체크용" },
-  { name: "Pinata Farms", area: "Wamuran", note: "와무란 지역 흐름까지 넓혀 볼 때 유용" },
-  { name: "Gowinta Farms", area: "Beerburrum", note: "인근 확장 지역까지 함께 확인하려는 분께 유용" },
+  {
+    name: "오아시스 베리스",
+    area: "Caboolture",
+    address: "434 Bribie Island Road, Caboolture QLD 4510",
+    phone: "(07) 5497 4253",
+    hours: "딸기 축제 시즌 주말 8:00-16:00, 일반 방문 전 페이스북 공지 확인 권장",
+    workWindow: "주요 딸기 시즌 5-10월, 체험/축제는 주로 9-10월",
+    workNote: "공식 채용 페이지는 확인되지 않아도 지역 대표 딸기농장으로 시즌 동향 확인용 가치가 큽니다.",
+    verification: "Visit Moreton Bay 공개 관광 페이지",
+    website: "https://www.visitmoretonbayregion.com.au/blog/moreton-bay-region-fresh-strawberry-trail",
+    sourceUrl: "https://www.visitmoretonbayregion.com.au/blog/moreton-bay-region-fresh-strawberry-trail",
+    note: "카불쳐에서 가장 많이 언급되는 딸기 방문지 중 하나로, 워홀러는 농장 위치 감 잡기와 시즌 분위기 파악용으로 먼저 보기 좋습니다.",
+  },
+  {
+    name: "퀸즐랜드 베리스",
+    area: "Ningi / Caboolture 생활권",
+    address: "11 Saint Road, Ningi QLD 4511",
+    phone: "0427 833 281",
+    hours: "오피스 운영시간은 별도 문의",
+    workWindow: "Caboolture 지역 딸기 시즌 중심, 회사 소개상 연간 고용 규모 큼",
+    workNote: "공식 사이트에 Caboolture 재배지와 대규모 시즌 고용 정보가 공개되어 있어 워홀러가 가장 먼저 체크하기 좋은 곳 중 하나입니다.",
+    verification: "공식 사이트 + 공개 채용/농장 정보",
+    website: "https://qldberries.com.au/our-locations",
+    sourceUrl: "https://qldberries.com.au/our-locations",
+    note: "Caboolture와 Stanthorpe에 재배지를 둔 대형 베리 생산업체로, 시즌 이동 계획을 길게 보는 분에게 유용합니다.",
+  },
+  {
+    name: "롤린 팜스",
+    area: "Elimbah",
+    address: "Openfield Strawberry Farm, Elimbah QLD 4516",
+    phone: "(07) 5497 4253",
+    hours: "Pick Your Own 세션은 보통 8:30-15:00대 타임슬롯 운영, 방문 전 공지 확인 권장",
+    workWindow: "딸기 시즌 5-10월 중심",
+    workNote: "공식 채용 페이지는 뚜렷하지 않지만, 엘림바 쪽 동선과 대표 딸기 시즌 장소를 함께 볼 때 참고 가치가 큽니다.",
+    verification: "지역 관광/가족 액티비티 공개 페이지",
+    website: "https://brisbanekids.com.au/pick-your-own-fruit-brisbane/",
+    sourceUrl: "https://brisbanekids.com.au/pick-your-own-fruit-brisbane/",
+    note: "가족 체험으로도 유명하고, 카불쳐 북쪽 생활권에서 시즌 분위기와 현장 접근성을 보기 좋은 농장입니다.",
+  },
+  {
+    name: "스토다트 패밀리 팜스",
+    area: "Bellmere",
+    address: "219 Stern Road, Bellmere QLD 4510",
+    phone: "채용 공고 페이지로 확인",
+    hours: "포지션 오픈 시 블로그 공지, 피크 시즌에는 월-토 근무 가능성 안내",
+    workWindow: "식재 3-4월, 관리 4월 중순부터, 픽킹/패킹은 4-5월부터 10월 말",
+    workNote: "공식 고용 블로그가 따로 있어 워홀러가 시즌 오픈 여부를 직접 확인하기 가장 좋은 농장 중 하나입니다.",
+    verification: "공식 채용 블로그 + 공개 농장 정보",
+    website: "https://stothartemployment.com/category/employment-opportunities/",
+    sourceUrl: "https://stothartemployment.com/about/",
+    note: "벨미어 대표 딸기농장으로, 시즌별 업무 시기 설명이 잘 정리돼 있어 처음 오는 분에게 특히 유용합니다.",
+  },
+  {
+    name: "TSL 패밀리 팜스",
+    area: "Wamuran",
+    address: "Turnbull Road, Wamuran QLD 4512",
+    phone: "공개 대표번호 확인 어려움",
+    hours: "채용/운영 시간은 Taste'n'See 사이트와 공개 디렉토리 재확인 권장",
+    workWindow: "와무란 딸기 시즌 중심",
+    workNote: "Taste'n'See 브랜드 역사상 Stothart와 함께 운영된 인접 농장으로 소개되며, 공개 주소는 Wamuran Turnbull Rd 기준으로 확인됩니다.",
+    verification: "Taste'n'See 공식 소개 + 공개 디렉토리",
+    website: "https://www.tastenseestrawberries.com.au/our-story",
+    sourceUrl: "https://www.tastenseestrawberries.com.au/our-story",
+    note: "Stothart와 함께 자주 언급되는 와무란 농장으로, 인근 지원처를 넓게 볼 때 같이 체크하기 좋습니다.",
+  },
+  {
+    name: "피냐타 팜스",
+    area: "Wamuran",
+    address: "382 Scurr Road, Wamuran QLD 4512",
+    phone: "(07) 5497 4295",
+    hours: "문의 및 채용 관련은 공식 사이트/이메일 확인 권장",
+    workWindow: "Wamuran 딸기 시즌 기반, 회사 소개상 연중 생산 체계",
+    workNote: "공식 사이트에 주소와 대표번호가 공개되어 있고 대형 생산 브랜드라 워홀러가 신뢰도 높은 출발점으로 보기 좋습니다.",
+    verification: "공식 사이트",
+    website: "https://www.pinata.com.au/chatter/media-releases/strawberry-manager-wins-industry-award",
+    sourceUrl: "https://www.pinata.com.au/chatter/media-releases/strawberry-manager-wins-industry-award",
+    note: "Coles와 Woolworths 유통 브랜드로 알려진 대형 농장이라 시즌 일자리 탐색 시 자주 거론됩니다.",
+  },
+  {
+    name: "마이 베리스",
+    area: "Caboolture",
+    address: "Unit 2, 7 Lear Jet Drive, Caboolture QLD 4510",
+    phone: "0422 366 200",
+    hours: "월-목 8:00-16:00, 금 8:00-15:00, 토-일 휴무",
+    workWindow: "고용 문의 이메일 상시 공개, 시즌별 인력 문의 가능",
+    workNote: "공식 연락 페이지에 employment 전용 이메일이 따로 공개돼 있어 포장·가공·오피스형 문의 출발점으로 좋습니다.",
+    verification: "공식 사이트",
+    website: "https://www.myberries.com.au/contactus",
+    sourceUrl: "https://www.myberries.com.au/contactus",
+    note: "신선·냉동·동결건조 베리 제품을 다루는 브랜드로, 순수 필드워크 외에 가공/패킹 계열을 찾는 분에게도 참고가 됩니다.",
+  },
+  {
+    name: "선레이 스트로베리스",
+    area: "Wamuran",
+    address: "347 King Road, Wamuran QLD 4512",
+    phone: "(07) 5496 7364",
+    hours: "공개 상세 운영시간 확인 어려움",
+    workWindow: "Wamuran 딸기 시즌 중심",
+    workNote: "공개 디렉토리 기준 주소와 번호가 확인되며, 와무란 일대 농장 후보를 넓게 볼 때 유용합니다.",
+    verification: "공개 비즈니스 디렉토리",
+    sourceUrl: "https://australia.chamberofcommerce.com/business-directory/queensland/wamuran/farm/4097658-donnybrook-strawberry-farm",
+    note: "같은 Wamuran 축 농장군 안에서 함께 확인되는 곳으로, 직접 문의 전 공식 운영 채널 추가 확인을 권장합니다.",
+  },
+  {
+    name: "허메스 스트로베리스",
+    area: "Wamuran",
+    address: "490 Newlands Road, Wamuran QLD 4512",
+    phone: "0422 333 071",
+    hours: "공식 사이트에 Work With Us 메뉴 운영, 구체 시간은 공고별 상이",
+    workWindow: "공식 사이트 기준 5-10월 수확, 현재 식재 포지션 공고도 게시",
+    workNote: "공식 사이트에서 Work With Us와 Employment Application이 바로 보여 워홀러가 직접 지원 흐름을 보기 쉽습니다.",
+    verification: "공식 사이트",
+    website: "https://hermesstrawberries.com.au/",
+    sourceUrl: "https://hermesstrawberries.com.au/",
+    note: "가족 운영 딸기농장으로 Fair Farms 관련 안내도 공개되어 있어 근무환경 기준을 함께 살펴보기 좋습니다.",
+  },
+  {
+    name: "루바베리 패밀리 팜",
+    area: "Wamuran",
+    address: "65 Ziviani Road, Wamuran QLD 4512",
+    phone: "0417 741 692",
+    hours: "토-일 9:30-15:30 공개, 평일 휴무",
+    workWindow: "방문 농장 성격이 강하고 공개 채용 정보는 제한적",
+    workNote: "직접적인 워홀 채용 정보보다는 가족 방문형 딸기농장으로 더 잘 알려져 있어, 체험/지역 파악용 보조 리스트로 보는 편이 좋습니다.",
+    verification: "공개 비즈니스 디렉토리 + 공식 웹사이트 링크",
+    website: "https://luvaberry.com.au/",
+    sourceUrl: "https://australia.chamberofcommerce.com/business-directory/queensland/wamuran/farm/3650996-luvaberry-family-farm",
+    note: "와무란 쪽 딸기농장 분포를 이해하는 데 도움이 되는 방문형 농장으로, 가족 주말 코스로도 함께 볼 수 있습니다.",
+  },
+  {
+    name: "고윈타 팜스",
+    area: "Beerwah / 확장권",
+    address: "205 Burys Road, Beerwah QLD 4519",
+    phone: "(07) 5494 0365",
+    hours: "공개 상세 운영시간 확인 어려움",
+    workWindow: "카불쳐 인근 확장권 농장 탐색용",
+    workNote: "카불쳐 바로 옆 생활권은 아니지만, 북쪽 확장권으로 일자리 범위를 넓힐 때 참고하기 좋은 베리 농장입니다.",
+    verification: "공개 비즈니스 디렉토리",
+    sourceUrl: "https://www.stg.eks.for.truelocal.com.au/qld/beerwah/gowinta-farms-15273633",
+    note: "Beerwah 쪽까지 범위를 넓혀 보는 워홀러에게 유용한 보조 후보지입니다.",
+  },
 ];
 
 export const seasonStages: SeasonStage[] = [
