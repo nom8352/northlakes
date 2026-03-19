@@ -1,340 +1,343 @@
-"use client";
-
-export const dynamic = 'force-dynamic';
-
-import { Newspaper, Building2, Users, Briefcase, Home as HomeIcon, ShoppingBag, Loader2, ArrowRight, Sprout } from "lucide-react";
-import { newsService, listingService, businessService } from "@/lib/services";
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import {
+  ArrowRight,
+  Building2,
+  CalendarDays,
+  Compass,
+  Music4,
+  ShipWheel,
+  Sprout,
+  Trophy,
+  Waves,
+} from "lucide-react";
+import {
+  activityCategories,
+  annualEvents,
+  businessDirectory,
+  cabooltureFarms,
+  quickGuides,
+  seasonStages,
+  weekendIdeas,
+} from "@/lib/community-data";
+
+const navLinks = [
+  { href: "#activities", label: "자녀 레슨" },
+  { href: "#weekend", label: "주말 뭐할지" },
+  { href: "#directory", label: "업소록" },
+  { href: "#season", label: "카불쳐 시즌" },
+  { href: "#calendar", label: "연간 캘린더" },
+];
+
+const iconMap = [Trophy, Waves, ShipWheel, Music4, Compass, CalendarDays];
 
 export default function Home() {
-  const [news, setNews] = useState<any[]>([]);
-  const [accommodation, setAccommodation] = useState<any[]>([]);
-  const [jobs, setJobs] = useState<any[]>([]);
-  const [businessSell, setBusinessSell] = useState<any[]>([]);
-  const [businesses, setBusinesses] = useState<any[]>([]);
-  const [farms, setFarms] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const [newsData, accData, jobsData, sellData, bizData] = await Promise.all([
-          newsService.getTop10(),
-          listingService.getByCategory('accommodation'),
-          listingService.getByCategory('jobs'),
-          listingService.getByCategory('business_sell'),
-          businessService.getAll()
-        ]);
-        
-        // 뉴스 데이터 설정 (없으면 모크 사용)
-        setNews(newsData.length > 0 ? newsData : [
-          { id: 'm1', title: "호주 금리 동결 유지, 부동산 시장 영향은?", summary: "보수적인 금융 정책 기조가 이어지며 향후 부동산 전망에 대한 전문가 분석..." },
-          { id: 'm2', title: "퀸즐랜드 북부 지역 새로운 개발 계획 발표", summary: "선샤인 코스트와 노스레이크를 잇는 교통 인프라 확충 및 상업 지구 조성..." },
-          { id: 'm3', title: "2024년 변경되는 호주 비자 규정 정리", summary: "학생 비자 및 취업 비자 신청 조건 강화에 따른 교민 및 유학생 주의사항..." },
-        ]);
-
-        // 게시판 데이터 설정
-        setAccommodation(accData.length > 0 ? accData : [{ id: 'a1', title: '노스레이크 깨끗한 독방 쉐어', price: '$250/주', contact: '0412 xxx xxx' }]);
-        setJobs(jobsData.length > 0 ? jobsData : [{ id: 'j1', title: '선샤인 코스트 카페 올라운더 구합니다', price: '법정시급', contact: 'test@example.com' }]);
-        setBusinessSell(sellData.length > 0 ? sellData : [{ id: 's1', title: '브리즈번 북부 스시 테이크아웃 매매', price: '협의', contact: '0433 xxx xxx' }]);
-        
-        // 데이터 분리 로직 (Farm vs 일반 업소)
-        if (bizData.length > 0) {
-          setFarms(bizData.filter((b: any) => b.category === 'Farm'));
-          setBusinesses(bizData.filter((b: any) => b.category !== 'Farm'));
-        } else {
-          // Fallback 데이터
-          setBusinesses([
-            { id: 'b1', name: 'bapboi Korean BBQ', category: '식당', location: 'North Lakes', phone: '0468 926 807' },
-            { id: 'b2', name: 'BULGOGI', category: '식당', location: 'North Lakes', phone: '0493 987 110' },
-            { id: 'b3', name: 'CUPBOP', category: '식당', location: 'Kallangur', phone: '0432 021 688' },
-            { id: 'b4', name: 'Hanaromart North Lakes', category: '비즈니스', location: 'North Lakes', phone: '07 3491 8064' },
-            { id: 'b5', name: 'Chicken in Seoul', category: '식당', location: 'North Lakes', phone: '0413 543 516' },
-            { id: 'b6', name: 'South Seoul', category: '식당', location: 'Murrumba Downs', phone: '0411 114 964' },
-            { id: 'b7', name: '노스레이크 순복음 교회', category: '교회', location: 'North Lakes', phone: '0433 246 191' },
-            { id: 'b8', name: 'Haru Korean Kitchen', category: '식당', location: 'Noosa Heads', phone: '(07) 5447 2249' },
-            { id: 'b9', name: 'JANGO Korean BBQ', category: '식당', location: 'Buddina', phone: '0481 862 780' },
-            { id: 'b10', name: 'Momo Chicken', category: '식당', location: 'Maroochydore', phone: '(07) 5443 4133' },
-            { id: 'b11', name: 'Meekak Bar & BBQ', category: '식당', location: 'Maroochydore', phone: '0491 714 170' },
-            { id: 'b12', name: '선샤인코스트 성결교회', category: '교회', location: 'Bokarina', phone: '0410 228 572' },
-          ]);
-          setFarms([
-            { id: 'f1', name: 'Oasis Berries', category: 'Farm', location: 'Caboolture', phone: '0421 166 324' },
-            { id: 'f2', name: 'Queensland Berries', category: 'Farm', location: 'Caboolture', phone: '0488 217 804' },
-            { id: 'f3', name: 'Rolin Farms', category: 'Farm', location: 'Elimbah', phone: '0422 536 292' },
-            { id: 'f4', name: 'Stothart Family Farms', category: 'Farm', location: 'Bellmere', phone: '0438 593 607' },
-            { id: 'f5', name: 'Schiffke Pty Ltd', category: 'Farm', location: 'Bellmere', phone: '(07) 5495 8274' },
-            { id: 'f6', name: 'Pinata Farms', category: 'Farm', location: 'Wamuran', phone: '(07) 5497 4295' },
-            { id: 'f7', name: 'Sunray Strawberries', category: 'Farm', location: 'Wamuran', phone: '(07) 5496 7364' },
-            { id: 'f8', name: 'LuvaBerry Farm', category: 'Farm', location: 'Wamuran', phone: '0417 741 692' },
-            { id: 'f9', name: 'Hermes Strawberries', category: 'Farm', location: 'Wamuran', phone: '0422 333 071' },
-            { id: 'f10', name: 'Diamond Berries', category: 'Farm', location: 'Caboolture', phone: '0434 499 805' },
-            { id: 'f11', name: 'Perfection Berries', category: 'Farm', location: 'Caboolture', phone: '(07) 5495 1888' },
-            { id: 'f12', name: 'TSL Family Farms', category: 'Farm', location: 'Beerwah', phone: '0407 151 768' },
-            { id: 'f13', name: 'Hammond Farm', category: 'Farm', location: 'Elimbah', phone: '(07) 5496 7183' },
-            { id: 'f14', name: 'Inchcolm Farms', category: 'Farm', location: 'Wamuran', phone: '(07) 5496 6444' },
-            { id: 'f15', name: 'Berrylicious Strawberries', category: 'Farm', location: 'Nambour', phone: '0412 155 058' },
-            { id: 'f16', name: 'McMartin\'s Farm', category: 'Farm', location: 'Bli Bli', phone: '(07) 5448 4912' },
-            { id: 'f17', name: 'Cooloola Berries', category: 'Farm', location: 'Wolvi', phone: '(07) 5486 7512' },
-            { id: 'f18', name: 'Strawberry Fields', category: 'Farm', location: 'Glass House Mountains', phone: '(07) 5496 9255' },
-            { id: 'f19', name: 'Gowinta Farms', category: 'Farm', location: 'Beerburrum', phone: '(07) 5496 0055' },
-            { id: 'f20', name: 'Best Berries', category: 'Farm', location: 'Bellmere', phone: '0401 222 333' }
-          ]);
-        }
-
-      } catch (error) {
-        console.error("Data fetching error:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchData();
-  }, []);
-
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
-      {/* Hero Section */}
-      <header className="premium-gradient py-16 px-6 text-white text-center shadow-2xl overflow-hidden relative">
-        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-accent-gold rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-400 rounded-full blur-3xl"></div>
-        </div>
-        <div className="relative z-10">
-          <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            QLD <span className="text-accent-gold">NORTH</span> KOREAN
-          </h1>
-          <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto font-medium">
-            노스레이크 & 선샤인 코스트 교민을 위한 스마트 정보 플랫폼
-          </p>
+    <div className="min-h-screen bg-[linear-gradient(180deg,#fffdf8_0%,#fff7ed_26%,#f8fafc_100%)] text-slate-900">
+      <header className="relative overflow-hidden border-b border-orange-100/70 bg-[radial-gradient(circle_at_top_left,#fed7aa_0%,transparent_35%),radial-gradient(circle_at_top_right,#bfdbfe_0%,transparent_30%),linear-gradient(135deg,#fff7ed_0%,#fffbeb_42%,#eff6ff_100%)]">
+        <div className="mx-auto flex max-w-7xl flex-col gap-12 px-6 py-8 md:px-8 lg:px-10">
+          <nav className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.32em] text-orange-700">
+                North Lakes Korean Guide
+              </p>
+              <h1 className="mt-2 text-2xl font-black tracking-tight text-slate-900 md:text-3xl">
+                노스레이크 한인 생활 가이드
+              </h1>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="rounded-full border border-white/70 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-white"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </nav>
+
+          <div className="grid gap-8 lg:grid-cols-[1.3fr_0.9fr] lg:items-end">
+            <div className="max-w-3xl">
+              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-600/10 px-4 py-2 text-sm font-semibold text-emerald-800">
+                <span className="text-base">•</span> 가족 정착, 자녀 활동, 워홀 시즌 정보를 한곳에
+              </div>
+              <h2 className="mt-6 text-4xl font-black leading-tight tracking-tight text-slate-950 md:text-6xl">
+                아이들 레슨부터
+                <br />
+                카불쳐 시즌까지
+              </h2>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700 md:text-xl">
+                노스레이크와 브리즈번 북부에 막 정착한 한인 가족, 초중고 자녀를 둔 부모님,
+                그리고 카불쳐 시즌 정보를 찾는 워킹홀리데이 분들을 위해 생활형 정보를
+                보기 쉽게 모아두는 사이트입니다.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="#activities"
+                  className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-6 py-3 text-sm font-bold text-white transition hover:bg-orange-600"
+                >
+                  자녀 활동 먼저 보기 <ArrowRight size={16} />
+                </a>
+                <Link
+                  href="/calendar"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-bold text-slate-800 transition hover:border-orange-300 hover:text-orange-700"
+                >
+                  연간 캘린더 보기 <CalendarDays size={16} />
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid gap-4">
+              {quickGuides.map((guide) => (
+                <article
+                  key={guide.title}
+                  className="rounded-[2rem] border border-white/80 bg-white/85 p-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur"
+                >
+                  <h3 className="text-lg font-black text-slate-900">{guide.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{guide.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
-        
-        {/* Farm Season Widget */}
-        <section className="bg-gradient-to-r from-red-500 to-emerald-600 p-1 rounded-[2.5rem] shadow-2xl transform hover:scale-[1.01] transition-all duration-500">
-          <div className="bg-white rounded-[2.4rem] p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex items-center gap-6">
-              <div className="bg-red-100 p-5 rounded-3xl text-red-600 animate-bounce-subtle">
-                <span className="text-4xl">🍓</span>
-              </div>
-              <div>
-                <h3 className="text-2xl md:text-3xl font-black text-slate-800 mb-2">
-                  지금은 <span className="text-red-600">3월</span>, <span className="text-emerald-600 underline decoration-emerald-200 underline-offset-8">모종 심기</span> 시즌!
-                </h3>
-                <p className="text-slate-500 font-bold flex items-center gap-2">
-                  <Sprout size={18} className="text-emerald-500" /> 카불쳐 딸기 농장이 바빠지는 준비 기간입니다.
-                </p>
-              </div>
+      <main className="mx-auto flex max-w-7xl flex-col gap-20 px-6 py-16 md:px-8 lg:px-10">
+        <section className="grid gap-6 md:grid-cols-3">
+          <article className="rounded-[2rem] border border-orange-200 bg-orange-50 p-6 shadow-sm">
+            <p className="text-sm font-bold uppercase tracking-[0.24em] text-orange-700">For Families</p>
+            <h3 className="mt-3 text-2xl font-black text-slate-900">초중고 자녀 중심 정보</h3>
+            <p className="mt-3 text-sm leading-6 text-slate-700">
+              레슨, 클럽, 수영장, 음악, 주말 활동을 부모 입장에서 빠르게 찾기 쉽게 구성합니다.
+            </p>
+          </article>
+          <article className="rounded-[2rem] border border-emerald-200 bg-emerald-50 p-6 shadow-sm">
+            <p className="text-sm font-bold uppercase tracking-[0.24em] text-emerald-700">For Workers</p>
+            <h3 className="mt-3 text-2xl font-black text-slate-900">카불쳐 시즌 가이드</h3>
+            <p className="mt-3 text-sm leading-6 text-slate-700">
+              시즌 흐름, 준비 시기, 주요 농장 지역을 월별 시각으로 정리해 첫 방문자도 이해하기 쉽게 만듭니다.
+            </p>
+          </article>
+          <article className="rounded-[2rem] border border-sky-200 bg-sky-50 p-6 shadow-sm">
+            <p className="text-sm font-bold uppercase tracking-[0.24em] text-sky-700">For Community</p>
+            <h3 className="mt-3 text-2xl font-black text-slate-900">교민 업소록 허브</h3>
+            <p className="mt-3 text-sm leading-6 text-slate-700">
+              마트, 식당, 교회, 생활서비스, 교육업종을 카테고리별로 확장 가능한 구조로 모아갑니다.
+            </p>
+          </article>
+        </section>
+
+        <section id="activities" className="space-y-8">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.28em] text-orange-700">Kids Activities</p>
+              <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950 md:text-4xl">
+                자녀 레슨과 클럽을 이렇게 나누면 좋아요
+              </h2>
             </div>
-            <Link href="/calendar" className="w-full md:w-auto px-8 py-4 bg-red-600 text-white rounded-2xl font-black hover:bg-emerald-700 transition-all shadow-xl shadow-red-200 flex items-center justify-center gap-2 group">
-              전체 시즌 캘린더 보기 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            <p className="max-w-xl text-sm leading-6 text-slate-600">
+              사이트 초반에는 실제 업체를 모두 다 채우기보다, 부모님이 가장 먼저 찾는 범주를
+              명확하게 나누는 것이 훨씬 유용합니다.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {activityCategories.map((category, index) => {
+              const Icon = iconMap[index];
+
+              return (
+                <article
+                  key={category.title}
+                  className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_16px_50px_rgba(15,23,42,0.05)] transition hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.08)]"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-[0.24em] text-orange-600">
+                        {category.audience}
+                      </p>
+                      <h3 className="mt-3 text-2xl font-black text-slate-900">{category.title}</h3>
+                    </div>
+                    <div className="rounded-2xl bg-orange-100 p-3 text-orange-700">
+                      <Icon size={22} />
+                    </div>
+                  </div>
+                  <p className="mt-4 text-sm leading-6 text-slate-600">{category.description}</p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {category.highlights.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+
+        <section id="weekend" className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="rounded-[2.5rem] bg-slate-950 p-8 text-white shadow-[0_30px_80px_rgba(15,23,42,0.18)] md:p-10">
+            <p className="text-sm font-bold uppercase tracking-[0.28em] text-orange-300">Weekend Ideas</p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">
+              주말에 뭐할지
+              <br />
+              고민될 때 보는 섹션
+            </h2>
+            <p className="mt-5 max-w-lg text-sm leading-7 text-slate-300">
+              실제 운영에서는 매주 새 이벤트를 넣어도 좋지만, 먼저는 가족이 반복해서 찾을 수
+              있는 기본 코스를 정리하는 것이 트래픽과 체류시간에 더 도움이 됩니다.
+            </p>
+            <Link
+              href="/calendar"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-orange-100"
+            >
+              연간 일정과 연결해 보기 <ArrowRight size={16} />
             </Link>
           </div>
-        </section>
-        
-        {/* News TOP 10 Section */}
-        <section>
-          <div className="flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
-            <div className="flex items-center gap-3">
-              <div className="bg-brand-primary p-2 rounded-lg text-white">
-                <Newspaper size={24} />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-black text-slate-800">
-                Today's <span className="text-brand-primary underline decoration-accent-gold underline-offset-4 font-black">NEWS TOP 10</span>
-              </h2>
-            </div>
-          </div>
-          
-          {isLoading ? (
-            <div className="flex justify-center py-20">
-              <Loader2 className="animate-spin text-brand-primary w-12 h-12" />
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
-              {news.map((item, idx) => (
-                <div key={item.id} className="group relative bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-brand-primary/20 transition-all duration-300 cursor-pointer overflow-hidden">
-                  <div className="flex gap-5 items-start">
-                    <span className="text-5xl font-black text-slate-100 group-hover:text-brand-primary/10 transition-colors leading-none">
-                      {String(idx + 1).padStart(2, '0')}
-                    </span>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-bold mb-2 group-hover:text-brand-primary transition-colors line-clamp-1">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm text-slate-500 line-clamp-2 leading-relaxed">
-                        {item.summary || item.content}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ArrowRight className="text-brand-primary" size={20} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </section>
 
-        {/* Community Grid Section */}
-        <section className="space-y-10">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="bg-emerald-600 p-2 rounded-lg text-white">
-              <Users size={24} />
-            </div>
-            <h2 className="text-2xl md:text-3xl font-black text-slate-800 italic">Community Boards</h2>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Accommodation (방 쉐어) */}
-            <div className="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden">
-              <div className="bg-blue-600 px-6 py-4 text-white flex justify-between items-center">
-                <h3 className="font-black flex items-center gap-2">
-                  <HomeIcon size={18} /> 방 쉐어
-                </h3>
-                <span className="text-xs font-bold opacity-80 uppercase tracking-widest">Accommodation</span>
-              </div>
-              <div className="divide-y divide-slate-50">
-                {accommodation.slice(0, 5).map(post => (
-                  <div key={post.id} className="p-5 hover:bg-slate-50 transition-colors cursor-pointer group">
-                    <h4 className="font-bold text-slate-800 line-clamp-1 mb-1 group-hover:text-blue-600">{post.title}</h4>
-                    <div className="flex justify-between items-center text-xs">
-                      <span className="text-blue-600 font-bold">{post.price}</span>
-                      <span className="text-slate-400">{new Date().toLocaleDateString()}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <button className="w-full py-4 text-sm font-bold text-slate-500 hover:text-blue-600 transition-colors bg-slate-50/50">
-                방 쉐어 전체보기
-              </button>
-            </div>
-
-            {/* Jobs (구인구직) */}
-            <div className="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden">
-              <div className="bg-emerald-600 px-6 py-4 text-white flex justify-between items-center">
-                <h3 className="font-black flex items-center gap-2">
-                  <Briefcase size={18} /> 구인구직
-                </h3>
-                <span className="text-xs font-bold opacity-80 uppercase tracking-widest">Jobs</span>
-              </div>
-              <div className="divide-y divide-slate-50">
-                {jobs.slice(0, 5).map(post => (
-                  <div key={post.id} className="p-5 hover:bg-slate-50 transition-colors cursor-pointer group">
-                    <h4 className="font-bold text-slate-800 line-clamp-1 mb-1 group-hover:text-emerald-600">{post.title}</h4>
-                    <div className="flex justify-between items-center text-xs">
-                      <span className="text-emerald-600 font-bold">{post.price}</span>
-                      <span className="text-slate-400">{new Date().toLocaleDateString()}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <button className="w-full py-4 text-sm font-bold text-slate-500 hover:text-emerald-600 transition-colors bg-slate-50/50">
-                구인구직 전체보기
-              </button>
-            </div>
-
-            {/* Business Sell (비즈니스 매매) */}
-            <div className="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden">
-              <div className="bg-purple-600 px-6 py-4 text-white flex justify-between items-center">
-                <h3 className="font-black flex items-center gap-2">
-                  <ShoppingBag size={18} /> 비즈니스 매매
-                </h3>
-                <span className="text-xs font-bold opacity-80 uppercase tracking-widest">Business</span>
-              </div>
-              <div className="divide-y divide-slate-50">
-                {businessSell.slice(0, 5).map(post => (
-                  <div key={post.id} className="p-5 hover:bg-slate-50 transition-colors cursor-pointer group">
-                    <h4 className="font-bold text-slate-800 line-clamp-1 mb-1 group-hover:text-purple-600">{post.title}</h4>
-                    <div className="flex justify-between items-center text-xs">
-                      <span className="text-purple-600 font-bold">{post.price}</span>
-                      <span className="text-slate-400">{new Date().toLocaleDateString()}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <button className="w-full py-4 text-sm font-bold text-slate-500 hover:text-purple-600 transition-colors bg-slate-50/50">
-                비즈니스 매매 전체보기
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* Farm List Section */}
-        <section id="farm-list" className="space-y-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="bg-red-600 p-2 rounded-lg text-white">
-                <span className="text-xl">🍓</span>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-black text-slate-800">
-                Caboolture <span className="text-red-600 border-b-4 border-red-200 pb-1">STRAWBERRY FARMS</span>
-              </h2>
-            </div>
-            <span className="text-sm font-bold text-slate-400">총 {farms.length}개 농장</span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {farms.map(farm => (
-              <div key={farm.id} className="bg-white p-6 rounded-3xl shadow-sm border border-red-50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                <div className="text-xs font-black text-emerald-600 mb-2 uppercase tracking-tight">Strawberry Farm</div>
-                <h4 className="text-lg font-black text-slate-900 mb-3">{farm.name}</h4>
-                <div className="space-y-2 text-sm text-slate-500 font-medium">
-                  <p className="flex items-center gap-2">📍 {farm.location}</p>
-                  <p className="flex items-center gap-2">📞 {farm.phone}</p>
-                </div>
-              </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            {weekendIdeas.map((idea) => (
+              <article
+                key={idea.title}
+                className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm"
+              >
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-sky-700">{idea.area}</p>
+                <h3 className="mt-3 text-xl font-black text-slate-900">{idea.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{idea.description}</p>
+              </article>
             ))}
           </div>
         </section>
 
-        {/* Business Directory Section */}
-        <section id="business-directory" className="space-y-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="bg-brand-900 p-2 rounded-lg text-white">
-                <Building2 size={24} />
-              </div>
-              <h2 className="text-2xl md:text-3xl font-black text-slate-800">
-                Business <span className="text-brand-900 border-b-4 border-accent-gold pb-1">DIRECTORY</span>
+        <section id="directory" className="space-y-8">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.28em] text-sky-700">Business Directory</p>
+              <h2 className="mt-2 flex items-center gap-3 text-3xl font-black tracking-tight text-slate-950 md:text-4xl">
+                <Building2 className="text-sky-700" size={32} />
+                교민 업소록
               </h2>
             </div>
-            <button className="text-sm font-bold text-slate-500 flex items-center gap-1 hover:text-brand-900 transition-colors">
-              업소록 전체보기 <ArrowRight size={16} />
-            </button>
+            <p className="max-w-xl text-sm leading-6 text-slate-600">
+              식당만 모아두기보다 생활형 카테고리를 함께 두면 신규 정착자에게 훨씬 더 도움이 됩니다.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {businesses.slice(0, 8).map(biz => (
-              <div key={biz.id} className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                <div className="text-xs font-black text-brand-primary mb-2 uppercase tracking-tight">{biz.category}</div>
-                <h4 className="text-lg font-black text-slate-900 mb-3">{biz.name}</h4>
-                <div className="space-y-2 text-sm text-slate-500 font-medium">
-                  <p className="flex items-center gap-2">📍 {biz.location}</p>
-                  <p className="flex items-center gap-2">📞 {biz.phone}</p>
-                </div>
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {businessDirectory.map((entry) => (
+              <article
+                key={entry.name}
+                className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1"
+              >
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-sky-700">{entry.category}</p>
+                <h3 className="mt-3 text-xl font-black text-slate-900">{entry.name}</h3>
+                <p className="mt-2 text-sm font-semibold text-slate-500">{entry.area}</p>
+                <p className="mt-4 text-sm leading-6 text-slate-600">{entry.note}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="season" className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="rounded-[2.5rem] border border-rose-200 bg-[linear-gradient(135deg,#fff1f2_0%,#fff7ed_100%)] p-8 shadow-sm md:p-10">
+            <div className="flex items-center gap-3">
+              <div className="rounded-2xl bg-rose-600 px-3 py-2 text-xl text-white">🍓</div>
+              <div>
+                <p className="text-sm font-bold uppercase tracking-[0.28em] text-rose-700">Caboolture Season</p>
+                <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950 md:text-4xl">
+                  워홀러를 위한 카불쳐 딸기 시즌
+                </h2>
               </div>
+            </div>
+            <div className="mt-8 space-y-4">
+              {seasonStages.map((stage) => (
+                <article
+                  key={stage.period}
+                  className="rounded-[1.75rem] border border-white/80 bg-white/85 p-5 shadow-sm"
+                >
+                  <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                    <h3 className="text-xl font-black text-slate-900">
+                      {stage.period} <span className="text-rose-600">{stage.title}</span>
+                    </h3>
+                    <span className="inline-flex w-fit rounded-full bg-rose-100 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-rose-700">
+                      {stage.tone}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-slate-700">{stage.detail}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-5">
+            <div className="rounded-[2rem] border border-emerald-200 bg-emerald-50 p-7">
+              <p className="text-sm font-bold uppercase tracking-[0.24em] text-emerald-700">Working Holiday Tips</p>
+              <h3 className="mt-3 text-2xl font-black text-slate-900">처음 오면 같이 정리하면 좋은 것</h3>
+              <div className="mt-5 space-y-3 text-sm leading-6 text-slate-700">
+                <p>숙소 위치와 농장 이동 시간을 함께 보기</p>
+                <p>차량 유무에 따라 지원 가능한 지역 범위를 나누기</p>
+                <p>피크 시즌 전인 5월 이전부터 정보 채널에 미리 들어가기</p>
+                <p>가족 방문용 체험 정보와 워크 정보는 분리해 보여주기</p>
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-sm font-bold uppercase tracking-[0.24em] text-rose-700">Farm List</p>
+                  <h3 className="mt-2 text-2xl font-black text-slate-900">주요 딸기농장</h3>
+                </div>
+                <Sprout className="text-emerald-600" size={28} />
+              </div>
+              <div className="mt-6 space-y-4">
+                {cabooltureFarms.map((farm) => (
+                  <article key={farm.name} className="rounded-2xl bg-slate-50 p-4">
+                    <div className="flex flex-col gap-1 md:flex-row md:items-center md:justify-between">
+                      <h4 className="font-black text-slate-900">{farm.name}</h4>
+                      <span className="text-sm font-semibold text-slate-500">{farm.area}</span>
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{farm.note}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="calendar" className="space-y-8">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.28em] text-orange-700">Annual Calendar</p>
+              <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950 md:text-4xl">
+                한 해 주요 이벤트 캘린더
+              </h2>
+            </div>
+            <Link
+              href="/calendar"
+              className="inline-flex items-center gap-2 text-sm font-bold text-slate-700 transition hover:text-orange-700"
+            >
+              월별 캘린더 상세 보기 <ArrowRight size={16} />
+            </Link>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {annualEvents.map((event) => (
+              <article
+                key={event.month}
+                className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm"
+              >
+                <p className="text-sm font-black text-orange-700">{event.month}</p>
+                <h3 className="mt-3 text-xl font-black text-slate-900">{event.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{event.detail}</p>
+              </article>
             ))}
           </div>
         </section>
       </main>
-
-      <footer className="bg-slate-900 text-white py-16 px-6 mt-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div>
-            <h2 className="text-2xl font-black mb-6">QLD NORTH KOREAN</h2>
-            <p className="opacity-50 text-sm max-w-sm leading-relaxed">
-              퀸즐랜드 북부 지역 교민들의 소통과 정보 공유를 위한 플랫폼입니다. 
-              오늘의 실시간 뉴스와 다양한 커뮤니티 소식을 만나보세요.
-            </p>
-          </div>
-          <div className="flex flex-col md:items-end justify-center text-sm opacity-50 space-y-2">
-            <p>© 2026 Queensland North Korean Community.</p>
-            <p>Designed for Sunshine Coast & Northlakes.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

@@ -3,8 +3,16 @@
 export const dynamic = 'force-dynamic';
 
 import { useState } from "react";
-import { newsService, listingService } from "@/lib/services";
-import { Newspaper, PlusCircle, ListTodo, CheckCircle2, AlertCircle, Users } from "lucide-react";
+import { listingService, newsService, type ListingCategory } from "@/lib/services";
+import { Newspaper, CheckCircle2, AlertCircle, Users } from "lucide-react";
+
+function getErrorMessage(error: unknown) {
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  return "알 수 없는 오류가 발생했습니다.";
+}
 
 export default function AdminPage() {
   // 뉴스 상태
@@ -13,7 +21,7 @@ export default function AdminPage() {
   const [newsSummary, setNewsSummary] = useState("");
   
   // 게시물 상태
-  const [listCategory, setListCategory] = useState("jobs");
+  const [listCategory, setListCategory] = useState<ListingCategory>("jobs");
   const [listTitle, setListTitle] = useState("");
   const [listContent, setListContent] = useState("");
   const [listPrice, setListPrice] = useState("");
@@ -29,8 +37,8 @@ export default function AdminPage() {
       await newsService.addNews({ title: newsTitle, url: newsUrl, summary: newsSummary, published_at: new Date().toISOString() });
       setStatus({ type: 'success', message: "뉴스가 성공적으로 등록되었습니다." });
       setNewsTitle(""); setNewsUrl(""); setNewsSummary("");
-    } catch (error: any) {
-      setStatus({ type: 'error', message: `오류 발생: ${error.message}` });
+    } catch (error: unknown) {
+      setStatus({ type: 'error', message: `오류 발생: ${getErrorMessage(error)}` });
     } finally { setIsSubmitting(false); }
   };
 
@@ -42,8 +50,8 @@ export default function AdminPage() {
       await listingService.createListing({ category: listCategory, title: listTitle, content: listContent, price: listPrice });
       setStatus({ type: 'success', message: "게시물이 성공적으로 등록되었습니다." });
       setListTitle(""); setListContent(""); setListPrice("");
-    } catch (error: any) {
-      setStatus({ type: 'error', message: `오류 발생: ${error.message}` });
+    } catch (error: unknown) {
+      setStatus({ type: 'error', message: `오류 발생: ${getErrorMessage(error)}` });
     } finally { setIsSubmitting(false); }
   };
 
@@ -106,7 +114,7 @@ export default function AdminPage() {
             <form onSubmit={handleAddListing} className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-sm font-bold text-slate-600 px-1">카테고리</label>
-                <select value={listCategory} onChange={(e) => setListCategory(e.target.value)} className="w-full px-5 py-3 bg-slate-50 border border-slate-200 rounded-2xl outline-none">
+                <select value={listCategory} onChange={(e) => setListCategory(e.target.value as ListingCategory)} className="w-full px-5 py-3 bg-slate-50 border border-slate-200 rounded-2xl outline-none">
                   <option value="jobs">구인구직 (Jobs)</option>
                   <option value="accommodation">방 쉐어 (Accomm)</option>
                   <option value="business_sell">비즈니스 매매</option>

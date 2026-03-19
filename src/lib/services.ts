@@ -1,5 +1,21 @@
 import { supabase } from './supabase'
 
+export type ListingCategory = 'jobs' | 'accommodation' | 'business_sell'
+
+export type NewsItemInput = {
+  title: string
+  url: string
+  summary?: string
+  published_at?: string
+}
+
+export type ListingInput = {
+  category: ListingCategory
+  title: string
+  content: string
+  price?: string
+}
+
 /**
  * Daily News 관련 서비스
  */
@@ -14,7 +30,7 @@ export const newsService = {
     return data
   },
 
-  async addNews(newsItem: { title: string; url: string; summary?: string; published_at?: string }) {
+  async addNews(newsItem: NewsItemInput) {
     const { data, error } = await supabase.from('daily_news').insert([newsItem]).select()
     if (error) throw error
     return data
@@ -25,7 +41,7 @@ export const newsService = {
  * Community Listings 관련 서비스
  */
 export const listingService = {
-  async getByCategory(category: 'jobs' | 'accommodation' | 'business_sell') {
+  async getByCategory(category: ListingCategory) {
     const { data, error } = await supabase
       .from('listings')
       .select('*')
@@ -35,7 +51,7 @@ export const listingService = {
     return data
   },
 
-  async createListing(listing: any) {
+  async createListing(listing: ListingInput) {
     const { data, error } = await supabase.from('listings').insert([listing]).select()
     if (error) throw error
     return data
