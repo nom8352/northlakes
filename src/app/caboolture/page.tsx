@@ -35,9 +35,20 @@ export default function CaboolturePage() {
               <p>피크 시즌 직전인 5월 이전부터 정보 채널에 미리 들어가기</p>
               <p>체험 방문 정보와 실제 워크 정보는 분리해서 보기</p>
             </div>
-            <Link href="/calendar" className="mt-7 inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-emerald-700">
-              연간 캘린더에서 같이 보기 <ArrowRight size={16} />
-            </Link>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link
+                href="/caboolture/working-holiday"
+                className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-emerald-700"
+              >
+                워홀 준비 가이드 보기 <ArrowRight size={16} />
+              </Link>
+              <Link
+                href="/calendar"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-white px-5 py-3 text-sm font-bold text-emerald-800 transition hover:border-emerald-400"
+              >
+                연간 캘린더에서 같이 보기 <ArrowRight size={16} />
+              </Link>
+            </div>
           </div>
         </section>
 
