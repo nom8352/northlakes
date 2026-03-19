@@ -66,6 +66,9 @@ export type WeekendIdea = {
   area: string;
   description: string;
   image: string;
+  schedule?: string;
+  details?: string[];
+  website?: string;
 };
 
 export type AnnualEvent = {
@@ -663,9 +666,19 @@ export const weekendIdeas: WeekendIdea[] = [
   {
     title: "에덴레이크 파크런",
     area: "Eden Lake / North Lakes",
-    description: "토요일 아침마다 열리는 지역 파크런으로, 가족이 함께 가볍게 걷거나 달리며 하루를 시작하기 좋은 주말 루틴입니다.",
+    description:
+      "Lake Eden에서 열리는 무료 5km 파크런으로, 매주 토요일 아침 가족이 함께 걷거나 달리며 하루를 시작하기 좋은 대표 주말 루틴입니다.",
     image:
       "https://images.unsplash.com/photo-1486218119243-13883505764c?auto=format&fit=crop&w=1200&q=80",
+    schedule: "매주 토요일 오전 7:00",
+    details: [
+      "장소: Lake Eden, North Lakes",
+      "형식: 무료 5km 타임 이벤트",
+      "참여: 걷기, 조깅, 달리기, 자원봉사, 구경 모두 가능",
+      "첫 참가 전 parkrun Australia에서 무료 등록 후 개인 바코드 필요",
+      "City of Moreton Bay 안내 기준으로 가족과 반려견 동반 가능",
+    ],
+    website: "https://www.moretonbay.qld.gov.au/Services/Sport-Recreation/Healthy-And-Active-Lifestyles/Healthy-Active-Moreton/PR-Parkrun-North-Lakes",
   },
   {
     title: "수영장 + 공원 코스",

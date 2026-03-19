@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { PublicLayout } from "@/components/public-layout";
 import { weekendIdeas } from "@/lib/community-data";
@@ -22,7 +22,26 @@ export default function WeekendPage() {
               <div className="p-6">
                 <p className="text-xs font-bold uppercase tracking-[0.24em] text-sky-700">{idea.area}</p>
                 <h2 className="mt-3 text-2xl font-black text-slate-950">{idea.title}</h2>
+                {idea.schedule ? (
+                  <p className="mt-2 text-sm font-semibold text-slate-500">{idea.schedule}</p>
+                ) : null}
                 <p className="mt-4 text-sm leading-7 text-slate-600">{idea.description}</p>
+                {idea.details?.length ? (
+                  <div className="mt-4 space-y-2 rounded-[1.25rem] bg-sky-50/70 p-4 text-sm text-slate-600 ring-1 ring-sky-100">
+                    {idea.details.map((detail) => (
+                      <p key={detail}>{detail}</p>
+                    ))}
+                  </div>
+                ) : null}
+                {idea.website ? (
+                  <Link
+                    href={idea.website}
+                    target="_blank"
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-slate-900 transition hover:text-sky-700"
+                  >
+                    공식 정보 보기 <ExternalLink size={15} />
+                  </Link>
+                ) : null}
               </div>
             </article>
           ))}

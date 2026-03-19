@@ -160,6 +160,9 @@ export default function Home() {
                 <div className="p-5">
                   <p className="text-xs font-bold uppercase tracking-[0.24em] text-sky-700">{idea.area}</p>
                   <h3 className="mt-3 text-xl font-black text-slate-950">{idea.title}</h3>
+                  {idea.schedule ? (
+                    <p className="mt-2 text-sm font-semibold text-slate-500">{idea.schedule}</p>
+                  ) : null}
                   <p className="mt-3 text-sm leading-6 text-slate-600">{idea.description}</p>
                 </div>
               </article>
