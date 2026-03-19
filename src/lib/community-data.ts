@@ -842,6 +842,118 @@ export const weekendIdeas: WeekendIdea[] = [
     website: "https://www.moretonbay.qld.gov.au/Services/Sport-Recreation/Healthy-And-Active-Lifestyles/Healthy-Active-Moreton/PR-Parkrun-North-Lakes",
   },
   {
+    title: "Harmony Week 주말 프로그램",
+    area: "Moreton Bay",
+    description:
+      "2026년 Harmony Week는 3월 16일부터 22일까지 진행되고, 3월 21일 전후로 다문화 커뮤니티 분위기를 느끼기 좋은 주말 코스로 볼 수 있습니다.",
+    image:
+      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80",
+    schedule: "2026년 3월 20일-22일 주말",
+    details: [
+      "기간: Monday 16 March 2026 - Sunday 22 March 2026",
+      "성격: cultural diversity celebration, libraries and community activities 연결",
+      "포인트: 한인 가족이 가볍게 지역 다문화 프로그램 분위기를 느끼기 좋음",
+      "공식 페이지에서 연계 행사와 라이브러리 활동 확인 가능",
+    ],
+    website: "https://www.moretonbay.qld.gov.au/Events/Harmony-Week",
+  },
+  {
+    title: "마이크로뱃 Walk and Talk",
+    area: "Kumbartcho, Eatons Hill",
+    description:
+      "해 질 무렵 박쥐 탐지기까지 써보는 자연 체험형 프로그램이라, 아이들과 조금 특별한 토요일 저녁을 보내기 좋습니다.",
+    image:
+      "https://images.unsplash.com/photo-1470115636492-6d2b56f9146d?auto=format&fit=crop&w=1200&q=80",
+    schedule: "2026년 3월 28일 토요일 5:30pm-7:30pm",
+    details: [
+      "장소: Kumbartcho Sanctuary, 15 Bunya Pine Court, Eatons Hill 4037",
+      "비용: 무료",
+      "형식: animal talk + guided evening walk",
+      "포인트: 박쥐 생태를 배우고 echo-meter detector로 관찰",
+    ],
+    website: "https://www.moretonbay.qld.gov.au/Events/Microbat-Walk-And-Talk",
+  },
+  {
+    title: "Farmyard Fun Day",
+    area: "Redcliffe Museum",
+    description:
+      "병아리, 토끼, 양, 미니염소 같은 동물을 직접 보고 만질 수 있는 무료 체험형 행사라 4월 가족 외출 카드로 아주 좋습니다.",
+    image:
+      "https://images.unsplash.com/photo-1516467508483-a7212febe31a?auto=format&fit=crop&w=1200&q=80",
+    schedule: "2026년 4월 11일 토요일 10:30am-12:30pm",
+    details: [
+      "장소: Redcliffe Museum, 75 Anzac Avenue, Redcliffe 4020",
+      "비용: 무료, 예약 불필요",
+      "형식: mobile petting zoo + face painting + balloon toy + sausage sizzle",
+      "대상: all ages",
+    ],
+    website: "https://www.moretonbay.qld.gov.au/Galleries-Museums/Events/RM/Farmyard-Fun-Day",
+  },
+  {
+    title: "Twilight Paddle and Damper",
+    area: "Joyner",
+    description:
+      "노스파인강을 따라 카누를 타고, 돌아와서 damper까지 먹는 프로그램이라 10대 자녀가 있으면 꽤 만족도가 높을 주말 체험입니다.",
+    image:
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+    schedule: "2026년 4월 11일 토요일 4:00pm-7:00pm",
+    details: [
+      "장소: The Y Camp Bundalong Activity Centre, 81 Byrnes Road North, Joyner 4500",
+      "비용: $5.00",
+      "대상: ages 10-17",
+      "조건: 수영 가능해야 하며 장비는 제공",
+    ],
+    website: "https://www.moretonbay.qld.gov.au/Services/Sport-Recreation/Healthy-And-Active-Lifestyles/Healthy-Active-Moreton/9191-Twilight-Paddle-and-Damper",
+  },
+  {
+    title: "Moreton Bay PrideFest",
+    area: "Pine Rivers Park, Strathpine",
+    description:
+      "2026년 4월 대표 무료 주말 축제로, 공연, 마켓, 푸드, 커뮤니티 부스가 함께 열려 하루 외출 코스로 쓰기 좋습니다.",
+    image:
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80",
+    schedule: "2026년 4월 18일 토요일 10:00am-4:00pm",
+    details: [
+      "장소: Pine Rivers Park, 125 Gympie Rd, Strathpine 4500",
+      "비용: 무료",
+      "포인트: live entertainment, markets, food vendors, inclusive/quiet spaces",
+      "가족 친화 행사로 소개됨",
+    ],
+    website: "https://www.moretonbay.qld.gov.au/Events/Moreton-Bay-PrideFest",
+  },
+  {
+    title: "Create your own plant-animal",
+    area: "Pine Rivers Park, Strathpine",
+    description:
+      "PrideFest 안에서 열리는 무료 아트 워크숍으로, 아이들이 직접 상상 속 식물-동물 캐릭터를 만들어볼 수 있습니다.",
+    image:
+      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=80",
+    schedule: "2026년 4월 18일 토요일 10:00am-4:00pm",
+    details: [
+      "장소: Pine Rivers Park, 125 Gympie Rd, Strathpine 4500",
+      "비용: 무료",
+      "형식: David Spooner와 함께하는 hands-on community art workshop",
+      "대상: children and adults alike",
+    ],
+    website: "https://www.moretonbay.qld.gov.au/Events/Create-your-own-plant-animal",
+  },
+  {
+    title: "Yin Yoga",
+    area: "Woody Point",
+    description:
+      "조용하게 쉬는 주말을 원하면 Woody Point의 저렴한 요가 세션도 괜찮습니다. 바쁜 한 주 뒤 몸을 풀기에 좋은 코스입니다.",
+    image:
+      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=80",
+    schedule: "2026년 4월 25일 토요일 11:00am-12:00pm",
+    details: [
+      "장소: Clontarf CWA Hall, 16 Victoria Avenue, Woody Point 4019",
+      "비용: $4.00",
+      "대상: 18+",
+      "준비물: yoga mat, towel, water bottle",
+    ],
+    website: "https://www.moretonbay.qld.gov.au/Services/Sport-Recreation/Healthy-And-Active-Lifestyles/Healthy-Active-Moreton/7291-Yin-Yoga",
+  },
+  {
     title: "플래닛 피트니스 실내 운동 루틴",
     area: "North Lakes 주변",
     description:
@@ -861,34 +973,6 @@ export const weekendIdeas: WeekendIdea[] = [
       "공식 offers 페이지 기준 무료 day pass 신청 가능",
     ],
     website: "https://planetfitnessaustralia.com.au/gyms/rothwell-qld/",
-  },
-  {
-    title: "수영장 + 공원 코스",
-    area: "North Lakes",
-    description: "아이들 에너지를 풀기 좋은 물놀이와 잔디공원 조합으로, 더운 시즌 주말 루틴으로 만들기 좋습니다.",
-    image:
-      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    title: "골프 연습장 또는 미니골프",
-    area: "Brisbane North",
-    description: "부모와 아이가 함께 즐기기 쉬운 활동이라 가족 취미 탐색용으로 잘 맞습니다.",
-    image:
-      "https://images.unsplash.com/photo-1513553404607-988d4c6ca8b7?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    title: "딸기농장 방문 & 체험",
-    area: "Caboolture",
-    description: "7월부터 10월 사이에는 계절감을 가장 잘 느낄 수 있는 대표적인 주말 나들이 코스가 됩니다.",
-    image:
-      "https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    title: "지역 마켓 & 시즌 축제",
-    area: "Moreton Bay / Brisbane",
-    description: "주말마다 열리는 로컬 마켓과 축제는 영어 환경 적응과 가족 외출을 동시에 잡기 좋습니다.",
-    image:
-      "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 
