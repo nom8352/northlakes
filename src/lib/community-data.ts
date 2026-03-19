@@ -515,7 +515,7 @@ export const featuredProviders = [
 
 export const businessDirectory: DirectoryEntry[] = [
   {
-    name: "Hanaromart North Lakes",
+    name: "하나로마트 노스레이크",
     category: "한인마트",
     address: "Westfield North Lakes, Cnr Anzac Ave & North Lakes Dr, North Lakes QLD 4509",
     phone: "공식 매장 페이지 참조",
@@ -527,7 +527,7 @@ export const businessDirectory: DirectoryEntry[] = [
     note: "장보기와 기본 반찬, 냉동식품, 간단한 생활재료를 해결하기 좋은 지역 거점",
   },
   {
-    name: "bapboi Korean BBQ",
+    name: "밥보이 코리안 바비큐",
     category: "한식당 / 푸드코트",
     address: "Level 1 Food Court, Westfield North Lakes, North Lakes QLD 4509",
     phone: "문의 필요",
@@ -539,7 +539,7 @@ export const businessDirectory: DirectoryEntry[] = [
     note: "가족 외식이나 지인 모임 때 자주 찾기 좋은 한식당",
   },
   {
-    name: "Chicken in Seoul",
+    name: "치킨 인 서울",
     category: "치킨 / 한식",
     address: "Shop 1/59 Endeavour Boulevard, North Lakes QLD 4509",
     phone: "0490 033 509",
@@ -551,7 +551,7 @@ export const businessDirectory: DirectoryEntry[] = [
     note: "아이들과 함께 가기 쉬운 메뉴 구성이 강점인 치킨 중심 옵션",
   },
   {
-    name: "Charim Korean BBQ",
+    name: "차림 코리안 바비큐",
     category: "한식당 / 바비큐",
     address: "9/27 Discovery Drive, North Lakes QLD 4509",
     phone: "0455 794 054",
@@ -563,7 +563,7 @@ export const businessDirectory: DirectoryEntry[] = [
     note: "디스커버리 드라이브 라인에서 찾기 쉬운 한식 바비큐 옵션",
   },
   {
-    name: "BULGOGI",
+    name: "불고기",
     category: "한식당 / 바비큐",
     address: "27 Discovery Drive, North Lakes QLD 4509",
     phone: "0493 987 110",
@@ -575,7 +575,7 @@ export const businessDirectory: DirectoryEntry[] = [
     note: "디스커버리 드라이브 쪽에서 고깃집 옵션을 찾을 때 같이 비교하기 좋은 곳",
   },
   {
-    name: "North Lakes Full Gospel Church",
+    name: "노스레이크 순복음교회",
     category: "교회",
     address: "Lakefield Drive & Endeavour Boulevard, North Lakes QLD 4509",
     phone: "문의 필요",
@@ -586,7 +586,7 @@ export const businessDirectory: DirectoryEntry[] = [
     note: "정착 초기 교민 네트워크를 만들고 지역 정보를 얻기 좋은 커뮤니티 접점",
   },
   {
-    name: "Sunshine Coast Korean Evangelical Holiness Church",
+    name: "선샤인코스트 한인 성결교회",
     category: "교회",
     address: "3 Honeysuckle Drive, Bokarina QLD 4575",
     phone: "0410 228 572",
@@ -598,7 +598,7 @@ export const businessDirectory: DirectoryEntry[] = [
     note: "선샤인코스트 쪽 교민 연결이 필요한 가정에게 도움이 되는 커뮤니티 채널",
   },
   {
-    name: "Sunshine Coast Korean Church",
+    name: "선샤인코스트 한인교회",
     category: "교회",
     address: "6 Millwell Road, Maroochydore QLD 4558",
     phone: "0427 106 531",
@@ -610,7 +610,7 @@ export const businessDirectory: DirectoryEntry[] = [
     note: "노스레이크 외에도 선샤인코스트 생활권을 오가는 분들에게 유용한 한인 예배 정보",
   },
   {
-    name: "Community-listed Korean Services",
+    name: "교민 커뮤니티 등록 서비스",
     category: "학원 / 개인레슨 / 생활서비스",
     address: "North Lakes - Brisbane North",
     phone: "업체별 상이",
