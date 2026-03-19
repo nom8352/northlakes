@@ -845,11 +845,15 @@ export const weekendIdeas: WeekendIdea[] = [
     title: "플래닛 피트니스 실내 운동 루틴",
     area: "North Lakes 주변",
     description:
-      "날씨가 덥거나 비 오는 주말에는 노스레이크에서 차로 움직이기 쉬운 Planet Fitness 지점들을 실내 운동 루틴으로 잡기 좋습니다.",
+      "날씨가 덥거나 비 오는 주말에는 노스레이크에서 차로 움직이기 쉬운 Planet Fitness 지점들을 실내 운동 루틴으로 잡기 좋습니다. 미국계 대형 글로벌 브랜드라 시설 규모가 크고, 주 7달러대 Classic 또는 주 10.95달러 PF Black Card로 가성비가 강한 편입니다.",
     image:
       "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80",
     schedule: "주말 24/7 출입, staffed hours는 토 9:00-17:00 / 일 9:00-16:00 기준",
     details: [
+      "가격: Classic Weekly 주 $7.00, PF Black Card 주 $10.95 기준, 둘 다 fortnightly 결제",
+      "추가비용: 연회비 $49가 가입 약 8주 후 청구될 수 있어 가입 전 offers 페이지 확인 권장",
+      "시설: huge selection of cardio and strength machines, 무료 fitness training, PF Express 30분 루틴 안내",
+      "브랜드: Planet Fitness Franchising, LLC 기반의 미국계 대형 체인으로 운영 안정성과 표준화가 강한 편",
       "Rothwell: 743-757 Deception Bay Road, Rothwell QLD 4022 / 07 3198 6668",
       "Morayfield: 312 Morayfield Road, Morayfield QLD 4506 / 07 5613 0300",
       "Caboolture: The Big Fish Junction, 459 Pumicestone Road, Caboolture QLD 4510 / 07 5208 8099",
