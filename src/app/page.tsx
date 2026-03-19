@@ -21,6 +21,55 @@ export default function Home() {
           image="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1600&q=80"
         />
 
+        {weekendIdeas[0] ? (
+          <section className="overflow-hidden rounded-[2.25rem] border border-sky-100 bg-white shadow-[0_18px_50px_rgba(22,32,51,0.06)]">
+            <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
+              <div
+                className="min-h-[260px] bg-cover bg-center"
+                style={{ backgroundImage: `url(${weekendIdeas[0].image})` }}
+              />
+              <div className="p-8 md:p-10">
+                <p className="text-sm font-bold uppercase tracking-[0.3em] text-sky-700">Weekend Highlight</p>
+                <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950 md:text-4xl">
+                  {weekendIdeas[0].title}
+                </h2>
+                {weekendIdeas[0].schedule ? (
+                  <p className="mt-3 text-base font-semibold text-slate-500">{weekendIdeas[0].schedule}</p>
+                ) : null}
+                <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 md:text-base">
+                  {weekendIdeas[0].description}
+                </p>
+                {weekendIdeas[0].details?.length ? (
+                  <div className="mt-5 grid gap-3 md:grid-cols-2">
+                    {weekendIdeas[0].details.map((detail) => (
+                      <div key={detail} className="rounded-[1.25rem] bg-sky-50/80 p-4 text-sm leading-6 text-slate-600 ring-1 ring-sky-100">
+                        {detail}
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link
+                    href="/weekend"
+                    className="inline-flex items-center gap-2 rounded-full bg-[linear-gradient(135deg,#2f5fb7_0%,#1a3563_100%)] px-5 py-3 text-sm font-bold text-white transition hover:brightness-110"
+                  >
+                    주말 페이지 보기 <ArrowRight size={16} />
+                  </Link>
+                  {weekendIdeas[0].website ? (
+                    <Link
+                      href={weekendIdeas[0].website}
+                      target="_blank"
+                      className="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-white px-5 py-3 text-sm font-bold text-slate-800 transition hover:border-sky-300 hover:text-sky-700"
+                    >
+                      공식 정보 보기 <MapPinned size={16} />
+                    </Link>
+                  ) : null}
+                </div>
+              </div>
+            </div>
+          </section>
+        ) : null}
+
         <section className="grid gap-6 lg:grid-cols-[1.12fr_0.88fr]">
           <div className="rounded-[2.25rem] bg-[linear-gradient(145deg,#f3f8ff_0%,#eaf3ff_58%,#ffffff_100%)] p-8 shadow-[0_18px_50px_rgba(47,95,183,0.08)] ring-1 ring-sky-100">
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-sky-700">Start Here</p>

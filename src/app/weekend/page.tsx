@@ -15,6 +15,35 @@ export default function WeekendPage() {
           image="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80"
         />
 
+        {weekendIdeas[0] ? (
+          <section className="rounded-[2.25rem] border border-sky-100 bg-[linear-gradient(145deg,#f3f8ff_0%,#ffffff_100%)] p-8 shadow-[0_16px_46px_rgba(22,32,51,0.06)]">
+            <p className="text-sm font-bold uppercase tracking-[0.28em] text-sky-700">Featured Routine</p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">{weekendIdeas[0].title}</h2>
+            {weekendIdeas[0].schedule ? (
+              <p className="mt-2 text-base font-semibold text-slate-500">{weekendIdeas[0].schedule}</p>
+            ) : null}
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600">{weekendIdeas[0].description}</p>
+            {weekendIdeas[0].details?.length ? (
+              <div className="mt-5 grid gap-3 md:grid-cols-2">
+                {weekendIdeas[0].details.map((detail) => (
+                  <div key={detail} className="rounded-[1.25rem] bg-white p-4 text-sm leading-6 text-slate-600 ring-1 ring-sky-100">
+                    {detail}
+                  </div>
+                ))}
+              </div>
+            ) : null}
+            {weekendIdeas[0].website ? (
+              <Link
+                href={weekendIdeas[0].website}
+                target="_blank"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-[linear-gradient(135deg,#2f5fb7_0%,#1a3563_100%)] px-5 py-3 text-sm font-bold text-white transition hover:brightness-110"
+              >
+                공식 정보 보기 <ExternalLink size={15} />
+              </Link>
+            ) : null}
+          </section>
+        ) : null}
+
         <section className="grid gap-6 md:grid-cols-2">
           {weekendIdeas.map((idea) => (
             <article key={idea.title} className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
