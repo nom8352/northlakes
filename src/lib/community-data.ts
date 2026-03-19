@@ -842,6 +842,23 @@ export const weekendIdeas: WeekendIdea[] = [
     website: "https://www.moretonbay.qld.gov.au/Services/Sport-Recreation/Healthy-And-Active-Lifestyles/Healthy-Active-Moreton/PR-Parkrun-North-Lakes",
   },
   {
+    title: "플래닛 피트니스 실내 운동 루틴",
+    area: "North Lakes 주변",
+    description:
+      "날씨가 덥거나 비 오는 주말에는 노스레이크에서 차로 움직이기 쉬운 Planet Fitness 지점들을 실내 운동 루틴으로 잡기 좋습니다.",
+    image:
+      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=80",
+    schedule: "주말 24/7 출입, staffed hours는 토 9:00-17:00 / 일 9:00-16:00 기준",
+    details: [
+      "Rothwell: 743-757 Deception Bay Road, Rothwell QLD 4022 / 07 3198 6668",
+      "Morayfield: 312 Morayfield Road, Morayfield QLD 4506 / 07 5613 0300",
+      "Caboolture: The Big Fish Junction, 459 Pumicestone Road, Caboolture QLD 4510 / 07 5208 8099",
+      "공식 club page 기준 세 지점 모두 Open 24/7이며 주말 staffed hours는 토 9am-5pm, 일 9am-4pm",
+      "공식 offers 페이지 기준 무료 day pass 신청 가능",
+    ],
+    website: "https://planetfitnessaustralia.com.au/gyms/rothwell-qld/",
+  },
+  {
     title: "수영장 + 공원 코스",
     area: "North Lakes",
     description: "아이들 에너지를 풀기 좋은 물놀이와 잔디공원 조합으로, 더운 시즌 주말 루틴으로 만들기 좋습니다.",
