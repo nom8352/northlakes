@@ -1,4 +1,5 @@
-import { Building2, MapPinned } from "lucide-react";
+import Link from "next/link";
+import { Building2, Clock3, ExternalLink, MapPinned, Phone } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { PublicLayout } from "@/components/public-layout";
 import { businessDirectory } from "@/lib/community-data";
@@ -10,7 +11,7 @@ export default function DirectoryPage() {
         <PageHero
           kicker="Directory"
           title="교민 업소록"
-          description="생활 동선에서 자주 찾는 식당, 마트, 교회, 교육 서비스를 한 페이지에 모았습니다. 이후에는 차량, 통신, 번역, 세무 같은 실용 업종을 더 확장하면 좋습니다."
+          description="보이는 몇 개만 두는 대신, 실제로 자주 찾는 식당, 마트, 교회, 생활형 서비스까지 최대한 넓게 담는 방향으로 바꿨습니다. 공식 사이트, 쇼핑센터 공식 페이지, 공개 운영 페이지, 커뮤니티 공개 리스트를 구분해서 표시합니다."
           image="https://images.unsplash.com/photo-1481437156560-3205f6a55735?auto=format&fit=crop&w=1600&q=80"
         />
 
@@ -26,10 +27,37 @@ export default function DirectoryPage() {
                   <h2 className="mt-1 text-2xl font-black text-slate-950">{entry.name}</h2>
                 </div>
               </div>
-              <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-slate-500">
-                <MapPinned size={16} /> {entry.area}
+              <div className="mt-5 space-y-3 rounded-[1.5rem] bg-slate-50 p-4 text-sm text-slate-600">
+                <p className="flex items-start gap-2">
+                  <MapPinned size={16} className="mt-0.5 text-sky-700" />
+                  <span>{entry.address}</span>
+                </p>
+                <p className="flex items-start gap-2">
+                  <Phone size={16} className="mt-0.5 text-sky-700" />
+                  <span>{entry.phone}</span>
+                </p>
+                <p className="flex items-start gap-2">
+                  <Clock3 size={16} className="mt-0.5 text-sky-700" />
+                  <span>{entry.hours}</span>
+                </p>
+                <p>
+                  <span className="font-bold text-slate-900">가격대</span> {entry.pricing}
+                </p>
+                <p>
+                  <span className="font-bold text-slate-900">검증</span> {entry.verification}
+                </p>
               </div>
-              <p className="mt-4 text-sm leading-7 text-slate-600">{entry.note}</p>
+              <p className="mt-4 text-sm font-semibold text-slate-500">{entry.area}</p>
+              <p className="mt-3 text-sm leading-7 text-slate-600">{entry.note}</p>
+              {entry.website ? (
+                <Link
+                  href={entry.website}
+                  target="_blank"
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-slate-900 transition hover:text-sky-700"
+                >
+                  사이트 열기 <ExternalLink size={15} />
+                </Link>
+              ) : null}
             </article>
           ))}
         </section>

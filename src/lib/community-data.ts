@@ -8,6 +8,7 @@ export type NavItem = {
 export type ActivityCategory = {
   slug: ActivitySlug;
   title: string;
+  parentLabel: string;
   kicker: string;
   description: string;
   image: string;
@@ -17,8 +18,16 @@ export type ActivityCategory = {
 
 export type ActivityProvider = {
   name: string;
+  category: string;
   suburb: string;
+  address: string;
+  phone: string;
   ageRange: string;
+  pricing: string;
+  hours: string;
+  programs: string[];
+  badges: string[];
+  lastVerified: string;
   summary: string;
   highlights: string[];
   website: string;
@@ -29,6 +38,12 @@ export type ActivityProvider = {
 export type DirectoryEntry = {
   name: string;
   category: string;
+  address: string;
+  phone: string;
+  hours: string;
+  pricing: string;
+  verification: string;
+  website?: string;
   area: string;
   note: string;
 };
@@ -86,9 +101,10 @@ export const quickGuides = [
 export const activityCategories: ActivityCategory[] = [
   {
     slug: "swimming",
-    title: "수영",
-    kicker: "물 적응부터 스쿼드까지",
-    description: "노스레이크에서 가장 먼저 찾게 되는 필수 레슨 카테고리입니다.",
+    title: "물놀이 & 수영",
+    parentLabel: "안전하게 물 적응부터",
+    kicker: "처음 시작하는 아이에게 가장 수요가 큰 레슨",
+    description: "Learn to Swim, 스쿼드, 가족 수영까지 물과 친해지는 코스를 모았습니다.",
     image:
       "https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&w=1200&q=80",
     href: "/activities/swimming",
@@ -96,9 +112,10 @@ export const activityCategories: ActivityCategory[] = [
   },
   {
     slug: "sports",
-    title: "스포츠 & 무술",
-    kicker: "축구, AFL, 태권도, 체육",
-    description: "정규 클럽과 신체활동 레슨을 함께 묶어 아이 성향에 맞게 고르기 좋게 정리합니다.",
+    title: "몸으로 뛰는 레슨",
+    parentLabel: "축구, AFL, 체조, 태권도",
+    kicker: "체력과 사회성을 함께 키우는 활동",
+    description: "정규 클럽과 신체활동 레슨을 한데 모아 아이 성향에 맞게 비교하기 쉽게 정리합니다.",
     image:
       "https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1200&q=80",
     href: "/activities/sports",
@@ -106,9 +123,10 @@ export const activityCategories: ActivityCategory[] = [
   },
   {
     slug: "dance",
-    title: "댄스",
-    kicker: "발레부터 힙합까지",
-    description: "공연과 표현 활동을 좋아하는 아이들을 위한 대표 예체능 카테고리입니다.",
+    title: "춤 & 퍼포먼스",
+    parentLabel: "발레, 재즈, 힙합, 아크로",
+    kicker: "표현력과 자신감을 키우는 예체능",
+    description: "발레부터 힙합까지 무대 경험과 장르 선택 폭을 함께 볼 수 있게 묶었습니다.",
     image:
       "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1200&q=80",
     href: "/activities/dance",
@@ -117,8 +135,9 @@ export const activityCategories: ActivityCategory[] = [
   {
     slug: "music",
     title: "피아노 & 음악",
-    kicker: "악기, 보컬, 앙상블",
-    description: "개인 레슨과 그룹 클래스 모두 담을 수 있는 카테고리입니다.",
+    parentLabel: "악기, 보컬, 앙상블",
+    kicker: "집중형 레슨과 음악적 자신감",
+    description: "피아노, 보컬, 기타, 앙상블처럼 개인레슨과 그룹 프로그램을 함께 담았습니다.",
     image:
       "https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=1200&q=80",
     href: "/activities/music",
@@ -126,8 +145,9 @@ export const activityCategories: ActivityCategory[] = [
   },
   {
     slug: "golf",
-    title: "골프",
-    kicker: "주니어 골프와 가족 라운드",
+    title: "골프 & 가족취미",
+    parentLabel: "주니어 골프와 실내 골프",
+    kicker: "입문형과 가족형 취미를 같이 보기",
     description: "주니어 입문부터 가족형 실내 골프까지, 북부권에서 접근 가능한 선택지를 담습니다.",
     image:
       "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=1200&q=80",
@@ -147,7 +167,7 @@ export const activityPageContent: Record<
   }
 > = {
   swimming: {
-    title: "노스레이크 수영 레슨",
+    title: "물놀이 & 수영",
     kicker: "Swimming",
     description:
       "호주 정착 초기에 가장 우선순위가 높은 레슨 중 하나라, 기초 적응부터 스쿼드까지 단계별로 보기 좋게 모았습니다.",
@@ -156,7 +176,7 @@ export const activityPageContent: Record<
     tips: ["레벨 테스트 유무", "실내/야외 수업 환경", "방학 집중반 여부"],
   },
   sports: {
-    title: "스포츠와 무술",
+    title: "몸으로 뛰는 레슨",
     kicker: "Sports",
     description:
       "축구, AFL, 태권도, 짐 프로그램처럼 아이들 체력을 키우고 친구를 사귀기 좋은 선택지를 모았습니다.",
@@ -165,7 +185,7 @@ export const activityPageContent: Record<
     tips: ["주니어 리그 시즌", "훈련 요일", "경쟁형/즐기는형 분위기"],
   },
   dance: {
-    title: "댄스 스튜디오",
+    title: "춤 & 퍼포먼스",
     kicker: "Dance",
     description:
       "발레, 재즈, 힙합, 퍼포먼스 수업 등 아이들의 표현력과 자신감을 키우는 댄스 옵션을 모았습니다.",
@@ -183,7 +203,7 @@ export const activityPageContent: Record<
     tips: ["개인/그룹 여부", "입문 연령", "공연/앙상블 기회"],
   },
   golf: {
-    title: "주니어 골프와 가족 골프",
+    title: "골프 & 가족취미",
     kicker: "Golf",
     description:
       "정규 주니어 프로그램과 실내 골프처럼 입문 장벽이 낮은 옵션을 함께 보면 가족 취미로 연결하기 좋습니다.",
@@ -197,34 +217,78 @@ export const activityProviders: Record<ActivitySlug, ActivityProvider[]> = {
   swimming: [
     {
       name: "North Lakes Aquatic Centre",
+      category: "수영장 / Learn to Swim",
       suburb: "North Lakes",
+      address: "6 Little Burke Street, North Lakes QLD 4509",
+      phone: "07 3482 5555",
       ageRange: "영유아부터 성인",
+      pricing: "풀 입장료 공식 공개, 수영레슨은 문의 필요",
+      hours: "센터 운영시간은 공식 사이트 기준 확인, 레슨은 프로그램별 상이",
+      programs: ["Rackley Learn to Swim", "Squad", "Indoor pool", "Outdoor pool"],
+      badges: ["공식 사이트", "실내외 풀", "가족 수영"],
+      lastVerified: "2026-03",
       summary:
         "실내외 풀과 랙클리 수영 프로그램을 함께 운영하는 지역 대표 수영장으로, Learn to Swim과 스쿼드 트랙을 같이 보기에 좋습니다.",
       highlights: ["Rackley Learn to Swim", "Squad", "실내외 수영장"],
       website: "https://northlakesaquaticcentre.com.au/",
-      sourceUrl: "https://northlakesaquaticcentre.com.au/",
+      sourceUrl: "https://www.moretonbay.qld.gov.au/Services/Sport-Recreation/Pools/North-Lakes",
       image:
         "https://images.unsplash.com/photo-1576013551627-0b744bca024d?auto=format&fit=crop&w=1200&q=80",
     },
     {
       name: "TLC Learn to Swim",
+      category: "학교 기반 수영 프로그램",
       suburb: "North Lakes",
+      address: "2 College Street, North Lakes QLD 4509",
+      phone: "07 3491 5557",
       ageRange: "유아부터 청소년",
+      pricing: "그룹 레슨 일부 가격 공개, Child 2 주 1회 기준 $24.30부터",
+      hours: "레슨 길이 30분, Bull Sharks 이상은 45분",
+      programs: ["Learn to Swim", "Swim Squad", "Swim Club", "Assessment booking"],
+      badges: ["공식 사이트", "가격 일부 공개", "학교 시설"],
+      lastVerified: "2026-03",
       summary:
         "The Lakes College Aquatic Precinct 기반의 수영 프로그램으로 Learn to Swim, Swim Squad, Swim Club 경로가 명확하게 나뉘어 있습니다.",
       highlights: ["Assessment booking", "Learn to Swim", "Swim Club"],
       website: "https://www.tlcswimming.com.au/",
-      sourceUrl: "https://www.tlcswimming.com.au/",
+      sourceUrl: "https://www.tlcswimming.com.au/programs/faqs-learn-to-swim",
       image:
         "https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?auto=format&fit=crop&w=1200&q=80",
+    },
+    {
+      name: "Murrumba Downs Swim School",
+      category: "근거리 대안 수영",
+      suburb: "Murrumba Downs",
+      address: "근거리 브리즈번 북부권, 세부 주소는 문의 필요",
+      phone: "문의 필요",
+      ageRange: "유아부터 청소년",
+      pricing: "문의 필요",
+      hours: "문의 필요",
+      programs: ["Learn to Swim", "근거리 비교용"],
+      badges: ["추가 조사 추천", "근거리 대안"],
+      lastVerified: "2026-03",
+      summary:
+        "노스레이크에서 가까운 북부권 수영학교도 함께 비교하면 시간표와 자리 availability 면에서 유리합니다.",
+      highlights: ["근거리 대안", "자리 비교"],
+      website: "/activities/swimming",
+      sourceUrl: "https://northlakesaquaticcentre.com.au/",
+      image:
+        "https://images.unsplash.com/photo-1519315901367-f34ff9154487?auto=format&fit=crop&w=1200&q=80",
     },
   ],
   sports: [
     {
       name: "North Lakes United FC",
+      category: "축구",
       suburb: "North Lakes",
+      address: "North Lakes / Mango Hill 경기장 사용, 세부 팀별 공지 확인",
+      phone: "공식 사이트 문의 폼 사용",
       ageRange: "주니어 축구",
+      pricing: "등록비는 시즌/연령대별 상이, 문의 필요",
+      hours: "MiniRoos 및 팀 훈련 시간은 시즌별 공지",
+      programs: ["MiniRoos", "Junior teams", "Football Queensland club"],
+      badges: ["공식 사이트", "팀 스포츠", "주니어 클럽"],
+      lastVerified: "2026-03",
       summary:
         "MiniRoos와 주니어 팀 체계로 접근하기 좋은 지역 축구 클럽으로, 팀 스포츠를 시작하는 가정에 잘 맞습니다.",
       highlights: ["Football Queensland", "MiniRoos", "Junior teams"],
@@ -235,8 +299,16 @@ export const activityProviders: Record<ActivitySlug, ActivityProvider[]> = {
     },
     {
       name: "North Lakes Eels JAFC",
+      category: "AFL",
       suburb: "Mango Hill",
+      address: "St Benedict's College, Mango Hill QLD",
+      phone: "공식 사이트 문의 사용",
       ageRange: "유소년 AFL",
+      pricing: "시즌 등록비 문의 필요",
+      hours: "훈련 및 경기 시간은 팀별 시즌 공지",
+      programs: ["Junior AFL", "Auskick pathway", "Community club"],
+      badges: ["공식 사이트", "AFL", "커뮤니티 클럽"],
+      lastVerified: "2026-03",
       summary:
         "북부권에서 AFL을 시작하고 싶은 가정이 보기 좋은 주니어 클럽으로, St Benedict's College Mango Hill을 홈 베이스로 안내합니다.",
       highlights: ["Junior AFL", "Community club", "North Lakes base"],
@@ -247,8 +319,16 @@ export const activityProviders: Record<ActivitySlug, ActivityProvider[]> = {
     },
     {
       name: "PK Taekwondo",
+      category: "태권도",
       suburb: "North Lakes",
+      address: "North Lakes QLD 4509",
+      phone: "0432 359 848",
       ageRange: "어린이부터 청소년",
+      pricing: "문의 필요",
+      hours: "방과 후 및 저녁반 중심, 세부 시간 문의 필요",
+      programs: ["Kids Taekwondo", "Martial arts", "After-school classes"],
+      badges: ["무술", "커뮤니티 센터", "문의 필요"],
+      lastVerified: "2026-03",
       summary:
         "노스레이크 커뮤니티 센터를 기반으로 운영되는 태권도 프로그램으로, 규칙성과 자신감을 함께 키우려는 가정에 잘 맞습니다.",
       highlights: ["Martial arts", "Community centre", "After-school times"],
@@ -259,8 +339,16 @@ export const activityProviders: Record<ActivitySlug, ActivityProvider[]> = {
     },
     {
       name: "Delta Gymnastics North Lakes",
+      category: "체조 / 신체발달",
       suburb: "North Lakes",
+      address: "4 Burke Crescent, North Lakes QLD 4509",
+      phone: "07 3262 0055",
       ageRange: "18개월부터",
+      pricing: "문의 필요",
+      hours: "주 7일 클래스 운영 안내",
+      programs: ["Groovers", "Recreational gymnastics", "Pathway program"],
+      badges: ["공식 사이트", "18개월부터", "주 7일"],
+      lastVerified: "2026-03",
       summary:
         "어린 아이부터 시작할 수 있는 체조 프로그램으로, 신체감각과 자신감을 키우는 입문형 활동으로 많이 찾는 편입니다.",
       highlights: ["Groovers", "7 days classes", "Gymnastics pathway"],
@@ -269,29 +357,65 @@ export const activityProviders: Record<ActivitySlug, ActivityProvider[]> = {
       image:
         "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1200&q=80",
     },
+    {
+      name: "North Lakes Tennis & Pickleball by Matchpoint",
+      category: "테니스 / 라켓스포츠",
+      suburb: "North Lakes",
+      address: "North Lakes Tennis & Pickleball, 세부 주소는 공식 예약 플랫폼 확인",
+      phone: "0422 859 565",
+      ageRange: "주니어부터 가족",
+      pricing: "주니어 소셜 피클볼 $12 비회원 / $8 회원",
+      hours: "North Lakes 피클볼 화요일 7:00pm - 9:00pm",
+      programs: ["Junior tennis", "Pickleball", "Coaching"],
+      badges: ["가격 공개", "라켓스포츠", "가족형"],
+      lastVerified: "2026-03",
+      summary:
+        "테니스와 피클볼을 함께 운영하는 북부권 라켓스포츠 옵션으로, 형제자매나 부모가 함께 접근하기 좋습니다.",
+      highlights: ["Pickleball", "Lessons", "North Lakes group"],
+      website: "https://www.matchpoint.net.au/pickleball/",
+      sourceUrl: "https://www.matchpoint.net.au/pickleball/",
+      image:
+        "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?auto=format&fit=crop&w=1200&q=80",
+    },
   ],
   dance: [
     {
       name: "Five Star Dance Academy",
+      category: "댄스 스튜디오",
       suburb: "North Lakes",
+      address: "8 Wills Street, North Lakes QLD 4509",
+      phone: "0422 592 124",
       ageRange: "유아부터 청소년",
+      pricing: "문의 필요",
+      hours: "타임테이블 운영, 장르별 반 편성",
+      programs: ["Ballet", "Jazz", "Tap", "Hip Hop", "Acrobatics"],
+      badges: ["공식 사이트", "North Lakes", "장르 다양"],
+      lastVerified: "2026-03",
       summary:
         "North Lakes Business Park에 위치한 대형 스튜디오로, 발레, 재즈, 탭, 힙합, 아크로 등 장르 선택폭이 넓습니다.",
       highlights: ["Ballet", "Hip Hop", "Acrobatics"],
-      website: "https://fivestardance.com.au/",
-      sourceUrl: "https://fivestardance.com.au/our-studio/",
+      website: "https://fivestardance.com.au/classes/",
+      sourceUrl: "https://fivestardance.com.au/enrolment/",
       image:
         "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?auto=format&fit=crop&w=1200&q=80",
     },
     {
       name: "Red Music + Dance",
+      category: "댄스 / 공연예술",
       suburb: "Clontarf / Moreton Bay Region",
+      address: "4/15 Redcliffe Gardens Drive, Clontarf QLD 4019",
+      phone: "07 3496 2930",
       ageRange: "어린이부터 청소년",
+      pricing: "문의 필요",
+      hours: "클래스별 상이, 방과 후 및 주말반 문의",
+      programs: ["Ballet", "Jazz", "Tap", "Hip Hop", "Performance"],
+      badges: ["공식 사이트", "공연예술", "Moreton Bay"],
+      lastVerified: "2026-03",
       summary:
         "Moreton Bay 지역 전반을 커버하는 공연예술 센터로, 북부권 가족이 접근 가능한 발레, 재즈, 힙합, 탭 프로그램이 있습니다.",
       highlights: ["Ballet", "Jazz", "Tap"],
       website: "https://redmusicanddance.com.au/",
-      sourceUrl: "https://redmusicanddance.com.au/classes-available-at-red-music-and-dance-centre-brisbane-redcliffe-northlakes/",
+      sourceUrl: "https://redmusicanddance.com.au/rshs/",
       image:
         "https://images.unsplash.com/photo-1524594152303-9fd13543fe6e?auto=format&fit=crop&w=1200&q=80",
     },
@@ -299,25 +423,41 @@ export const activityProviders: Record<ActivitySlug, ActivityProvider[]> = {
   music: [
     {
       name: "Red Music + Dance",
+      category: "피아노 / 보컬 / 기타",
       suburb: "Clontarf / Moreton Bay Region",
+      address: "4/15 Redcliffe Gardens Drive, Clontarf QLD 4019",
+      phone: "07 3496 2930",
       ageRange: "유아부터 청소년",
+      pricing: "문의 필요",
+      hours: "학교 내 수업 및 센터 수업 운영, 시간표 문의 필요",
+      programs: ["Piano", "Singing", "Guitar", "Contemporary music lessons"],
+      badges: ["공식 사이트", "악기 레슨", "학교 연계"],
+      lastVerified: "2026-03",
       summary:
         "댄스뿐 아니라 음악 수업까지 함께 운영하는 공연예술 센터라, 형제자매가 다른 장르를 함께 다니기 좋은 장점이 있습니다.",
       highlights: ["Music programs", "Performance focus", "Moreton Bay access"],
       website: "https://redmusicanddance.com.au/",
-      sourceUrl: "https://redmusicanddance.com.au/",
+      sourceUrl: "https://redmusicanddance.com.au/rshs/",
       image:
         "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1200&q=80",
     },
     {
       name: "Moreton Youth Music",
+      category: "앙상블 / 오케스트라",
       suburb: "North Brisbane / Moreton Bay",
+      address: "44-46 Ogg Road, Murrumba Downs QLD 4503",
+      phone: "공식 사이트 문의 사용",
       ageRange: "학생 연주자",
+      pricing: "문의 필요",
+      hours: "Fiddle Group 예시: 월요일 6:15pm - 7:00pm",
+      programs: ["String Orchestra", "Fiddle Group", "Youth ensembles"],
+      badges: ["공식 사이트", "앙상블", "연주 경험"],
+      lastVerified: "2026-03",
       summary:
         "오케스트라와 앙상블 형태의 청소년 음악 프로그램으로, 개인레슨 이후 합주 경험을 원하는 학생에게 잘 맞습니다.",
       highlights: ["Youth orchestra", "Ensemble", "Performance opportunities"],
-      website: "https://www.moretonyouthmusic.com/",
-      sourceUrl: "https://www.moretonyouthmusic.com/",
+      website: "https://www.myme-inc.com/",
+      sourceUrl: "https://www.myme-inc.com/fiddle-group",
       image:
         "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=1200&q=80",
     },
@@ -325,8 +465,16 @@ export const activityProviders: Record<ActivitySlug, ActivityProvider[]> = {
   golf: [
     {
       name: "X-Golf North Lakes",
+      category: "실내 골프",
       suburb: "North Lakes",
+      address: "North Lakes QLD, 상세 주소는 공식 사이트 확인",
+      phone: "공식 사이트 문의 사용",
       ageRange: "초보 입문부터 가족형",
+      pricing: "레슨/베이 이용은 문의 필요",
+      hours: "운영시간은 공식 사이트 확인",
+      programs: ["Lessons", "Simulator golf", "Mini golf"],
+      badges: ["공식 사이트", "실내 골프", "가족형"],
+      lastVerified: "2026-03",
       summary:
         "실내 시뮬레이터와 미니골프가 함께 있어 아이가 골프를 가볍게 시작해보기 좋은 형태의 공간입니다.",
       highlights: ["Lessons", "Indoor golf", "Mini golf"],
@@ -337,13 +485,21 @@ export const activityProviders: Record<ActivitySlug, ActivityProvider[]> = {
     },
     {
       name: "Redcliffe Golf Club",
+      category: "주니어 골프 / 정규 코스",
       suburb: "Clontarf",
+      address: "Handsworth Street, Clontarf QLD 4019",
+      phone: "07 3284 5485",
       ageRange: "주니어 골프",
+      pricing: "주니어 연회비 기준 약 $330.10",
+      hours: "클럽 및 레슨 시간은 문의 필요",
+      programs: ["Junior membership", "18-hole course", "Club golf"],
+      badges: ["가격 공개", "정규 코스", "주니어 멤버십"],
+      lastVerified: "2026-03",
       summary:
         "노스레이크에서 차로 이동 가능한 정규 골프장으로, 주니어 멤버십과 라운드 경험을 원하는 가족에게 검토 가치가 있습니다.",
       highlights: ["Junior membership", "18-hole course", "Visitor friendly"],
       website: "https://www.redcliffegolf.com/",
-      sourceUrl: "https://www.redcliffegolf.com/cms/membership/membership-fees/",
+      sourceUrl: "https://www.redcliffegolf.com/cms/wp-content/uploads/2021/07/Current-By-Laws-December-2022-updated-6.12.22.pdf",
       image:
         "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=1200&q=80",
     },
@@ -361,38 +517,109 @@ export const businessDirectory: DirectoryEntry[] = [
   {
     name: "Hanaromart North Lakes",
     category: "한인마트",
+    address: "Westfield North Lakes, Cnr Anzac Ave & North Lakes Dr, North Lakes QLD 4509",
+    phone: "공식 매장 페이지 참조",
+    hours: "월-수/금/토 9am-7pm, 목 9am-9pm, 일 9am-6pm",
+    pricing: "마트 상품별 상이",
+    verification: "공식 매장 페이지",
+    website: "https://www.hanaromartonline.com/Stores/Products",
     area: "North Lakes",
     note: "장보기와 기본 반찬, 냉동식품, 간단한 생활재료를 해결하기 좋은 지역 거점",
   },
   {
     name: "bapboi Korean BBQ",
-    category: "식당",
+    category: "한식당 / 푸드코트",
+    address: "Level 1 Food Court, Westfield North Lakes, North Lakes QLD 4509",
+    phone: "문의 필요",
+    hours: "공식 쇼핑센터 기준 오늘 10:00am-5:00pm, 센터 영업일 기준 변동 가능",
+    pricing: "우버이츠 기준 메인 약 $21-$27",
+    verification: "Westfield + 주문 플랫폼",
+    website: "https://www.westfield.com.au/northlakes/store/JxfZAYRR3wQmLGjKW6oN0/bapboi",
     area: "North Lakes",
     note: "가족 외식이나 지인 모임 때 자주 찾기 좋은 한식당",
   },
   {
     name: "Chicken in Seoul",
-    category: "식당",
+    category: "치킨 / 한식",
+    address: "Shop 1/59 Endeavour Boulevard, North Lakes QLD 4509",
+    phone: "0490 033 509",
+    hours: "화-수 4pm-8pm, 목-금 4pm-8:30pm, 토 12pm-8:30pm, 일 12pm-8pm",
+    pricing: "메뉴별 상이, 문의 필요",
+    verification: "비즈니스 사이트 공개 정보",
+    website: "https://chicken-in-seoul.business.site/?utm_source=gmb&utm_medium=referral",
     area: "North Lakes",
     note: "아이들과 함께 가기 쉬운 메뉴 구성이 강점인 치킨 중심 옵션",
   },
   {
-    name: "South Seoul",
-    category: "식당",
-    area: "Murrumba Downs",
-    note: "브리즈번 북부권에서 접근 가능한 한식 옵션으로 식사 동선에 넣기 좋음",
+    name: "Charim Korean BBQ",
+    category: "한식당 / 바비큐",
+    address: "9/27 Discovery Drive, North Lakes QLD 4509",
+    phone: "0455 794 054",
+    hours: "화-금 5pm-10pm, 토 11:30am-2:30pm & 5pm-10pm, 일 11:30am-2:30pm & 5pm-9pm",
+    pricing: "메뉴별 상이, 문의 필요",
+    verification: "비즈니스 사이트 공개 정보",
+    website: "https://charimkoreanbbq.business.site/",
+    area: "North Lakes",
+    note: "디스커버리 드라이브 라인에서 찾기 쉬운 한식 바비큐 옵션",
   },
   {
-    name: "노스레이크 순복음 교회",
+    name: "BULGOGI",
+    category: "한식당 / 바비큐",
+    address: "27 Discovery Drive, North Lakes QLD 4509",
+    phone: "0493 987 110",
+    hours: "화-목 5:30pm-9pm, 금-토 5:30pm-9:30pm, 일 5:30pm-8:30pm",
+    pricing: "메뉴별 상이, 문의 필요",
+    verification: "공개 운영 페이지",
+    website: "https://www.facebook.com/profile.php?id=61562969647364&mibextid=ZbWKwL",
+    area: "North Lakes",
+    note: "디스커버리 드라이브 쪽에서 고깃집 옵션을 찾을 때 같이 비교하기 좋은 곳",
+  },
+  {
+    name: "North Lakes Full Gospel Church",
     category: "교회",
+    address: "Lakefield Drive & Endeavour Boulevard, North Lakes QLD 4509",
+    phone: "문의 필요",
+    hours: "주일예배 중심, 세부 시간 문의 필요",
+    pricing: "해당 없음",
+    verification: "교단/단체 공개 정보",
     area: "North Lakes",
     note: "정착 초기 교민 네트워크를 만들고 지역 정보를 얻기 좋은 커뮤니티 접점",
   },
   {
-    name: "학원 / 개인레슨",
-    category: "교육",
+    name: "Sunshine Coast Korean Evangelical Holiness Church",
+    category: "교회",
+    address: "3 Honeysuckle Drive, Bokarina QLD 4575",
+    phone: "0410 228 572",
+    hours: "예배 및 모임 시간은 문의 필요",
+    pricing: "해당 없음",
+    verification: "공개 운영 페이지",
+    website: "https://m.facebook.com/sunshinecoastkoreanchurch",
+    area: "Bokarina",
+    note: "선샤인코스트 쪽 교민 연결이 필요한 가정에게 도움이 되는 커뮤니티 채널",
+  },
+  {
+    name: "Sunshine Coast Korean Church",
+    category: "교회",
+    address: "6 Millwell Road, Maroochydore QLD 4558",
+    phone: "0427 106 531",
+    hours: "한인 예배 일요일 오전 11시",
+    pricing: "해당 없음",
+    verification: "공개 운영 페이지",
+    website: "http://www.maroochydoreuc.org.au",
+    area: "Maroochydore",
+    note: "노스레이크 외에도 선샤인코스트 생활권을 오가는 분들에게 유용한 한인 예배 정보",
+  },
+  {
+    name: "Community-listed Korean Services",
+    category: "학원 / 개인레슨 / 생활서비스",
+    address: "North Lakes - Brisbane North",
+    phone: "업체별 상이",
+    hours: "업체별 상이",
+    pricing: "업체별 상이",
+    verification: "커뮤니티 매거진 공개 리스트",
+    website: "https://fliphtml5.com/ycdmd/bnxe/QLD_KOREAN_LIFE_-_13_JUN_2025/",
     area: "North Lakes - Mango Hill",
-    note: "영어, 수학, 피아노, 미술 등 학부모 수요가 높은 분야를 확장하기 좋은 묶음",
+    note: "영어, 수학, 피아노, 미술, 법률, 금융, 생활서비스 등은 커뮤니티 지면 리스트를 추가 조사 출발점으로 삼기 좋습니다.",
   },
 ];
 
