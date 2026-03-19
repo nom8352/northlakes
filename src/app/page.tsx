@@ -4,6 +4,7 @@ import { PublicLayout } from "@/components/public-layout";
 import { PageHero } from "@/components/page-hero";
 import {
   activityCategories,
+  birthdayFreebies,
   featuredProviders,
   quickGuides,
   seasonStages,
@@ -216,6 +217,41 @@ export default function Home() {
                 </div>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section className="rounded-[2.25rem] border border-sky-100 bg-[linear-gradient(145deg,#f3f8ff_0%,#ffffff_100%)] p-8 shadow-[0_16px_46px_rgba(22,32,51,0.06)]">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-sm font-bold uppercase tracking-[0.3em] text-sky-700">Frugal Tips</p>
+              <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-950">호주에서 생일 챙겨먹기</h2>
+              <p className="mt-4 text-sm leading-7 text-slate-600 md:text-base">
+                타지 생활하다 보면 생일을 그냥 지나치기 쉬워서, 앱 가입만으로 챙길 수 있는 호주 브랜드 생일 혜택을 따로 모았습니다.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href="/frugal-tips"
+                  className="inline-flex items-center gap-2 rounded-full bg-[linear-gradient(135deg,#2f5fb7_0%,#1a3563_100%)] px-5 py-3 text-sm font-bold text-white transition hover:brightness-110"
+                >
+                  알뜰팁 페이지 보기 <ArrowRight size={16} />
+                </Link>
+                <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-slate-900 shadow-sm ring-1 ring-sky-100">
+                  <Sparkles size={16} className="text-sky-700" /> 현재 {birthdayFreebies.length}개 브랜드 정리
+                </div>
+              </div>
+            </div>
+            <div className="grid gap-3 lg:w-[420px]">
+              {birthdayFreebies.slice(0, 3).map((item) => (
+                <div key={item.brand} className="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-sky-100">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="font-black text-slate-950">{item.brand}</p>
+                    <span className="rounded-full bg-sky-50 px-3 py-1 text-xs font-bold text-sky-700">{item.category}</span>
+                  </div>
+                  <p className="mt-2 text-sm font-semibold text-slate-700">{item.benefit}</p>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{item.joinTiming}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 

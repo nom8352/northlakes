@@ -85,6 +85,19 @@ export type AnnualEvent = {
   detail: string;
 };
 
+export type BirthdayFreebie = {
+  brand: string;
+  category: string;
+  benefit: string;
+  app: string;
+  joinTiming: string;
+  validity: string;
+  condition: string;
+  status: string;
+  sourceUrl: string;
+  note: string;
+};
+
 export const publicNav: NavItem[] = [
   { href: "/", label: "홈" },
   { href: "/activities", label: "자녀 레슨" },
@@ -92,6 +105,7 @@ export const publicNav: NavItem[] = [
   { href: "/caboolture", label: "카불쳐 시즌" },
   { href: "/weekend", label: "주말 뭐할지" },
   { href: "/calendar", label: "연간 캘린더" },
+  { href: "/frugal-tips", label: "알뜰팁" },
 ];
 
 export const quickGuides = [
@@ -106,6 +120,10 @@ export const quickGuides = [
   {
     title: "운영은 데이터 파일부터",
     text: "처음에는 구조화된 데이터로 빠르게 운영하고, 이후에는 관리자 입력 화면으로 확장하기 쉬운 형태로 잡아둡니다.",
+  },
+  {
+    title: "알뜰팁도 따로 모으기",
+    text: "호주 앱 쿠폰, 생일 혜택, 생활비 절약 팁처럼 자주 다시 찾게 되는 정보도 서브페이지로 정리합니다.",
   },
 ];
 
@@ -866,4 +884,151 @@ export const annualEvents: AnnualEvent[] = [
   { month: "10월", title: "PYO 마무리 시즌", detail: "딸기 체험 마감권, 봄 행사, 운동 시즌 등록이 함께 움직임" },
   { month: "11월", title: "연말 행사 예열", detail: "학교 공연, 지역 커뮤니티 이벤트, 여름방학 계획을 준비" },
   { month: "12월", title: "크리스마스 & 여름방학", detail: "가족 이벤트와 워터 액티비티 수요가 가장 커지는 시기" },
+];
+
+export const birthdayFreebies: BirthdayFreebie[] = [
+  {
+    brand: "헝그리잭스",
+    category: "패스트푸드",
+    benefit: "생일 쿠폰 제공",
+    app: "Hungry Jack's App / Voucher Club",
+    joinTiming: "생일 전에 회원 가입과 생일 등록 권장",
+    validity: "앱 쿠폰 도착 후 기한 확인",
+    condition: "쿠폰 종류는 계정별로 다를 수 있음",
+    status: "공식 FAQ 확인",
+    sourceUrl: "https://www.hungryjacks.com.au/help-centre",
+    note: "공식 도움말에서 생일 쿠폰 제공을 안내하고 있어 앱 가입형 기본 후보로 넣기 좋습니다.",
+  },
+  {
+    brand: "마이맥카스",
+    category: "패스트푸드",
+    benefit: "생일 서프라이즈 제공",
+    app: "MyMacca's App",
+    joinTiming: "생일 월 전까지 birth month 입력 권장",
+    validity: "생일 시점 앱에서 확인",
+    condition: "프로필에 birth month 저장 필요",
+    status: "공식 FAQ 확인",
+    sourceUrl: "https://mcdonalds.com.au/mymaccas-faq",
+    note: "공식 FAQ는 생년월 정보를 입력하면 birthday surprise를 받을 수 있다고 안내합니다.",
+  },
+  {
+    brand: "오포토",
+    category: "패스트푸드",
+    benefit: "$3-$10 생일 바우처",
+    app: "Flame Rewards",
+    joinTiming: "생일 전 날짜 등록 필요",
+    validity: "발급 후 앱 내 기한 확인",
+    condition: "등급에 따라 Orange $3, Platinum $10 등으로 달라짐",
+    status: "공식 FAQ 확인",
+    sourceUrl: "https://web2.stg.oporto.com.au/faqs/",
+    note: "생일 전 날짜를 등록해두면 Flame Rewards 등급에 따라 다른 금액의 birthday voucher가 발급됩니다.",
+  },
+  {
+    brand: "레드루스터",
+    category: "패스트푸드",
+    benefit: "$3-$10 생일 바우처",
+    app: "Red Royalty",
+    joinTiming: "생일 전 프로필 완성 권장",
+    validity: "생일 후 30일",
+    condition: "등급에 따라 Red $3, Silver $5, Gold $8, Black $10",
+    status: "공식 멤버십 페이지 확인",
+    sourceUrl: "https://webv2.tst.redrooster.com.au/redroyalty-info/",
+    note: "방문 횟수에 따라 바우처 금액이 커지는 구조라 자주 가는 분에게 특히 유리합니다.",
+  },
+  {
+    brand: "그릴드",
+    category: "버거 / 캐주얼",
+    benefit: "생일 달 매일 무료 칩스",
+    app: "Relish via Grill'd App",
+    joinTiming: "생일 전 회원 가입 권장",
+    validity: "생일 달 전체",
+    condition: "버거 또는 샐러드 구매 시 적용",
+    status: "공식 프로모션 페이지 확인",
+    sourceUrl: "https://grilld.com.au/relish/spend-and-get-jan-2026",
+    note: "생일 하루가 아니라 한 달 내내 daily free chips라 체감이 큰 편입니다.",
+  },
+  {
+    brand: "스타벅스 오스트레일리아",
+    category: "커피 / 음료",
+    benefit: "무료 음료",
+    app: "Starbucks Rewards App",
+    joinTiming: "생일 전 Rewards 가입 권장",
+    validity: "생일 달 말일까지",
+    condition: "앱 리워드 회원이어야 함",
+    status: "공식 스토리 페이지 확인",
+    sourceUrl: "https://www.starbucks.com.au/stories/coffee-and-products/starbucks-rewards-have-you-joined-our-coffee-rewards-program/",
+    note: "공식 안내에서 birthday month 안에 무료 음료를 즐길 수 있다고 밝히고 있습니다.",
+  },
+  {
+    brand: "브럼비스",
+    category: "베이커리",
+    benefit: "무료 핑거번 또는 컵케이크",
+    app: "Brumby's Rewards",
+    joinTiming: "생일 최소 1개월 전 등록 필요",
+    validity: "생일 달 동안",
+    condition: "리워드 회원 한정",
+    status: "공식 리워드 페이지 확인",
+    sourceUrl: "https://www.brumbys.com.au/brumbysrewards/",
+    note: "리워드 페이지와 약관 모두 등록 회원에게 생일 달 동안 핑거번 또는 컵케이크 제공을 안내합니다.",
+  },
+  {
+    brand: "도넛킹",
+    category: "디저트 / 카페",
+    benefit: "무료 일반 사이즈 핫/콜드 음료",
+    app: "Donut King Rewards",
+    joinTiming: "생일 최소 7일 전 가입 권장",
+    validity: "생일 7일 전 발급, 이후 1개월",
+    condition: "리워드 회원 한정",
+    status: "공식 FAQ 및 약관 확인",
+    sourceUrl: "https://www.donutking.com.au/dk-rewards",
+    note: "공식 DK Rewards FAQ는 free birthday beverage가 생일 7일 전에 들어오고 한 달간 유효하다고 설명합니다.",
+  },
+  {
+    brand: "산츄로",
+    category: "디저트 / 카페",
+    benefit: "무료 미디엄 츄러스 + $20 Churros Fiesta",
+    app: "el SOCIAL",
+    joinTiming: "생일 달 시작 전 가입 + 이전 11개월 내 유료 구매 필요",
+    validity: "생일 달 전체",
+    condition: "풀프라이스 구매 이력과 앱/카드 스캔 이력 필요",
+    status: "공식 FAQ 확인",
+    sourceUrl: "https://www.sanchurro.com/el-social/faqs",
+    note: "San Churro는 조건이 가장 상세한 편이라, 가입만 해두고 아무 구매도 없으면 생일 혜택을 못 받을 수 있습니다.",
+  },
+  {
+    brand: "글로리아진스",
+    category: "커피 / 음료",
+    benefit: "무료 핫/콜드 음료",
+    app: "Gloria Jean's Rewards",
+    joinTiming: "생일 전 앱 가입 권장",
+    validity: "앱 내 기한 확인",
+    condition: "리워드 회원 한정",
+    status: "공식 리워드 페이지 확인",
+    sourceUrl: "https://www.gloriajeans.com.au/rewards",
+    note: "공식 Rewards 페이지에서 FREE BIRTHDAY DRINK를 명시하고 있습니다.",
+  },
+  {
+    brand: "자메이카 블루",
+    category: "카페",
+    benefit: "무료 스몰 커피",
+    app: "Jamaica Blue Rewards",
+    joinTiming: "생일 전에 앱 가입 권장",
+    validity: "생일 달 전체",
+    condition: "이전 11개월 내 최소 1회 구매 필요",
+    status: "공식 멤버십 페이지 확인",
+    sourceUrl: "https://jamaicablue.com.au/jamaicablue-rewards/",
+    note: "생일 달 동안 무료 스몰 커피를 받을 수 있지만, 최근 11개월 내 구매 이력이 있어야 합니다.",
+  },
+  {
+    brand: "머핀브레이크",
+    category: "카페 / 베이커리",
+    benefit: "무료 스몰 커피 또는 머핀",
+    app: "Muffin Mates",
+    joinTiming: "생일 전에 멤버십 가입 권장",
+    validity: "생일 달 전체",
+    condition: "이전 11개월 내 $1 이상 구매 필요",
+    status: "공식 멤버십 페이지 확인",
+    sourceUrl: "https://muffinbreak.com.au/muffinbreak-rewards/",
+    note: "최근 페이지는 free muffin, 일부 약관 문구는 birthday muffin으로 안내돼 있어 매장/앱 화면 최종 확인이 좋습니다.",
+  },
 ];
