@@ -661,6 +661,13 @@ export const seasonStages: SeasonStage[] = [
 
 export const weekendIdeas: WeekendIdea[] = [
   {
+    title: "에덴레이크 파크런",
+    area: "Eden Lake / North Lakes",
+    description: "토요일 아침마다 열리는 지역 파크런으로, 가족이 함께 가볍게 걷거나 달리며 하루를 시작하기 좋은 주말 루틴입니다.",
+    image:
+      "https://images.unsplash.com/photo-1486218119243-13883505764c?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
     title: "수영장 + 공원 코스",
     area: "North Lakes",
     description: "아이들 에너지를 풀기 좋은 물놀이와 잔디공원 조합으로, 더운 시즌 주말 루틴으로 만들기 좋습니다.",
