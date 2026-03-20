@@ -8,7 +8,7 @@
   --color-brand-500: #5ea0ff;
   --color-brand-100: #e7f0ff;
   --color-brand-50: #f5f9ff;
-  --font-sans: var(--font-sans-kr), system-ui, sans-serif;
+  --font-sans: "Pretendard Variable", "Pretendard", system-ui, sans-serif;
 }
 
 :root {

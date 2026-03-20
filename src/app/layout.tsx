@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
-import { Geist_Mono, IBM_Plex_Sans_KR } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const ibmPlexSansKr = IBM_Plex_Sans_KR({
-  variable: "--font-sans-kr",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -26,9 +20,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body
-        className={`${ibmPlexSansKr.variable} ${geistMono.variable} antialiased`}
-      >
+      <head>
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+        />
+      </head>
+      <body className={`${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>
