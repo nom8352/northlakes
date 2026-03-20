@@ -7,18 +7,18 @@ import { cabooltureFarms, seasonStages } from "@/lib/community-data";
 export default function CaboolturePage() {
   return (
     <PublicLayout eyebrow="카불쳐 시즌 가이드">
-      <main className="mx-auto flex max-w-7xl flex-col gap-14 px-6 py-8 md:px-8 lg:px-10">
+      <main className="mx-auto flex max-w-7xl flex-col gap-16 px-6 py-8 md:px-8 lg:px-10">
         <PageHero
           kicker="Caboolture Season"
           title="카불쳐 딸기 시즌 가이드"
-          description="워킹홀리데이 분들과 가족 방문자 모두가 볼 수 있도록 시즌 흐름과 주요 농장 지역을 따로 정리했습니다."
+          description="워킹홀리데이 분들과 가족 방문자 모두가 같이 볼 수 있도록 시즌 흐름, 주요 농장, 워홀 체크포인트를 한 페이지 안에서 연결해 두었습니다."
           image="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=1600&q=80"
         />
 
-        <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="space-y-4">
-            {seasonStages.map((stage) => (
-              <article key={stage.period} className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+        <section className="grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-1">
+            {seasonStages.map((stage, index) => (
+              <article key={stage.period} className={`surface-panel rounded-[2rem] p-6 ${index % 2 === 1 ? "xl:ml-8" : ""}`}>
                 <p className="text-sm font-black text-rose-700">{stage.period}</p>
                 <h2 className="mt-2 text-2xl font-black text-slate-950">{stage.title}</h2>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{stage.detail}</p>
@@ -26,10 +26,10 @@ export default function CaboolturePage() {
             ))}
           </div>
 
-          <div className="rounded-[2rem] border border-emerald-200 bg-emerald-50 p-7 shadow-sm">
-            <p className="text-sm font-bold uppercase tracking-[0.28em] text-emerald-700">Working Holiday Tips</p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">처음 오면 같이 보는 체크포인트</h2>
-            <div className="mt-6 space-y-3 text-sm leading-7 text-slate-700">
+          <div className="surface-deep rounded-[2.5rem] p-8 text-white md:p-10">
+            <p className="text-sm font-bold uppercase tracking-[0.28em] text-emerald-200">Working Holiday Tips</p>
+            <h2 className="mt-4 text-4xl font-black tracking-[-0.05em] md:text-5xl">처음 오면 같이 보는 체크포인트</h2>
+            <div className="mt-6 space-y-3 text-sm leading-7 text-sky-50/84">
               <p>숙소 위치와 농장 이동 시간을 같이 보기</p>
               <p>차량이 있으면 지원 가능한 지역 범위가 넓어지는지 체크하기</p>
               <p>피크 시즌 직전인 5월 이전부터 정보 채널에 미리 들어가기</p>
@@ -38,13 +38,13 @@ export default function CaboolturePage() {
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
                 href="/caboolture/working-holiday"
-                className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-emerald-700"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-slate-950 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-sky-50 active:scale-[0.98]"
               >
                 워홀 준비 가이드 보기 <ArrowRight size={16} />
               </Link>
               <Link
                 href="/calendar"
-                className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-white px-5 py-3 text-sm font-bold text-emerald-800 transition hover:border-emerald-400"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-5 py-3 text-sm font-bold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-white/14 active:scale-[0.98]"
               >
                 연간 캘린더에서 같이 보기 <ArrowRight size={16} />
               </Link>
@@ -57,32 +57,32 @@ export default function CaboolturePage() {
             <div className="flex items-center gap-3">
               <Sprout className="text-emerald-600" size={24} />
               <div>
-                <h2 className="text-3xl font-black tracking-tight text-slate-950">주요 농장 리스트</h2>
+                <h2 className="text-4xl font-black tracking-[-0.05em] text-slate-950 md:text-5xl">주요 농장 리스트</h2>
                 <p className="mt-2 text-sm leading-7 text-slate-600">
-                  공개된 공식 사이트, 채용 블로그, 지역 관광 페이지, 공개 디렉토리를 기준으로 주소와 연락처를 정리했습니다.
+                  공식 사이트, 채용 블로그, 지역 관광 페이지, 공개 디렉토리를 기준으로 주소와 연락처를 정리했습니다.
                 </p>
               </div>
             </div>
-            <div className="rounded-3xl border border-sky-200 bg-sky-50 px-5 py-4 text-sm leading-6 text-sky-900">
+            <div className="surface-panel rounded-[1.8rem] px-5 py-4 text-sm leading-6 text-slate-700">
               연락 전에는 공식 링크에서 최근 공고 여부를 다시 확인하는 것을 권장합니다.
             </div>
           </div>
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {cabooltureFarms.map((farm) => (
+            {cabooltureFarms.map((farm, index) => (
               <article
                 key={farm.name}
-                className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-emerald-200 hover:shadow-md"
+                className={`surface-panel rounded-[2rem] p-6 transition-all duration-300 ease-out hover:-translate-y-1 ${index % 3 === 1 ? "xl:translate-y-8" : ""}`}
               >
                 <div className="flex flex-wrap items-center gap-2">
                   <p className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-emerald-700">
                     {farm.area}
                   </p>
-                  <p className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">{farm.verification}</p>
+                  <p className="rounded-full bg-[#f6f8f5] px-3 py-1 text-xs font-semibold text-slate-600 ring-1 ring-slate-200/80">{farm.verification}</p>
                 </div>
                 <h3 className="mt-3 text-2xl font-black text-slate-950">{farm.name}</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{farm.note}</p>
 
-                <div className="mt-5 space-y-3 rounded-[1.5rem] bg-slate-50 p-4 text-sm text-slate-700">
+                <div className="mt-5 space-y-3 rounded-[1.5rem] bg-[#f6f8f5] p-4 text-sm text-slate-700 ring-1 ring-slate-200/80">
                   <div className="flex items-start gap-3">
                     <MapPinned className="mt-0.5 text-emerald-600" size={16} />
                     <span>{farm.address}</span>
@@ -111,7 +111,7 @@ export default function CaboolturePage() {
                     href={farm.sourceUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-4 py-2 text-sm font-bold text-white transition hover:bg-emerald-700"
+                    className="inline-flex items-center gap-2 rounded-full bg-[linear-gradient(135deg,#355d93_0%,#173053_100%)] px-4 py-2.5 text-sm font-bold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:brightness-110 active:scale-[0.98]"
                   >
                     공개 정보 보기 <ExternalLink size={15} />
                   </Link>
@@ -120,7 +120,7 @@ export default function CaboolturePage() {
                       href={farm.website}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-bold text-slate-700 transition hover:border-emerald-200 hover:text-emerald-700"
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2.5 text-sm font-bold text-slate-700 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-emerald-200 hover:text-emerald-700 active:scale-[0.98]"
                     >
                       공식 링크 <ArrowRight size={15} />
                     </Link>

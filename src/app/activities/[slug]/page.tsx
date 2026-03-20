@@ -31,7 +31,7 @@ export default async function ActivityDetailPage({
 
   return (
     <PublicLayout eyebrow="자녀 레슨 상세 페이지">
-      <main className="mx-auto flex max-w-7xl flex-col gap-14 px-6 py-8 md:px-8 lg:px-10">
+      <main className="mx-auto flex max-w-7xl flex-col gap-16 px-6 py-8 md:px-8 lg:px-10">
         <PageHero
           kicker={content.kicker}
           title={content.title}
@@ -39,28 +39,29 @@ export default async function ActivityDetailPage({
           image={content.image}
         />
 
-        <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="rounded-[2rem] border border-orange-200 bg-orange-50 p-7 shadow-sm">
-            <Link href="/activities" className="inline-flex items-center gap-2 text-sm font-bold text-slate-700 transition hover:text-orange-700">
+        <section className="grid gap-6 xl:grid-cols-[0.94fr_1.06fr]">
+          <div className="surface-deep rounded-[2.4rem] p-7 text-white md:p-8">
+            <Link href="/activities" className="inline-flex items-center gap-2 text-sm font-bold text-sky-100 transition hover:text-white">
               <ArrowLeft size={16} /> 자녀 레슨 허브로 돌아가기
             </Link>
-            <h2 className="mt-5 text-3xl font-black tracking-tight text-slate-950">이 카테고리 볼 때 체크할 것</h2>
+            <h2 className="mt-5 text-4xl font-black tracking-[-0.05em] md:text-5xl">이 카테고리 볼 때 체크할 것</h2>
             <div className="mt-6 space-y-3">
               {content.tips.map((tip) => (
-                <div key={tip} className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-sm">
-                  <CheckCircle2 className="mt-0.5 text-orange-600" size={18} />
-                  <p className="text-sm leading-6 text-slate-700">{tip}</p>
+                <div key={tip} className="rounded-[1.4rem] border border-white/12 bg-white/8 p-4 text-sm leading-7 text-sky-50/88 backdrop-blur-md">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="mt-1 text-sky-200" size={18} />
+                    <p>{tip}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm">
+          <div className="surface-panel rounded-[2.4rem] p-7 md:p-8">
             <p className="text-sm font-bold uppercase tracking-[0.28em] text-sky-700">Verified</p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">공식 사이트가 확인된 업체</h2>
+            <h2 className="mt-3 text-4xl font-black tracking-[-0.05em] text-slate-950 md:text-5xl">공식 사이트가 확인된 업체</h2>
             <p className="mt-4 text-sm leading-7 text-slate-600">
-              현재 이 페이지의 업체 정보는 2026년 3월 기준 공개된 공식 사이트 또는 공식 운영 페이지를 우선 기준으로 넣었습니다.
-              이후 더 많은 북부권 레슨 데이터를 같은 카드 구조로 계속 누적할 수 있습니다.
+              현재 이 페이지의 업체 정보는 2026년 3월 기준 공개된 공식 사이트 또는 공식 운영 페이지를 우선 기준으로 넣었습니다. 이후 더 많은 북부권 레슨 데이터를 같은 카드 구조로 계속 누적할 수 있습니다.
             </p>
           </div>
         </section>

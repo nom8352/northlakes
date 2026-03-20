@@ -106,7 +106,7 @@ const officialLinks = [
 export default function CabooltureWorkingHolidayPage() {
   return (
     <PublicLayout eyebrow="카불쳐 워킹홀리데이 가이드">
-      <main className="mx-auto flex max-w-7xl flex-col gap-14 px-6 py-8 md:px-8 lg:px-10">
+      <main className="mx-auto flex max-w-7xl flex-col gap-16 px-6 py-8 md:px-8 lg:px-10">
         <PageHero
           kicker="Caboolture Working Holiday"
           title="카불쳐 워홀 농장 준비 가이드"
@@ -114,10 +114,10 @@ export default function CabooltureWorkingHolidayPage() {
           image="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1600&q=80"
         />
 
-        <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <article className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm">
+        <section className="grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
+          <article className="surface-panel rounded-[2.4rem] p-7 md:p-8">
             <p className="text-sm font-bold uppercase tracking-[0.28em] text-sky-700">How to Contact</p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">농장에 어떻게 연락하나요</h2>
+            <h2 className="mt-3 text-4xl font-black tracking-[-0.05em] text-slate-950 md:text-5xl">농장에 어떻게 연락하나요</h2>
             <div className="mt-6 space-y-3 text-sm leading-7 text-slate-700">
               {contactSteps.map((step) => (
                 <div key={step} className="flex items-start gap-3">
@@ -127,7 +127,7 @@ export default function CabooltureWorkingHolidayPage() {
               ))}
             </div>
 
-            <div className="mt-6 rounded-[1.6rem] bg-slate-950 p-5 text-sm text-slate-100">
+            <div className="mt-6 rounded-[1.6rem] bg-[#102138] p-5 text-sm text-slate-100 shadow-[0_18px_50px_rgba(24,44,74,0.18)]">
               <p className="font-bold text-white">영문 문의 템플릿</p>
               <pre className="mt-3 overflow-x-auto whitespace-pre-wrap font-mono text-[13px] leading-6 text-slate-200">
                 {messageTemplate}
@@ -135,13 +135,13 @@ export default function CabooltureWorkingHolidayPage() {
             </div>
           </article>
 
-          <article className="rounded-[2rem] border border-emerald-200 bg-emerald-50 p-7 shadow-sm">
-            <p className="text-sm font-bold uppercase tracking-[0.28em] text-emerald-700">Before You Start</p>
-            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-950">출발 전 준비사항</h2>
-            <div className="mt-6 space-y-3 text-sm leading-7 text-slate-700">
+          <article className="surface-deep rounded-[2.4rem] p-7 text-white md:p-8">
+            <p className="text-sm font-bold uppercase tracking-[0.28em] text-emerald-200">Before You Start</p>
+            <h2 className="mt-3 text-4xl font-black tracking-[-0.05em] md:text-5xl">출발 전 준비사항</h2>
+            <div className="mt-6 space-y-3 text-sm leading-7 text-sky-50/84">
               {preparationChecklist.map((item) => (
                 <div key={item} className="flex items-start gap-3">
-                  <FileText className="mt-1 text-emerald-600" size={18} />
+                  <FileText className="mt-1 text-emerald-300" size={18} />
                   <p>{item}</p>
                 </div>
               ))}
@@ -151,7 +151,7 @@ export default function CabooltureWorkingHolidayPage() {
                 href="https://www.ato.gov.au/individuals-and-families/tax-file-number/apply-for-a-tfn/foreign-passport-holders-permanent-migrants-and-temporary-visitors-tfn-application"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-emerald-700"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold text-slate-950 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-sky-50 active:scale-[0.98]"
               >
                 TFN 신청 안내 <ExternalLink size={15} />
               </Link>
@@ -159,7 +159,7 @@ export default function CabooltureWorkingHolidayPage() {
                 href="https://www.fairwork.gov.au/tools-and-resources/record-my-hours-app"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white px-5 py-3 text-sm font-bold text-emerald-800 transition hover:border-emerald-300"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-5 py-3 text-sm font-bold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-white/14 active:scale-[0.98]"
               >
                 근무시간 기록 앱 <ArrowRight size={15} />
               </Link>
@@ -170,46 +170,45 @@ export default function CabooltureWorkingHolidayPage() {
         <section className="space-y-6">
           <div className="flex items-center gap-3">
             <BadgeDollarSign className="text-sky-700" size={24} />
-            <h2 className="text-3xl font-black tracking-tight text-slate-950">얼마 받을 수 있나요</h2>
+            <h2 className="text-4xl font-black tracking-[-0.05em] text-slate-950 md:text-5xl">얼마 받을 수 있나요</h2>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
-            {payFacts.map((fact) => (
-              <article key={fact.title} className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
+            {payFacts.map((fact, index) => (
+              <article key={fact.title} className={`surface-panel rounded-[2rem] p-6 ${index === 1 ? "md:translate-y-8" : ""}`}>
                 <h3 className="text-xl font-black text-slate-950">{fact.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">{fact.detail}</p>
                 <Link
                   href={fact.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-sky-700 hover:text-sky-900"
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-sky-700 transition-all duration-300 ease-out hover:gap-3 hover:text-sky-900"
                 >
                   공식 기준 보기 <ExternalLink size={15} />
                 </Link>
               </article>
             ))}
           </div>
-          <div className="rounded-[2rem] border border-amber-200 bg-amber-50 p-6 text-sm leading-7 text-amber-950 shadow-sm">
-            광고에서 보이는 높은 주급은 성수기 물량, 숙련도, 날씨, 피스레이트 구조에 따라 크게 달라집니다. 기본 판단은
-            항상 Fair Work 최저 기준과 payslip 지급 여부로 하시는 게 안전합니다.
+          <div className="rounded-[2rem] border border-amber-200 bg-amber-50 p-6 text-sm leading-7 text-amber-950 shadow-[0_18px_50px_rgba(24,44,74,0.08)]">
+            광고에서 보이는 높은 주급은 성수기 물량, 숙련도, 날씨, 피스레이트 구조에 따라 크게 달라집니다. 기본 판단은 항상 Fair Work 최저 기준과 payslip 지급 여부로 하시는 게 안전합니다.
           </div>
         </section>
 
         <section className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <article className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm">
+          <article className="surface-panel rounded-[2.4rem] p-7 md:p-8">
             <div className="flex items-center gap-3">
               <BriefcaseBusiness className="text-sky-700" size={22} />
-              <h2 className="text-3xl font-black tracking-tight text-slate-950">어디서 구하나요</h2>
+              <h2 className="text-4xl font-black tracking-[-0.05em] text-slate-950 md:text-5xl">어디서 구하나요</h2>
             </div>
             <div className="mt-6 space-y-4">
               {channels.map((channel) => (
-                <div key={channel.title} className="rounded-[1.5rem] bg-slate-50 p-5">
+                <div key={channel.title} className="rounded-[1.5rem] bg-[#f6f8f5] p-5 ring-1 ring-slate-200/80">
                   <h3 className="text-lg font-black text-slate-950">{channel.title}</h3>
                   <p className="mt-2 text-sm leading-7 text-slate-600">{channel.detail}</p>
                   <Link
                     href={channel.href}
                     target={channel.href.startsWith("http") ? "_blank" : undefined}
                     rel={channel.href.startsWith("http") ? "noreferrer" : undefined}
-                    className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-sky-700 hover:text-sky-900"
+                    className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-sky-700 transition-all duration-300 ease-out hover:gap-3 hover:text-sky-900"
                   >
                     {channel.label} <ArrowRight size={15} />
                   </Link>
@@ -218,10 +217,10 @@ export default function CabooltureWorkingHolidayPage() {
             </div>
           </article>
 
-          <article className="rounded-[2rem] border border-rose-200 bg-rose-50 p-7 shadow-sm">
+          <article className="rounded-[2.4rem] border border-rose-200 bg-rose-50 p-7 shadow-[0_18px_50px_rgba(24,44,74,0.08)] md:p-8">
             <div className="flex items-center gap-3">
               <ShieldAlert className="text-rose-700" size={22} />
-              <h2 className="text-3xl font-black tracking-tight text-slate-950">이건 꼭 조심하세요</h2>
+              <h2 className="text-4xl font-black tracking-[-0.05em] text-slate-950 md:text-5xl">이건 꼭 조심하세요</h2>
             </div>
             <div className="mt-6 space-y-3 text-sm leading-7 text-slate-700">
               {redFlags.map((flag) => (
@@ -232,9 +231,7 @@ export default function CabooltureWorkingHolidayPage() {
               ))}
             </div>
             <p className="mt-6 text-sm leading-7 text-slate-700">
-              Home Affairs는 워홀 비자마다 지정근무와 고용 조건이 다를 수 있다고 안내하고 있고, Fair Work는 모든 근무시간에 대해
-              최소 급여와 payslip이 보장되어야 한다고 명시합니다. 비자 연장 목적이면 실제 job type과 location eligibility를 반드시
-              공식 페이지에서 다시 확인하세요.
+              Home Affairs는 워홀 비자마다 지정근무와 고용 조건이 다를 수 있다고 안내하고 있고, Fair Work는 모든 근무시간에 대해 최소 급여와 payslip이 보장되어야 한다고 명시합니다. 비자 연장 목적이면 실제 job type과 location eligibility를 반드시 공식 페이지에서 다시 확인하세요.
             </p>
           </article>
         </section>
@@ -242,16 +239,16 @@ export default function CabooltureWorkingHolidayPage() {
         <section className="space-y-6">
           <div className="flex items-center gap-3">
             <Tractor className="text-emerald-700" size={24} />
-            <h2 className="text-3xl font-black tracking-tight text-slate-950">공식 확인 링크</h2>
+            <h2 className="text-4xl font-black tracking-[-0.05em] text-slate-950 md:text-5xl">공식 확인 링크</h2>
           </div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {officialLinks.map((item) => (
+            {officialLinks.map((item, index) => (
               <Link
                 key={item.href}
                 href={item.href}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-[1.6rem] border border-slate-200 bg-white p-5 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-sky-200 hover:text-sky-900"
+                className={`surface-panel rounded-[1.8rem] p-5 text-sm font-semibold text-slate-700 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:text-sky-900 ${index % 3 === 1 ? "xl:translate-y-6" : ""}`}
               >
                 <span className="flex items-center justify-between gap-3">
                   <span>{item.title}</span>
