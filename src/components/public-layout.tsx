@@ -15,11 +15,11 @@ export function PublicLayout({
 
   return (
     <div className="min-h-screen text-slate-900">
-      <header className="sticky top-0 z-40 px-4 pt-4 md:px-6">
-        <div className="surface-panel mx-auto flex max-w-7xl flex-col gap-4 rounded-[2rem] px-6 py-4 md:px-8 lg:px-10">
+      <header className="sticky top-0 z-40 px-3 pt-3 md:px-6 md:pt-4">
+        <div className="surface-panel motion-rise mx-auto flex max-w-7xl flex-col gap-4 rounded-[1.7rem] px-4 py-3.5 md:rounded-[2rem] md:px-8 md:py-4 lg:px-10">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="max-w-xl">
-              <Link href="/" className="text-xl font-black tracking-tight text-slate-950 md:text-2xl">
+              <Link href="/" className="text-lg font-black tracking-tight text-slate-950 md:text-2xl">
                 노스레이크 브리즈 (North Lakes Breeze)
               </Link>
               <p className="mt-1 text-sm leading-6 text-slate-500">
@@ -37,7 +37,7 @@ export function PublicLayout({
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`rounded-full px-4 py-2.5 text-sm font-semibold transition-all duration-300 ease-out active:scale-[0.98] ${
+                    className={`rounded-full px-3.5 py-2.5 text-sm font-semibold transition-all duration-300 ease-out active:scale-[0.98] md:px-4 ${
                       active
                         ? "bg-[linear-gradient(135deg,#355d93_0%,#173053_100%)] text-white shadow-[0_16px_40px_rgba(24,44,74,0.18)]"
                         : "bg-white/85 text-slate-700 ring-1 ring-white/70 hover:-translate-y-0.5 hover:bg-white hover:text-slate-950"
@@ -54,8 +54,8 @@ export function PublicLayout({
 
       {children}
 
-      <footer className="mt-24 px-4 pb-6 md:px-6">
-        <div className="surface-deep mx-auto grid max-w-7xl gap-8 overflow-hidden rounded-[2.4rem] px-6 py-12 text-white md:grid-cols-2 md:px-8 lg:px-10">
+      <footer className="mt-20 px-3 pb-4 md:mt-24 md:px-6 md:pb-6">
+        <div className="surface-deep motion-rise motion-delay-1 mx-auto grid max-w-7xl gap-8 overflow-hidden rounded-[2rem] px-5 py-10 text-white md:grid-cols-2 md:rounded-[2.4rem] md:px-8 md:py-12 lg:px-10">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.28em] text-sky-200">North Lakes Breeze</p>
             <h2 className="mt-3 text-3xl font-black tracking-tight text-white">노스레이크 브리즈</h2>
